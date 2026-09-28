@@ -44,7 +44,10 @@ layout: default
       <article class="card what-card">
         <h3 class="mono" style="font-size:1.05rem;letter-spacing:0">{{ c.name }}</h3>
         <p>{{ c.text[L] }}</p>
-        <a class="link-arrow" href="{{ c.url }}">{% include icon.html name="github" %}GitHub</a>
+        <div class="what-foot">
+          <a class="link-arrow" href="{{ c.url }}">{% include icon.html name="github" %}GitHub</a>
+          {%- if c.arxiv %}<a class="chip-link" href="https://arxiv.org/abs/{{ c.arxiv }}">arXiv:{{ c.arxiv }}</a>{% endif %}
+        </div>
       </article>
       {%- endfor %}
     </div>

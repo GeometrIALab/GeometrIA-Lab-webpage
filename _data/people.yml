@@ -10,8 +10,8 @@ members:
     photo: "/assets/img/people/henrique.jpg"
     role: { pt: "Coordenador", en: "Head of lab" }
     position:
-      pt: "Professor do IMECC–Unicamp · Vice-diretor do CBG"
-      en: "Professor at IMECC–Unicamp · Vice-Director of CBG"
+      pt: "Professor do IMECC/UNICAMP · Vice-diretor do CBG"
+      en: "Professor at IMECC/UNICAMP · Vice-Director of CBG"
     bio:
       pt: "Pesquisa teoria de calibre sobre variedades com estruturas geométricas especiais — em especial estruturas G<sub>2</sub> em dimensão 7 — e fluxos geométricos, com aplicações à teoria de cordas e à teoria M. É também gerente executivo do BI0S, o Instituto Brasileiro de Ciência de Dados."
       en: "Works on gauge theory over manifolds with special geometric structures — especially G<sub>2</sub>-structures in dimension seven — and geometric flows, with applications to string and M-theory. He is also Executive Manager of BI0S, the Brazilian Institute of Data Science."
@@ -26,8 +26,8 @@ members:
     photo: "/assets/img/people/ed.jpg"
     role: { pt: "Pós-doutorando", en: "Postdoc" }
     position:
-      pt: "Pós-doutorando FAPESP no IMECC–Unicamp"
-      en: "FAPESP postdoctoral fellow at IMECC–Unicamp"
+      pt: "Pós-doutorando FAPESP no IMECC/UNICAMP"
+      en: "FAPESP postdoctoral fellow at IMECC/UNICAMP"
     bio:
       pt: "Aplica aprendizado de máquina a problemas de física matemática e teórica, com foco recente em geometria diferencial: métricas e formas em geometrias ligadas a compactificações de cordas, geometria da informação para IA e álgebras de clusters. Doutor pela City St George's, University of London, e ex-pós-doc da Queen Mary University of London."
       en: "Applies machine learning to problems in mathematical and theoretical physics, recently focused on differential geometry: metrics and forms on geometries tied to string compactifications, information geometry for AI, and cluster algebras. PhD from City St George's, University of London; previously a postdoc at Queen Mary University of London."
@@ -42,8 +42,8 @@ members:
     photo: "/assets/img/people/tomas.jpg"
     role: { pt: "Doutorando", en: "PhD candidate" }
     position:
-      pt: "Doutorado em Matemática no IMECC–Unicamp"
-      en: "PhD in Mathematics at IMECC–Unicamp"
+      pt: "Doutorado em Matemática no IMECC/UNICAMP"
+      en: "PhD in Mathematics at IMECC/UNICAMP"
     bio:
       pt: "Usa aprendizado de máquina e IA em geometria diferencial complexa e geometria algébrica, construindo pipelines numéricos e buscas heurísticas. Engenheiro de computação pela Unicamp, fundou e dirige a MathIA AmLat, comunidade latino-americana sobre IA na pesquisa matemática."
       en: "Uses machine learning and AI in complex differential geometry and algebraic geometry, building numerical pipelines and heuristic searches. A computer engineer by training (Unicamp), he founded and directs MathIA AmLat, a Latin American community on AI in mathematical research."

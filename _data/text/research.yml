@@ -25,12 +25,44 @@ kinds:
 code:
   kicker: { pt: "Código e dados", en: "Code &amp; data" }
   title: { pt: "Aberto por padrão", en: "Open by default" }
+  # Repositórios citados nos artigos (mais recentes primeiro).
   items:
+    - name: "WillmorePINN"
+      url: "https://github.com/edhirst/WillmorePINN"
+      arxiv: "2604.04321"
+      text:
+        pt: "Redes neurais informadas pela física (PINNs) que aprendem mergulhos de superfícies minimizando a energia de Willmore."
+        en: "Physics-informed neural networks (PINNs) that learn surface embeddings minimising the Willmore energy."
+    - name: "FreeLineArrangements"
+      url: "https://github.com/TomasSilva/FreeLineArrangements"
+      arxiv: "2604.02995"
+      text:
+        pt: "Busca heurística e por aprendizado por reforço de arranjos livres de retas no plano projetivo, com uma base de arranjos certificados em aritmética exata."
+        en: "Heuristic and reinforcement-learning search for free line arrangements in the projective plane, with a database of arrangements certified in exact arithmetic."
+    - name: "LearningG2"
+      url: "https://github.com/TomasSilva/LearningG2"
+      arxiv: "2602.12438"
+      text:
+        pt: "Redes neurais que aprendem a 3-forma φ e a métrica de estruturas G<sub>2</sub> em variedades de Calabi–Yau de contato de dimensão 7."
+        en: "Neural networks that learn the 3-form φ and the metric of G<sub>2</sub>-structures on contact Calabi–Yau 7-manifolds."
+    - name: "NumericalExteriorDerivative"
+      url: "https://github.com/TomasSilva/NumericalExteriorDerivative"
+      arxiv: "2510.00999"
+      text:
+        pt: "Implementação de demonstração, em SageMath, da derivada exterior numérica em ℝ³, a partir da igualdade do valor médio."
+        en: "A SageMath demo implementation of the numerical exterior derivative in ℝ³, based on the mean value equality."
     - name: "Metaheuristic brane tiling search"
       url: "https://github.com/TomasSilva/Metaheuristic-brane-tiling-search"
+      arxiv: "2412.19313"
       text:
         pt: "Recozimento simulado para construir brane tilings geometricamente consistentes."
         en: "Simulated annealing to construct geometrically consistent brane tilings."
+    - name: "MLcCY7"
+      url: "https://github.com/TomasSilva/MLcCY7"
+      arxiv: "2310.03064"
+      text:
+        pt: "Geração de links de Calabi–Yau a partir de espaços projetivos com pesos, cálculo de invariantes topológicos (números de Hodge sasakianos, invariante de Crowley–Nordström) e aprendizado de máquina sobre eles."
+        en: "Generates Calabi–Yau links from weighted projective spaces, computes their topological invariants (Sasakian Hodge numbers, Crowley–Nordström invariant) and studies them with machine learning."
 
 more:
   pt: "As listas completas de cada membro estão nas páginas pessoais."

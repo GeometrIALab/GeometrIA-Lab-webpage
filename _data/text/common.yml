@@ -6,8 +6,8 @@ lab: { pt: "CBG – Laboratório de IA e Geometria", en: "CBG – AI &amp; Geome
 lab_long: { pt: "CBG – Laboratório de IA e Geometria · Centro Brasileiro de Geometria", en: "CBG – AI &amp; Geometry Lab · Brazilian Center for Geometry" }
 cbg_name: { pt: "Centro Brasileiro de Geometria (CBG)", en: "Brazilian Center for Geometry (CBG)" }
 description:
-  pt: "GeometrIA · CBG – Laboratório de IA e Geometria: o laboratório de inteligência artificial do Centro Brasileiro de Geometria (CBG), no IMECC–Unicamp. Pesquisa em aprendizado de máquina para geometria e uma ponte para matemáticos que querem usar IA."
-  en: "GeometrIA · CBG – AI &amp; Geometry Lab: the artificial intelligence lab of the Brazilian Center for Geometry (CBG) at IMECC–Unicamp. Research in machine learning for geometry, and a bridge for mathematicians who want to use AI."
+  pt: "GeometrIA · CBG – Laboratório de IA e Geometria: o laboratório de inteligência artificial do Centro Brasileiro de Geometria (CBG), no IMECC/UNICAMP. Pesquisa em aprendizado de máquina para geometria e uma ponte para matemáticos que querem usar IA."
+  en: "GeometrIA · CBG – AI &amp; Geometry Lab: the artificial intelligence lab of the Brazilian Center for Geometry (CBG) at IMECC/UNICAMP. Research in machine learning for geometry, and a bridge for mathematicians who want to use AI."
 
 nav:
   home: { pt: Início, en: Home }
@@ -50,8 +50,8 @@ footer:
   lab: { pt: Laboratório, en: Lab }
   network: { pt: Rede, en: Network }
   contact: { pt: Contato, en: Contact }
-  address: "IMECC – Unicamp · Rua Sérgio Buarque de Holanda, 651 · Cidade Universitária · 13083-859 Campinas, SP · Brasil"
+  address: "IMECC/UNICAMP · Rua Sérgio Buarque de Holanda, 651 · Cidade Universitária · 13083-859 Campinas, SP · Brasil"
   cbg: { pt: "Centro Brasileiro de Geometria", en: "Brazilian Center for Geometry" }
-  imecc: { pt: "IMECC – Unicamp", en: "IMECC – Unicamp" }
+  imecc: { pt: "IMECC/UNICAMP", en: "IMECC/UNICAMP" }
   community: { pt: "MathIA AmLat no Zulip (convite)", en: "MathIA AmLat on Zulip (invitation)" }
   source: { pt: "Código do site", en: "Site source" }

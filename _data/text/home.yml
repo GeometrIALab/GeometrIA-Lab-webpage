@@ -19,8 +19,8 @@ cbg:
   kicker: { pt: "Um laboratório do CBG", en: "A lab of CBG" }
   title: { pt: "Parte do Centro Brasileiro de Geometria", en: "Part of the Brazilian Center for Geometry" }
   text:
-    pt: "O GeometrIA é o laboratório de inteligência artificial do Centro Brasileiro de Geometria (CBG), um Centro de Pesquisa, Inovação e Difusão (CEPID) financiado pela FAPESP e sediado no IMECC–Unicamp. O CBG reúne pesquisadores de várias instituições em quatro verticais temáticas — e o laboratório trabalha na interseção de todas elas com a IA."
-    en: "GeometrIA is the artificial intelligence lab of the Brazilian Center for Geometry (CBG), a Research, Innovation and Dissemination Center (CEPID) funded by FAPESP and hosted at IMECC–Unicamp. CBG brings together researchers from several institutions in four thematic verticals — and the lab works where each of them meets AI."
+    pt: "O GeometrIA é o laboratório de inteligência artificial do Centro Brasileiro de Geometria (CBG), um Centro de Pesquisa, Inovação e Difusão (CEPID) financiado pela FAPESP e sediado no IMECC/UNICAMP. O CBG reúne pesquisadores de várias instituições em quatro verticais temáticas — e o laboratório trabalha na interseção de todas elas com a IA."
+    en: "GeometrIA is the artificial intelligence lab of the Brazilian Center for Geometry (CBG), a Research, Innovation and Dissemination Center (CEPID) funded by FAPESP and hosted at IMECC/UNICAMP. CBG brings together researchers from several institutions in four thematic verticals — and the lab works where each of them meets AI."
   verticals:
     - { pt: "Geometria Diferencial", en: "Differential Geometry" }
     - { pt: "Geometria Algébrica", en: "Algebraic Geometry" }

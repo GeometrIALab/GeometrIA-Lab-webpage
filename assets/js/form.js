@@ -1,9 +1,9 @@
 /* GeometrIA — formulário "Colabore".
  *
  * Com `endpoint` preenchido em _data/form.yml, envia a proposta (JSON, com o PDF em
- * base64) para o Google Apps Script em tools/form-backend.gs, que grava a planilha,
- * guarda o PDF no Drive e avisa o laboratório. Sem endpoint, abre um e-mail
- * pré-preenchido para contact_email.
+ * base64) para o Google Apps Script em tools/form-backend.gs, que a encaminha por
+ * e-mail, com o PDF anexado, para a conta do laboratório. Sem endpoint, abre um
+ * e-mail pré-preenchido para contact_email.
  */
 (function () {
   "use strict";

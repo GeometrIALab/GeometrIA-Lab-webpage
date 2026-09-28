@@ -61,8 +61,8 @@ form:
     - { value: "Outra", pt: "Outra", en: "Other" }
   cbg_member: { pt: "Você é membro do CBG?", en: "Are you a member of CBG?" }
   cbg_member_help:
-    pt: "Pesquisador(a) principal ou associado(a), ou bolsista do Centro Brasileiro de Geometria."
-    en: "Principal or associate researcher, or fellow of the Brazilian Center for Geometry."
+    pt: "Pesquisador(a) principal ou associado(a), ou bolsista do Centro Brasileiro de Geometria. A padronização automática consome tokens, e membros do CBG têm prioridade na alocação desses recursos."
+    en: "Principal or associate researcher, or fellow of the Brazilian Center for Geometry. The automatic standardization consumes tokens, and CBG members have priority in the allocation of these resources."
   cbg_member_options:
     - { value: "Sim", pt: "Sim", en: "Yes" }
     - { value: "Não", pt: "Não", en: "No" }
@@ -138,15 +138,15 @@ form:
   submit: { pt: "Enviar proposta", en: "Send proposal" }
   sending: { pt: "Enviando…", en: "Sending…" }
   privacy:
-    pt: "Respostas numa planilha privada da equipe; PDFs numa pasta privada. A triagem usa um modelo de linguagem."
-    en: "Answers go to the team's private spreadsheet; PDFs to a private folder. Triage uses a language model."
+    pt: "Respostas e PDF vão por e-mail só para a equipe do laboratório. A triagem usa um modelo de linguagem."
+    en: "Answers and the PDF are emailed only to the lab team. Triage uses a language model."
   privacy_mail:
     pt: "Ao enviar, seu programa de e-mail abre uma mensagem pronta para o laboratório."
     en: "On sending, your email app opens a ready-made message to the lab."
   success_title: { pt: "Recebemos sua proposta.", en: "We've received your proposal." }
   success_text:
-    pt: "Obrigado! Ela entra agora na triagem descrita acima: a versão padronizada chegará ao seu e-mail, e a leitura pela equipe costuma levar algumas semanas."
-    en: "Thank you! It now enters the triage described above: the standardized version will reach your inbox, and the team's reading usually takes a few weeks."
+    pt: "Obrigado! Ela entra agora na triagem descrita acima, em que membros do CBG têm prioridade na padronização automática. A versão padronizada chegará ao seu e-mail, e a leitura pela equipe costuma levar algumas semanas."
+    en: "Thank you! It now enters the triage described above, in which CBG members have priority for the automatic standardization. The standardized version will reach your inbox, and the team's reading usually takes a few weeks."
   success_id: { pt: "Número da proposta:", en: "Proposal number:" }
   success_again: { pt: "Enviar outra proposta", en: "Send another proposal" }
   mail_title: { pt: "Quase lá.", en: "Almost there." }

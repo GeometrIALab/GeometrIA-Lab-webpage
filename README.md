@@ -1,7 +1,7 @@
 # GeometrIA · CBG – Laboratório de IA e Geometria
 
 Site do **GeometrIA**, o laboratório de inteligência artificial e geometria do
-[Centro Brasileiro de Geometria (CBG)](https://www.cbg.ime.unicamp.br/), no IMECC–Unicamp.
+[Centro Brasileiro de Geometria (CBG)](https://www.cbg.ime.unicamp.br/), no IMECC/UNICAMP.
 Bilíngue (português por padrão, inglês em `/en/`), estático, feito para o GitHub Pages
 com Jekyll puro — sem plugins nem etapa de build própria.
 
@@ -59,7 +59,8 @@ Quase todo o conteúdo está em `_data/`, com português e inglês lado a lado
 | `_data/form.yml` | Endereço (`endpoint`) do back-end do formulário e tamanho máximo do PDF (veja abaixo). |
 | `_data/triage.yml` | As quatro etapas de uma proposta e o aviso de que a decisão é do laboratório. |
 | `_data/text/example.yml` | O modelo de proposta preenchida (`/colabore/exemplo/`). |
-| `tools/form-backend.gs` | Back-end do formulário (Google Apps Script): planilha, PDFs, avisos e triagem com Claude. |
+| `tools/form-backend.gs` | Back-end do formulário (Google Apps Script): envia cada proposta, com o PDF, para o e-mail do laboratório. |
+| `tools/triagem-manual.md` | Roteiro da triagem à mão no Claude: instruções, critérios da nota e mensagens ao proponente. |
 | `_config.yml` | Endereço, e-mail de contato, links institucionais. |
 | `assets/img/brand/` | Logotipos, favicons e o kit da marca (`geometria-brand-kit.zip`). |
 
@@ -76,67 +77,55 @@ Com foto, coloque o arquivo em `assets/img/people/` e use `photo: /assets/img/pe
 
 ---
 
-## Formulário "Colabore" → Planilha Google + triagem com Claude
+## Formulário "Colabore" → e-mail do laboratório
 
-O formulário do site é próprio. Com o back-end (`tools/form-backend.gs`) instalado, cada proposta:
+O formulário do site é próprio. Com o back-end (`tools/form-backend.gs`, um Google Apps Script)
+instalado, cada proposta vira um e-mail para `geometria.lab@cbg.unicamp.br`:
 
-1. vira uma linha da aba **Propostas** de uma Planilha Google da equipe; o PDF vai para uma pasta
-   privada do Drive, e um e-mail de aviso (com o PDF anexado) chega a `geometria.lab@cbg.unicamp.br`;
-2. passa pela triagem com Claude (opcional): proposta padronizada + notas de 1 a 5 em impacto,
-   viabilidade, tempo, custo computacional, dados e encaixe → nota de 0 a 100 e aba **Ranking**;
-3. é lida pela equipe na ordem do ranking. A proposta padronizada vai para o proponente pelo menu
-   **GeometrIA** da planilha, depois de revisada (dá para editar a célula antes de enviar).
+- **Assunto:** `[GeometrIA][CBG] GIA-2026-0007 — título`. O `[CBG]` marca as propostas de membros do
+  CBG, que têm prioridade na padronização (como diz o site).
+- **Corpo:** um resumo (ID, data, pedidos como o convite para o Zulip, situação do PDF); o bloco
+  **PROPONENTE**, com os dados pessoais; e o bloco **PROPOSTA**, só com o projeto — pronto para colar
+  no Claude.
+- **Anexo:** o PDF, já conferido (tem de ser um PDF de verdade, com até 10 MB).
+- **Responder** ao e-mail responde direto ao proponente.
 
-Enquanto `endpoint` estiver vazio em `_data/form.yml`, o envio abre um e-mail pré-preenchido para
+Nada fica guardado fora do e-mail: não há planilha nem pasta de arquivos. A triagem (proposta
+padronizada + nota) é feita à mão, no Claude — o roteiro, as instruções e as mensagens-modelo estão em
+[`tools/triagem-manual.md`](tools/triagem-manual.md).
+
+Se o e-mail não puder ser enviado, o site mostra um erro com o endereço do laboratório. Enquanto
+`endpoint` estiver vazio em `_data/form.yml`, o envio abre um e-mail pré-preenchido para
 `contact_email` — e a pessoa precisa anexar o PDF à mão.
 
-### Instalação (~10 min)
+### Instalação (~5 min)
 
-1. Com a conta Google que vai guardar as respostas (de preferência a do laboratório), crie uma
-   Planilha Google — por exemplo, "GeometrIA — propostas".
-2. Na planilha: **Extensões → Apps Script**. Apague o conteúdo de `Código.gs`, cole o arquivo
-   `tools/form-backend.gs` inteiro e salve.
-3. Escolha a função **`setup`** e clique em **Executar**. Autorize o acesso (Planilhas, Drive, envio de
-   e-mail, serviços externos). Em contas pessoais aparece "O Google não verificou este app":
-   **Avançado → Acessar** — o app é o seu próprio script.
+1. Com a conta Google que vai enviar os e-mails (de preferência a do laboratório), abra
+   <https://script.google.com> → **Novo projeto** e dê um nome, por exemplo "GeometrIA — formulário".
+2. Apague o conteúdo de `Código.gs`, cole o arquivo `tools/form-backend.gs` inteiro e salve.
+3. Escolha a função **`setup`** e clique em **Executar**. Autorize o envio de e-mail — é a única
+   permissão. Em contas pessoais aparece "O Google não verificou este app": **Avançado → Acessar** —
+   o app é o seu próprio script.
 4. **Implantar → Nova implantação → Tipo: App da Web.** *Executar como:* **Eu**.
    *Quem pode acessar:* **Qualquer pessoa**. Copie o URL que termina em `/exec`.
 5. Cole o URL em `endpoint`, no `_data/form.yml`. Commit + push.
-6. Teste: abra o URL `/exec` no navegador (deve aparecer `{"ok":true,…}`) e envie uma proposta pelo site.
+6. Teste: abra o URL `/exec` no navegador (deve aparecer `{"ok":true,…}`) e envie uma proposta pelo
+   site. Para testar só o e-mail, execute `testSubmission` no editor.
+
+Para mandar as propostas a outro endereço: **Configurações do projeto (engrenagem) → Propriedades do
+script → `LAB_EMAIL`**.
 
 Contas institucionais (Google Workspace) às vezes não permitem o acesso "Qualquer pessoa". Nesse caso,
-peça a liberação ao administrador ou instale o script numa conta Google do laboratório fora do domínio.
-
-### Triagem com Claude (opcional)
-
-1. Crie uma chave de API em <https://console.anthropic.com> — de preferência num workspace com limite de gastos.
-2. No Apps Script: **Configurações do projeto (engrenagem) → Propriedades do script → Adicionar propriedade**:
-   `ANTHROPIC_API_KEY` = a chave. (Quem pode editar o script consegue ver a chave.)
-3. Recarregue a planilha e use **GeometrIA → Ativar triagem automática** (ou execute `enableTriage`).
-
-A triagem usa a API de lotes da Anthropic: a cada 10 minutos, uma rodada envia as propostas novas e
-recolhe os resultados prontos — em geral eles aparecem em 10 a 30 minutos, pela metade do preço de uma
-chamada comum. O modelo padrão é `claude-opus-5-5`; para gastar menos, defina a propriedade
-`CLAUDE_MODEL` = `claude-sonnet-5`.
-
-- Vai para o modelo só o conteúdo da proposta e o PDF. Nome, e-mail, instituição, etapa da carreira
-  e vínculo com o CBG ficam apenas na planilha.
-- As notas e a justificativa são internas; ao proponente vai só a proposta padronizada.
-- Pesos da nota (impacto 30%, viabilidade 25%, tempo 15%; custo computacional, dados e encaixe 10% cada)
-  e as instruções do modelo ficam no início do script (`WEIGHTS`, `SYSTEM_PROMPT`).
+peça a liberação ao administrador ou instale o script numa conta Google fora do domínio — as propostas
+continuam indo para `LAB_EMAIL`.
 
 ### No dia a dia
 
-- **Status:** `recebido` → `triando` → `triado` são automáticos; a equipe muda para `em leitura`,
-  `aceita`, `recusada` ou `respondida`. Só `triado` e `em leitura` entram no ranking. Propostas sem
-  problema descrito ("Começar a usar IA") ficam como `sem problema`, fora da triagem.
-- **Enviar a padronizada:** selecione a linha na aba **Propostas** → **GeometrIA → Enviar proposta
-  padronizada ao proponente**. Para enviar automaticamente logo após a triagem, defina a propriedade
-  `AUTO_SEND_STANDARDIZED` = `true`.
-- **Pedido de exclusão (LGPD):** selecione a linha → **GeometrIA → Excluir proposta e PDF**, e apague
-  também o e-mail de aviso na caixa do laboratório.
-- Não renomeie os cabeçalhos da aba **Propostas** — o script encontra as colunas pelo nome. Reordenar
-  colunas ou ordenar as linhas não tem problema.
+- Cada proposta tem um ID (`GIA-2026-0007`), que o proponente também vê na tela ao enviar.
+- Limites: 5 envios por hora por e-mail e 60 no total; o reenvio da mesma proposta é ignorado.
+- PDF: até 10 MB. Para mudar, altere juntos `MAX_PDF_MB` no script e `max_pdf_mb` no `_data/form.yml`.
+- **Pedido de exclusão (LGPD):** apague o e-mail da proposta (também da lixeira) e as conversas do
+  Claude em que ela foi usada.
 - Ao atualizar o script: **Implantar → Gerenciar implantações → editar → Versão: Nova versão**.
   Assim o URL `/exec` continua o mesmo.
 

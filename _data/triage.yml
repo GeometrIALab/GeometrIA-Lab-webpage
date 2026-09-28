@@ -14,9 +14,9 @@ steps:
 
   - name: { pt: "Padronização e nota automáticas", en: "Automatic standardization and scoring" }
     text:
-      pt: "Um modelo de linguagem (Claude) converte o problema numa proposta em formato padronizado — que depois enviaremos a você por e-mail — e atribui uma nota preliminar com base em impacto, viabilidade, tempo, custo computacional e dados disponíveis. As notas formam um ranking."
-      en: "A language model (Claude) turns the problem into a proposal in a standard format — which we will later email to you — and gives it a preliminary score based on impact, feasibility, time, computational cost and available data. The scores form a ranking."
-    tag: { pt: "automático", en: "automatic" }
+      pt: "Um modelo de linguagem (Claude) converte o problema numa proposta em formato padronizado — que depois enviaremos a você por e-mail — e atribui uma nota preliminar com base em impacto, viabilidade, tempo, custo computacional e dados disponíveis. As notas formam um ranking. Cada proposta padronizada consome tokens, um recurso pago e limitado; por isso, membros do CBG têm prioridade na alocação desses recursos."
+      en: "A language model (Claude) turns the problem into a proposal in a standard format — which we will later email to you — and gives it a preliminary score based on impact, feasibility, time, computational cost and available data. The scores form a ranking. Each standardized proposal consumes tokens, a paid and limited resource; CBG members therefore have priority in the allocation of these resources."
+    tag: { pt: "automático · prioridade CBG", en: "automatic · CBG priority" }
 
   - name: { pt: "Leitura e avaliação pela equipe", en: "Reading and assessment by the team" }
     text:

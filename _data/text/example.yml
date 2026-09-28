@@ -30,6 +30,9 @@ sections:
         value: { pt: "Geometria discreta e convexa", en: "Discrete and convex geometry" }
       - label: { pt: "Você é membro do CBG?", en: "Are you a member of CBG?" }
         value: { pt: "Não", en: "No" }
+        tip:
+          pt: "A padronização automática consome tokens, então membros do CBG têm prioridade na alocação desses recursos. Propostas de quem não é membro também são bem-vindas."
+          en: "The automatic standardization consumes tokens, so CBG members have priority in the allocation of these resources. Proposals from non-members are welcome too."
 
   - legend: { pt: "Seu interesse", en: "Your interest" }
     fields:

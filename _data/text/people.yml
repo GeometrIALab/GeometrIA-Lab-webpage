@@ -1,12 +1,12 @@
 title: { pt: "Pessoas", en: "People" }
 description:
-  pt: "A equipe do GeometrIA · CBG – Laboratório de IA e Geometria, no IMECC–Unicamp."
-  en: "The team of GeometrIA · CBG – AI &amp; Geometry Lab, at IMECC–Unicamp."
+  pt: "A equipe do GeometrIA · CBG – Laboratório de IA e Geometria, no IMECC/UNICAMP."
+  en: "The team of GeometrIA · CBG – AI &amp; Geometry Lab, at IMECC/UNICAMP."
 
 hero:
   kicker: { pt: "Pessoas", en: "People" }
   title: { pt: "Quem faz o GeometrIA", en: "Who makes GeometrIA" }
   lede:
-    pt: "Geômetras que programam e programadores que viraram geômetras — no IMECC–Unicamp, dentro do Centro Brasileiro de Geometria."
-    en: "Geometers who code and coders who became geometers — at IMECC–Unicamp, within the Brazilian Center for Geometry."
+    pt: "Geômetras que programam e programadores que viraram geômetras."
+    en: "Geometers who code and coders who became geometers."
 
