@@ -1,0 +1,153 @@
+---
+layout: default
+---
+{%- assign L = page.lang -%}
+{%- assign T = site.data.text.home -%}
+{%- assign C = site.data.text.common -%}
+{%- assign R = site.data.routes -%}
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="pill">{% include mark.html id="pill" variant="small" %}{{ T.hero.eyebrow[L] }}</p>
+      <h1 class="display">{{ T.hero.title[L] }}</h1>
+      <p class="lede">{{ T.hero.lede[L] }}</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="{{ R.collaborate[L] | relative_url }}">{{ C.nav.cta[L] }}{% include icon.html name="arrow" %}</a>
+        <a class="btn btn-ghost" href="{{ R.approach[L] | relative_url }}">{{ T.hero.cta_secondary[L] }}</a>
+      </div>
+    </div>
+    <figure class="hero-figure" data-flow data-epoch-label="{{ T.hero.epoch[L] }}">
+      <div class="flow-frame">
+        <canvas class="flow-canvas" aria-hidden="true"></canvas>
+        <div class="flow-hud mono" aria-hidden="true">
+          <span class="hud-tl">{{ T.hero.figure_label[L] }}</span>
+          <span class="hud-bl" data-hud-epoch>{{ T.hero.epoch[L] }} 0000</span>
+          <span class="hud-br"><span data-hud-c>c = √2</span><br><span data-hud-w>W = 2π²</span> <span class="target">→ 2π²</span></span>
+        </div>
+      </div>
+      {%- assign wp = site.data.publications | where: "id", T.hero.figure_pub | first %}
+      <figcaption>{{ T.hero.figure_caption[L] }}
+        <span class="fig-ref">{{ T.hero.figure_ref[L] }} {{ wp.authors | replace: ". ", ".&nbsp;" }}, <a href="https://arxiv.org/abs/{{ wp.arxiv }}">“{{ wp.title }}”</a>, arXiv:{{ wp.arxiv }} ({{ wp.year }}).</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="section cbg-section" aria-labelledby="cbg-title">
+  <div class="container cbg-grid">
+    <a class="cbg-card" href="{% if L == 'en' %}{{ site.links.cbg_en }}{% else %}{{ site.links.cbg }}{% endif %}" aria-label="{{ C.cbg_name[L] }}">
+      <img src="{{ '/assets/img/cbg/cbg-logo-cor.png' | relative_url }}" alt="" width="1612" height="419" loading="lazy">
+    </a>
+    <div class="cbg-copy">
+      <p class="kicker">{{ T.cbg.kicker[L] }}</p>
+      <h2 id="cbg-title">{{ T.cbg.title[L] }}</h2>
+      <p>{{ T.cbg.text[L] }}</p>
+      <ul class="cbg-verticals">
+        {%- for v in T.cbg.verticals %}<li>{{ v[L] }}</li>{% endfor %}
+      </ul>
+      <a class="link-arrow" href="{% if L == 'en' %}{{ site.links.cbg_en }}{% else %}{{ site.links.cbg }}{% endif %}">{{ T.cbg.link[L] }}{% include icon.html name="external" %}</a>
+    </div>
+  </div>
+</section>
+
+<section class="section tint" aria-labelledby="what-title">
+  <div class="container">
+    <header class="section-head">
+      <p class="kicker">{{ T.what.kicker[L] }}</p>
+      <h2 id="what-title">{{ T.what.title[L] }}</h2>
+    </header>
+    <div class="grid-3">
+      {%- for it in T.what.items %}
+      {%- if it.link == "community" -%}{%- capture href -%}{% include invite-href.html %}{%- endcapture -%}{%- else -%}{%- assign href = R[it.link][L] | relative_url -%}{%- endif %}
+      <article class="card what-card">
+        <h3><span class="mono">0{{ forloop.index }}</span>{{ it.name[L] }}</h3>
+        <p>{{ it.text[L] }}</p>
+        <div class="what-foot">
+          <a class="link-arrow" href="{{ href }}">{{ it.link_text[L] }}{% include icon.html name="arrow" %}</a>
+          {%- if it.logo %}<img class="community-logo" src="{{ it.logo | relative_url }}" alt="" width="360" height="360" loading="lazy">{% endif %}
+        </div>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="modes-title">
+  <div class="container">
+    <header class="section-head">
+      <p class="kicker">{{ T.modes.kicker[L] }}</p>
+      <h2 id="modes-title">{{ T.modes.title[L] }}</h2>
+      <p>{{ T.modes.lede[L] }}</p>
+    </header>
+    <div class="grid-4">
+      {%- assign primary_modes = site.data.modes | where_exp: "m", "m.secondary != true" -%}
+      {%- for m in primary_modes %}
+      {% include mode-card.html mode=m index=forloop.index %}
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section tint" aria-labelledby="loop-title">
+  <div class="container">
+    <header class="section-head">
+      <p class="kicker">{{ T.loop.kicker[L] }}</p>
+      <h2 id="loop-title">{{ T.loop.title[L] }}</h2>
+      <p>{{ T.loop.lede[L] }}</p>
+    </header>
+    <ol class="steps">
+      {%- for s in site.data.pipeline %}
+      <li class="step">
+        <span class="step-num" aria-hidden="true">{{ forloop.index }}</span>
+        <h3>{{ s.name[L] }}</h3>
+        <p>{{ s.text[L] }}</p>
+        <span class="out">{{ s.output[L] }}</span>
+      </li>
+      {%- endfor %}
+    </ol>
+    <div class="loop-foot">
+      <p class="loop-again">{{ site.data.text.approach.loop.again[L] }}</p>
+      <a class="link-arrow" href="{{ R.approach[L] | relative_url }}">{{ T.loop.link[L] }}{% include icon.html name="arrow" %}</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="work-title">
+  <div class="container">
+    <header class="section-head split">
+      <div>
+        <p class="kicker">{{ T.work.kicker[L] }}</p>
+        <h2 id="work-title">{{ T.work.title[L] }}</h2>
+      </div>
+      <a class="link-arrow" href="{{ R.research[L] | relative_url }}">{{ T.work.link[L] }}{% include icon.html name="arrow" %}</a>
+    </header>
+    <div class="grid-3">
+      {%- assign featured = site.data.publications | where: "featured", true -%}
+      {%- for p in featured limit: 3 %}
+      {% include pub-item.html pub=p compact=true %}
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+{% include cta-band.html %}
+
+<section class="section" aria-labelledby="news-title">
+  <div class="container">
+    <header class="section-head">
+      <p class="kicker">{{ T.news.kicker[L] }}</p>
+      <h2 id="news-title">{{ T.news.title[L] }}</h2>
+    </header>
+    <ul class="news">
+      {%- for n in site.data.news limit: 6 %}
+      {%- assign mi = n.date | date: "%-m" | minus: 1 -%}
+      {%- assign np = nil -%}
+      {%- if n.pub -%}{%- assign np = site.data.publications | where: "id", n.pub | first -%}{%- endif %}
+      <li>
+        <time datetime="{{ n.date | date: '%Y-%m' }}">{{ C.months[L][mi] }} {{ n.date | date: "%Y" }}</time>
+        <p>{% if np %}{% if np.arxiv %}<a href="https://arxiv.org/abs/{{ np.arxiv }}">{{ n.text[L] }}</a>{% elsif np.url %}<a href="{{ np.url }}">{{ n.text[L] }}</a>{% else %}{{ n.text[L] }}{% endif %}{% elsif n.url %}<a href="{{ n.url }}">{{ n.text[L] }}</a>{% else %}{{ n.text[L] }}{% endif %}</p>
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>

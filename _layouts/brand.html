@@ -1,0 +1,172 @@
+---
+layout: default
+---
+{%- assign L = page.lang -%}
+{%- assign T = site.data.text.brand -%}
+{%- assign C = site.data.text.common -%}
+{%- assign V = T.versions -%}
+{%- assign B = "/assets/img/brand/" | relative_url -%}
+<section class="page-hero">
+  <div class="container">
+    <p class="kicker">{{ T.hero.kicker[L] }}</p>
+    <h1>{{ T.hero.title[L] }}</h1>
+    <p class="lede">{{ T.hero.lede[L] }}</p>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="name-title">
+  <div class="container">
+    <p class="kicker">{{ T.name.kicker[L] }}</p>
+    <p class="brand-name" aria-hidden="true" style="margin-top:.35em">Geometr<span class="lit">IA</span></p>
+    <div class="grid-2" style="align-items:start">
+      <h2 id="name-title">{{ T.name.title[L] }}</h2>
+      <p class="lede" style="margin:0">{{ T.name.text[L] }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="section tint" aria-labelledby="mark-title">
+  <div class="container mark-showcase">
+    <div class="mark-stage">
+      <div class="mark-tile">{% include mark.html id="big1" label="GeometrIA" %}</div>
+      <div class="mark-tile on-dark"><img src="{{ B }}mark-on-dark.svg" alt="" width="100" height="100"></div>
+    </div>
+    <div>
+      <p class="kicker">{{ T.mark.kicker[L] }}</p>
+      <h2 id="mark-title" style="margin:.45em 0 .8em">{{ T.mark.title[L] }}</h2>
+      <ul class="mark-points">
+        {%- for p in T.mark.points %}<li>{{ p[L] }}</li>{% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="versions-title">
+  <div class="container">
+    <header class="section-head">
+      <p class="kicker">{{ V.kicker[L] }}</p>
+      <h2 id="versions-title">{{ V.title[L] }}</h2>
+    </header>
+    <div class="asset-grid">
+      <figure class="asset wide" style="margin:0">
+        <div class="asset-preview"><img src="{{ B }}lockup-horizontal-{{ L }}.svg" alt="GeometrIA — {{ C.lab[L] }}"></div>
+        <figcaption class="asset-body"><h3>{{ V.horizontal[L] }}</h3><span class="asset-links"><a class="chip-link" href="{{ B }}lockup-horizontal-{{ L }}.svg" download>{% include icon.html name="download" %}SVG</a><a class="chip-link" href="{{ B }}lockup-horizontal-{{ L }}.png" download>PNG</a></span></figcaption>
+      </figure>
+      <figure class="asset wide" style="margin:0">
+        <div class="asset-preview on-dark"><img src="{{ B }}lockup-horizontal-{{ L }}-on-dark.svg" alt=""></div>
+        <figcaption class="asset-body"><h3>{{ V.on_dark[L] }}</h3><span class="asset-links"><a class="chip-link" href="{{ B }}lockup-horizontal-{{ L }}-on-dark.svg" download>{% include icon.html name="download" %}SVG</a><a class="chip-link" href="{{ B }}lockup-horizontal-{{ L }}-on-dark.png" download>PNG</a></span></figcaption>
+      </figure>
+      <figure class="asset" style="margin:0">
+        <div class="asset-preview tall"><img src="{{ B }}lockup-stacked-{{ L }}.svg" alt=""></div>
+        <figcaption class="asset-body"><h3>{{ V.stacked[L] }}</h3><span class="asset-links"><a class="chip-link" href="{{ B }}lockup-stacked-{{ L }}.svg" download>{% include icon.html name="download" %}SVG</a><a class="chip-link" href="{{ B }}lockup-stacked-{{ L }}.png" download>PNG</a></span></figcaption>
+      </figure>
+      <figure class="asset" style="margin:0">
+        <div class="asset-preview tall"><img src="{{ B }}mark-color.svg" alt=""></div>
+        <figcaption class="asset-body"><h3>{{ V.symbol[L] }}</h3><span class="asset-links"><a class="chip-link" href="{{ B }}mark-color.svg" download>{% include icon.html name="download" %}SVG</a><a class="chip-link" href="{{ B }}mark-color.png" download>PNG</a></span></figcaption>
+      </figure>
+      <figure class="asset" style="margin:0">
+        <div class="asset-preview on-mist tall"><img src="{{ B }}mark-small-color.svg" alt="" style="max-height:64px"></div>
+        <figcaption class="asset-body"><h3>{{ V.small[L] }}</h3><span class="asset-links"><a class="chip-link" href="{{ B }}mark-small-color.svg" download>{% include icon.html name="download" %}SVG</a><a class="chip-link" href="{{ B }}favicon-512.png" download>PNG</a></span></figcaption>
+      </figure>
+      <figure class="asset wide" style="margin:0">
+        <div class="asset-preview"><img src="{{ B }}lockup-horizontal-{{ L }}-ink.svg" alt=""></div>
+        <figcaption class="asset-body"><h3>{{ V.mono[L] }}</h3><span class="asset-links"><a class="chip-link" href="{{ B }}lockup-horizontal-{{ L }}-ink.svg" download>{% include icon.html name="download" %}SVG</a><a class="chip-link" href="{{ B }}lockup-horizontal-{{ L }}-white.svg" download>SVG · {{ V.white[L] }}</a></span></figcaption>
+      </figure>
+      <figure class="asset wide" style="margin:0">
+        <div class="asset-preview on-mist"><img src="{{ B }}wordmark-color.svg" alt="" style="max-height:64px"></div>
+        <figcaption class="asset-body"><h3>{{ V.wordmark[L] }}</h3><span class="asset-links"><a class="chip-link" href="{{ B }}wordmark-color.svg" download>{% include icon.html name="download" %}SVG</a><a class="chip-link" href="{{ B }}geometria-brand-kit.zip" download>{% include icon.html name="download" %}{{ V.kit[L] }}</a></span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="section tint" aria-labelledby="cobrand-title">
+  <div class="container">
+    <header class="section-head">
+      <p class="kicker">{{ T.cobrand.kicker[L] }}</p>
+      <h2 id="cobrand-title">{{ T.cobrand.title[L] }}</h2>
+      <p>{{ T.cobrand.text[L] }}</p>
+    </header>
+    <div class="asset-grid">
+      <figure class="asset wide" style="margin:0">
+        <div class="asset-preview"><img src="{{ B }}cobrand-horizontal-{{ L }}.svg" alt="GeometrIA — {{ C.lab[L] }} · {{ C.cbg_name[L] }}"></div>
+        <figcaption class="asset-body"><h3>{{ T.cobrand.light[L] }}</h3><span class="asset-links"><a class="chip-link" href="{{ B }}cobrand-horizontal-{{ L }}.svg" download>{% include icon.html name="download" %}SVG</a><a class="chip-link" href="{{ B }}cobrand-horizontal-{{ L }}.png" download>PNG</a></span></figcaption>
+      </figure>
+      <figure class="asset wide" style="margin:0">
+        <div class="asset-preview on-dark"><img src="{{ B }}cobrand-horizontal-{{ L }}-on-dark.svg" alt=""></div>
+        <figcaption class="asset-body"><h3>{{ T.cobrand.dark[L] }}</h3><span class="asset-links"><a class="chip-link" href="{{ B }}cobrand-horizontal-{{ L }}-on-dark.svg" download>{% include icon.html name="download" %}SVG</a><a class="chip-link" href="{{ B }}cobrand-horizontal-{{ L }}-on-dark.png" download>PNG</a></span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="rules-title">
+  <div class="container">
+    <header class="section-head">
+      <p class="kicker">{{ T.rules.kicker[L] }}</p>
+      <h2 id="rules-title">{{ T.rules.title[L] }}</h2>
+    </header>
+    <div class="rules">
+      <div class="card do">
+        <ul>{%- for r in T.rules.do %}<li>{% include icon.html name="check" %}<span>{{ r[L] }}</span></li>{% endfor %}</ul>
+      </div>
+      <div class="card dont">
+        <ul>{%- for r in T.rules.dont %}<li>{% include icon.html name="close" %}<span>{{ r[L] }}</span></li>{% endfor %}</ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section tint" aria-labelledby="palette-title">
+  <div class="container">
+    <header class="section-head">
+      <p class="kicker">{{ T.palette.kicker[L] }}</p>
+      <h2 id="palette-title">{{ T.palette.title[L] }}</h2>
+      <p>{{ T.palette.lede[L] }}</p>
+    </header>
+    <div class="swatches">
+      {%- for s in T.palette.swatches %}
+      <div class="swatch">
+        <div class="swatch-chip" style="background: {{ s.hex }}"></div>
+        <div class="swatch-body">
+          <h3>{{ s.name[L] }}</h3>
+          <p class="hex">{{ s.hex }}</p>
+          <p>{{ s.use[L] }}</p>
+        </div>
+      </div>
+      {%- endfor %}
+    </div>
+    <div class="signal-bar" role="img" aria-label="#79BC9C → #A7CC6E → #D2DE24"></div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="type-title">
+  <div class="container">
+    <header class="section-head">
+      <p class="kicker">{{ T.type.kicker[L] }}</p>
+      <h2 id="type-title">{{ T.type.title[L] }}</h2>
+      <p>{{ T.type.license[L] }}</p>
+    </header>
+    <div class="type-specimens">
+      {%- for f in T.type.faces %}
+      <div class="specimen">
+        <div>
+          <h3>{{ f.family }}</h3>
+          <p class="role">{{ f.role[L] }}</p>
+        </div>
+        <p class="sample {{ f.css }}">{{ f.sample }}</p>
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section tint" aria-labelledby="graphics-title">
+  <div class="container grid-2" style="align-items:start">
+    <div>
+      <p class="kicker">{{ T.graphics.kicker[L] }}</p>
+      <h2 id="graphics-title" style="margin-top:.45em">{{ T.graphics.title[L] }}</h2>
+    </div>
+    <p class="lede" style="margin:0">{{ T.graphics.text[L] }}</p>
+  </div>
+</section>

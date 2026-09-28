@@ -1,0 +1,39 @@
+# Linha do tempo de uma proposta — usada na página Colabore e na seção "Como funciona" da Abordagem.
+
+title: { pt: "Como funciona", en: "How it works" }
+lede:
+  pt: "Toda proposta passa pelas mesmas quatro etapas."
+  en: "Every proposal goes through the same four stages."
+
+steps:
+  - name: { pt: "Recebemos sua proposta", en: "We receive your proposal" }
+    text:
+      pt: "Você vê uma confirmação na tela. A proposta — e o PDF, se houver — fica registrada apenas para a equipe."
+      en: "You see a confirmation on screen. The proposal — and the PDF, if any — is stored for the team only."
+    tag: { pt: "imediato", en: "immediate" }
+
+  - name: { pt: "Padronização e nota automáticas", en: "Automatic standardization and scoring" }
+    text:
+      pt: "Um modelo de linguagem (Claude) converte o problema numa proposta em formato padronizado — que depois enviaremos a você por e-mail — e atribui uma nota preliminar com base em impacto, viabilidade, tempo, custo computacional e dados disponíveis. As notas formam um ranking."
+      en: "A language model (Claude) turns the problem into a proposal in a standard format — which we will later email to you — and gives it a preliminary score based on impact, feasibility, time, computational cost and available data. The scores form a ranking."
+    tag: { pt: "automático", en: "automatic" }
+
+  - name: { pt: "Leitura e avaliação pela equipe", en: "Reading and assessment by the team" }
+    text:
+      pt: "Lemos as propostas na ordem do ranking e as avaliamos. Esta é a parte humana — e costuma levar algumas semanas."
+      en: "We read the proposals in ranking order and assess them. This is the human part — and it usually takes a few weeks."
+    tag: { pt: "algumas semanas", en: "a few weeks" }
+
+  - name: { pt: "Entramos em contato", en: "We get in touch" }
+    text:
+      pt: "Respondemos por e-mail com a nossa decisão e, quando for o caso, uma proposta de conversa."
+      en: "We reply by email with our decision and, where it applies, an invitation to talk."
+    tag: { pt: "por e-mail", en: "by email" }
+
+decision:
+  title: { pt: "A decisão é do laboratório.", en: "The decision is the lab's." }
+  text:
+    pt: "Aceitar ou não uma colaboração é uma decisão do laboratório, a nosso critério — considerando a avaliação da equipe, a nossa capacidade no momento e o encaixe com a nossa pesquisa. A nota automática é só um ponto de partida para a leitura humana."
+    en: "Whether to take on a collaboration is the lab's decision, at our discretion — based on the team's assessment, our capacity at the time and the fit with our research. The automatic score is only a starting point for the human reading."
+
+example_link: { pt: "Veja um modelo de proposta preenchida", en: "See a filled-in example proposal" }

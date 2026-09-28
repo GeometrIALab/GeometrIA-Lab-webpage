@@ -1,0 +1,64 @@
+# Os quatro modos de usar IA em matemática (+ a direção inversa, geometria para IA).
+# `id` é usado nos filtros de publicações (campo `modes` em publications.yml).
+
+- id: approximate
+  name: { pt: Aproximar, en: Approximate }
+  tagline:
+    pt: "Redes neurais como aproximadoras de objetos geométricos"
+    en: "Neural networks as approximators of geometric objects"
+  text:
+    pt: "Muitas construções geométricas são soluções de EDPs ou minimizadores de funcionais sem fórmula explícita. Redes treinadas com perdas que codificam a própria equação (no estilo PINN) produzem aproximações numéricas de métricas, formas e superfícies."
+    en: "Many geometric constructions are solutions of PDEs or minimisers of functionals with no closed form. Networks trained with losses that encode the equation itself (PINN-style) produce numerical approximations of metrics, forms and surfaces."
+  examples:
+    pt: "3-formas G<sub>2</sub> em links de Calabi–Yau · fluxo de Willmore neural · métricas de buracos negros"
+    en: "G<sub>2</sub> 3-forms on Calabi–Yau links · neural Willmore flow · black-hole metrics"
+
+- id: predict
+  name: { pt: Prever, en: Predict }
+  tagline:
+    pt: "Aprender invariantes a partir de dados — e extrair conjecturas"
+    en: "Learn invariants from data — and extract conjectures"
+  text:
+    pt: "Quando existe uma grande base de exemplos, modelos supervisionados aprendem a prever invariantes caros de calcular. Regressão simbólica e a análise dos modelos transformam boas previsões em fórmulas candidatas e conjecturas."
+    en: "When a large database of examples exists, supervised models learn to predict invariants that are expensive to compute. Symbolic regression and model analysis turn good predictions into candidate formulas and conjectures."
+  examples:
+    pt: "propriedades de grupos finitos aprendidas a partir de 131.406 grafos de Cayley"
+    en: "properties of finite groups learned from 131,406 Cayley graphs"
+
+- id: search
+  name: { pt: Buscar, en: Search }
+  tagline:
+    pt: "Encontrar objetos raros em espaços enormes"
+    en: "Find rare objects in huge spaces"
+  text:
+    pt: "Exemplos extremais, contraexemplos e configurações especiais costumam viver em espaços combinatórios gigantescos. Metaheurísticas guiadas por um funcional bem escolhido encontram candidatos — que depois são certificados em aritmética exata."
+    en: "Extremal examples, counterexamples and special configurations often live in gigantic combinatorial spaces. Metaheuristics guided by a well-chosen functional find candidates — which are then certified in exact arithmetic."
+  examples:
+    pt: "um brane tiling novo com 26 campos · 6.146 arranjos livres de retas certificados"
+    en: "a new brane tiling with 26 fields · 6,146 certified free line arrangements"
+
+- id: assist
+  name: { pt: Auxiliar, en: Assist }
+  tagline:
+    pt: "Modelos de linguagem no dia a dia da pesquisa"
+    en: "Language models in day-to-day research"
+  text:
+    pt: "Assistentes e agentes de IA já reduzem o atrito da pesquisa — busca bibliográfica, código, LaTeX, organização — e começam a participar de cálculos e demonstrações. A regra: verificar na proporção do que está em jogo."
+    en: "AI assistants and agents already remove friction from research — literature search, code, LaTeX, organisation — and are starting to take part in computations and proofs. The rule: verify in proportion to what is at stake."
+  examples:
+    pt: "palestra no CBG sobre ferramentas digitais e IA para a produtividade matemática"
+    en: "CBG talk on digital tools and AI for mathematical productivity"
+
+# Direção inversa (aparece apenas na página de pesquisa, como filtro).
+- id: geometry-for-ai
+  secondary: true
+  name: { pt: Geometria para IA, en: Geometry for AI }
+  tagline:
+    pt: "A geometria do espaço de modelos a serviço do aprendizado"
+    en: "The geometry of model space in the service of learning"
+  text:
+    pt: "O caminho também vale ao contrário: métricas de informação e geodésicas no espaço de modelos explicam e melhoram métodos de aprendizado de máquina."
+    en: "The road runs both ways: information metrics and geodesics on model space explain and improve machine-learning methods."
+  examples:
+    pt: "poda de redes neurais por distâncias de informação de Fisher"
+    en: "pruning neural networks with Fisher-information distances"

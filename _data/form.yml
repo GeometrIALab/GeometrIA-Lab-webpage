@@ -1,0 +1,14 @@
+# ─────────────────────────────────────────────────────────────
+#  Formulário "Colabore" → Google Apps Script (planilha + pasta de PDFs + triagem)
+#
+#  1. Instale tools/form-backend.gs numa Planilha Google (veja README, seção "Formulário").
+#  2. Implante como "App da Web" e cole aqui o URL que termina em /exec.
+#
+#  Enquanto `endpoint` estiver vazio, o site abre um e-mail pré-preenchido
+#  para `contact_email` (definido em _config.yml).
+# ─────────────────────────────────────────────────────────────
+
+endpoint: ""
+
+# Tamanho máximo do PDF anexado (MB). Mantenha igual a MAX_PDF_MB no script.
+max_pdf_mb: 10

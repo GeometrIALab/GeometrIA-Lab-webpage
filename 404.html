@@ -1,0 +1,21 @@
+---
+layout: default
+lang: pt
+ref: notfound
+permalink: /404.html
+---
+{%- assign T = site.data.text.notfound -%}
+{%- assign R = site.data.routes -%}
+<section class="container notfound">
+  <div>
+    {% include mark.html id="nf" %}
+    <p class="kicker" style="justify-content:center">404</p>
+    <h1 style="margin-top:.4em">{{ T.heading.pt }}</h1>
+    <p>{{ T.text.pt }}</p>
+    <p lang="en">{{ T.text.en }}</p>
+    <p class="actions" style="justify-content:center">
+      <a class="btn btn-primary" href="{{ R.home.pt | relative_url }}">{{ T.home.pt }}</a>
+      <a class="btn btn-ghost" href="{{ R.home.en | relative_url }}" lang="en">{{ T.home.en }}</a>
+    </p>
+  </div>
+</section>

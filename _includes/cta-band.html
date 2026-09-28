@@ -1,0 +1,15 @@
+{%- assign L = page.lang | default: "pt" -%}
+{%- assign C = site.data.text.common -%}
+{%- assign H = site.data.text.home -%}
+<section class="section cta-band" aria-labelledby="cta-title">
+  <div class="container cta-inner">
+    <div class="cta-mark" aria-hidden="true">{% include mark.html id="cta" %}</div>
+    <div class="cta-copy">
+      <h2 id="cta-title">{{ H.cta.title[L] }}</h2>
+      <p>{{ H.cta.text[L] }}</p>
+    </div>
+    <div class="cta-action">
+      <a class="btn btn-signal" href="{{ site.data.routes.collaborate[L] | relative_url }}">{{ C.nav.cta[L] }}{% include icon.html name="arrow" %}</a>
+    </div>
+  </div>
+</section>

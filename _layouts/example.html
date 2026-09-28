@@ -1,0 +1,40 @@
+---
+layout: default
+---
+{%- assign L = page.lang -%}
+{%- assign T = site.data.text.example -%}
+{%- assign R = site.data.routes -%}
+<section class="page-hero">
+  <div class="container">
+    <p class="kicker">{{ T.hero.kicker[L] }}</p>
+    <h1>{{ T.hero.title[L] }}</h1>
+    <p class="lede">{{ T.hero.lede[L] }}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container example-wrap">
+    <div class="card example-card">
+      <p class="example-badge mono">{{ T.hero.badge[L] }}</p>
+      {%- for sec in T.sections %}
+      <section class="example-section" aria-labelledby="ex-{{ forloop.index }}">
+        <h2 class="example-legend" id="ex-{{ forloop.index }}"><span class="mono">0{{ forloop.index }}</span>{{ sec.legend[L] }}</h2>
+        <dl class="example-fields">
+          {%- for f in sec.fields %}
+          <div class="example-field{% if f.long %} is-long{% endif %}">
+            <dt>{{ f.label[L] }}</dt>
+            <dd>
+              <div class="example-value">{{ f.value[L] }}</div>
+              {%- if f.tip %}<p class="example-tip"><span class="mono">{{ T.tip_label[L] }}</span> {{ f.tip[L] }}</p>{% endif %}
+            </dd>
+          </div>
+          {%- endfor %}
+        </dl>
+      </section>
+      {%- endfor %}
+    </div>
+    <div class="actions example-actions">
+      <a class="btn btn-primary" href="{{ R.collaborate[L] | relative_url }}#proposta">{{ T.cta[L] }}{% include icon.html name="arrow" %}</a>
+    </div>
+  </div>
+</section>

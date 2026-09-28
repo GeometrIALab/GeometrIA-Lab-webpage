@@ -1,0 +1,26 @@
+{%- comment -%} Cartão de um modo. Parâmetros: mode, index, detailed (mostra exemplos com links). {%- endcomment -%}
+{%- assign L = page.lang | default: "pt" -%}
+{%- assign m = include.mode -%}
+<article class="card mode-card mode-{{ m.id }}">
+  <div class="mode-top">
+    <span class="mode-icon">{% include icon.html name=m.id %}</span>
+    <span class="mode-index mono">0{{ include.index }}</span>
+  </div>
+  <h3 class="mode-name">{{ m.name[L] }}</h3>
+  <p class="mode-tagline">{{ m.tagline[L] }}</p>
+  <p class="mode-text">{{ m.text[L] }}</p>
+  {%- if include.detailed %}
+  {%- assign pubs = site.data.publications | where_exp: "p", "p.modes contains m.id" %}
+  <div class="mode-examples">
+    <p class="mono mode-ex-label">{{ site.data.text.approach.modes.our_work[L] }}</p>
+    <ul>
+      {%- for p in pubs limit: 3 %}
+      {%- if p.arxiv -%}{%- assign u = "https://arxiv.org/abs/" | append: p.arxiv -%}{%- else -%}{%- assign u = p.url -%}{%- endif %}
+      <li><a href="{{ u }}">{{ p.title }}</a></li>
+      {%- endfor %}
+    </ul>
+  </div>
+  {%- else %}
+  <p class="mode-ex mono">{{ m.examples[L] }}</p>
+  {%- endif %}
+</article>

@@ -1,0 +1,12 @@
+# Cada página existe em PT e EN. `ref` (no front matter) liga as duas versões.
+home:        { pt: /,            en: /en/ }
+approach:    { pt: /abordagem/,  en: /en/approach/ }
+research:    { pt: /pesquisa/,   en: /en/research/ }
+people:      { pt: /pessoas/,    en: /en/people/ }
+collaborate: { pt: /colabore/,   en: /en/collaborate/ }
+example:     { pt: /colabore/exemplo/, en: /en/collaborate/example/ }
+brand:       { pt: /marca/,      en: /en/brand/ }
+notfound:    { pt: /404.html,    en: /404.html }
+
+# Itens do menu principal, na ordem de exibição.
+nav: [approach, research, people]

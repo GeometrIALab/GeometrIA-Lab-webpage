@@ -1,0 +1,35 @@
+{%- comment -%} Diagrama do ciclo (decorativo; o conteúdo acessível está na lista ao lado). {%- endcomment -%}
+{%- assign L = page.lang | default: "pt" -%}
+{%- assign S = site.data.pipeline -%}
+<svg class="loop-diagram" viewBox="0 0 700 470" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="loop-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1.5 8.5 5 1 8.5" fill="none" class="loop-arrowhead" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <linearGradient id="loop-sig" x1="0" y1="0" x2="1" y2="1"><stop offset="0" class="s1"/><stop offset=".5" class="s2"/><stop offset="1" class="s3"/></linearGradient>
+  </defs>
+  <circle cx="350" cy="240" r="165" class="loop-track"/>
+  <g class="loop-arcs" fill="none" stroke-width="2" stroke-linecap="round">
+    <path d="M387.1 79.2A165 165 0 0 1 491.4 155" marker-end="url(#loop-arrow)"/>
+    <path d="M514.4 225.6A165 165 0 0 1 474.5 348.2" marker-end="url(#loop-arrow)"/>
+    <path d="M414.5 391.9A165 165 0 0 1 285.5 391.9" marker-end="url(#loop-arrow)"/>
+    <path d="M225.5 348.2A165 165 0 0 1 185.6 225.6" marker-end="url(#loop-arrow)"/>
+    <path class="loop-back" d="M208.6 155A165 165 0 0 1 312.9 79.2" marker-end="url(#loop-arrow)"/>
+  </g>
+  <g class="loop-nodes">
+    <circle cx="350" cy="75" r="26"/><circle cx="506.9" cy="189" r="26"/><circle cx="447" cy="373.5" r="26"/><circle cx="253" cy="373.5" r="26"/><circle cx="193.1" cy="189" r="26"/>
+  </g>
+  <g class="loop-nums" text-anchor="middle" dominant-baseline="central">
+    <text x="350" y="75.5">1</text><text x="506.9" y="189.5">2</text><text x="447" y="374">3</text><text x="253" y="374">4</text><text x="193.1" y="189.5">5</text>
+  </g>
+  <g class="loop-labels">
+    <text x="350" y="30" text-anchor="middle">{{ S[0].name[L] }}</text>
+    <text x="544" y="194" text-anchor="start">{{ S[1].name[L] }}</text>
+    <text x="470" y="432" text-anchor="middle">{{ S[2].name[L] }}</text>
+    <text x="230" y="432" text-anchor="middle">{{ S[3].name[L] }}</text>
+    <text x="156" y="194" text-anchor="end">{{ S[4].name[L] }}</text>
+  </g>
+  <g transform="translate(305 196) scale(.9)" class="loop-center">
+    <path d="M9.63 15.04H90.37L50 84.96Z M9.63 15.04L70.18 50M90.37 15.04L29.82 50M50 84.96V15.04" fill="none" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" class="loop-center-lines"/>
+    <circle cx="50" cy="38.35" r="23.31" fill="none" stroke-width="4" class="loop-center-lines"/>
+    <g fill="url(#loop-sig)"><circle cx="9.63" cy="15.04" r="7"/><circle cx="50" cy="15.04" r="7"/><circle cx="90.37" cy="15.04" r="7"/><circle cx="29.82" cy="50" r="7"/><circle cx="50" cy="38.35" r="7"/><circle cx="70.18" cy="50" r="7"/><circle cx="50" cy="84.96" r="7"/></g>
+  </g>
+</svg>

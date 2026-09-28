@@ -1,0 +1,7 @@
+title: { pt: "Página não encontrada", en: "Page not found" }
+description: { pt: "Página não encontrada.", en: "Page not found." }
+heading: { pt: "Esta página saiu do plano.", en: "This page left the plane." }
+text:
+  pt: "O endereço pode ter mudado. Volte ao início ou use o menu."
+  en: "The address may have changed. Go back home or use the menu."
+home: { pt: "Ir para o início", en: "Go to the English home" }

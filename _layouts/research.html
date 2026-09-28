@@ -1,0 +1,54 @@
+---
+layout: default
+---
+{%- assign L = page.lang -%}
+{%- assign T = site.data.text.research -%}
+{%- assign C = site.data.text.common -%}
+{%- assign R = site.data.routes -%}
+{%- assign pubs = site.data.publications -%}
+<section class="page-hero">
+  <div class="container">
+    <p class="kicker">{{ T.hero.kicker[L] }}</p>
+    <h1>{{ T.hero.title[L] }}</h1>
+    <p class="lede">{{ T.hero.lede[L] }}</p>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="pubs-title">
+  <div class="container">
+    <h2 id="pubs-title" class="visually-hidden">{{ T.title[L] }}</h2>
+    <div class="filters" role="group" aria-label="{{ T.filter_label[L] }}" data-filters data-one="{{ T.count_one[L] }}" data-many="{{ T.count_many[L] }}">
+      <button class="filter" type="button" data-filter="all" aria-pressed="true">{{ T.all[L] }}</button>
+      {%- for m in site.data.modes %}
+      <button class="filter" type="button" data-filter="{{ m.id }}" aria-pressed="false">{% include icon.html name=m.id %}{{ m.name[L] }}</button>
+      {%- endfor %}
+      <span class="filter-count" data-count aria-live="polite">{{ pubs.size }} {{ T.count_many[L] }}</span>
+    </div>
+    <ol class="pub-list" data-pubs reversed>
+      {%- for p in pubs %}
+      {% include pub-item.html pub=p %}
+      {%- endfor %}
+    </ol>
+    <p class="help" style="margin-top:18px">{{ T.more[L] }}</p>
+  </div>
+</section>
+
+<section class="section tint" aria-labelledby="code-title">
+  <div class="container">
+    <header class="section-head">
+      <p class="kicker">{{ T.code.kicker[L] }}</p>
+      <h2 id="code-title">{{ T.code.title[L] }}</h2>
+    </header>
+    <div class="grid-3">
+      {%- for c in T.code.items %}
+      <article class="card what-card">
+        <h3 class="mono" style="font-size:1.05rem;letter-spacing:0">{{ c.name }}</h3>
+        <p>{{ c.text[L] }}</p>
+        <a class="link-arrow" href="{{ c.url }}">{% include icon.html name="github" %}GitHub</a>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+{% include cta-band.html %}

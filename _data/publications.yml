@@ -1,0 +1,119 @@
+# Publicações, preprints e palestras dos membros (mais recentes primeiro).
+# modes: approximate | predict | search | assist | geometry-for-ai   (ver modes.yml)
+# featured: true → aparece na página inicial (use 3).
+# kind: article | preprint | proceedings | talk
+
+- id: fisher-pruning
+  title: "Optimal pruning for neural architectures using Fisher information distances"
+  authors: "D. S. Berman, Y.-Y. Fu, E. Hirst, T. C. Obirai"
+  year: 2026
+  kind: preprint
+  venue: "arXiv:2609.16129"
+  arxiv: "2609.16129"
+  modes: [geometry-for-ai]
+  note:
+    pt: "A distância geodésica da métrica de informação de Fisher no espaço de modelos organiza uma hierarquia de métodos de poda de redes neurais."
+    en: "Geodesic distance in the Fisher-information metric on model space organises a hierarchy of pruning schemes for neural networks."
+
+- id: ai-tools-talk
+  title: "Digital tools and AI for contemporary mathematical productivity"
+  authors: "T. S. R. Silva"
+  year: 2026
+  kind: talk
+  venue: { pt: "Palestra no CBG, Campinas · 17 ago. 2026", en: "Talk at CBG, Campinas · 17 Aug 2026" }
+  slides: "https://tomassilva.github.io/files/talks/AI-tools-for-mathematicians.pdf"
+  url: "https://tomassilva.github.io/talks/2026-08-17-AI-tools-for-mathematicians"
+  modes: [assist]
+  note:
+    pt: "Da redução do atrito à mudança da fronteira de pesquisa: uma “história da produtividade” e uma “história da descoberta”."
+    en: "From reducing friction to changing the research frontier: a “productivity story” and a “discovery story”."
+
+- id: graphical-symmetries
+  title: "Learning the graphical nature of symmetries"
+  authors: "R. Barket, E. Grimaldi, Y. Hendi, E. Hirst, A. Onus, H. Singh"
+  year: 2026
+  kind: preprint
+  venue: "arXiv:2607.12026"
+  arxiv: "2607.12026"
+  modes: [predict]
+  note:
+    pt: "Um censo de 131.406 grafos de Cayley para aprender propriedades de grupos finitos a partir de observáveis de grafos — com novas conjecturas e novas sequências na OEIS."
+    en: "A census of 131,406 Cayley graphs for learning properties of finite groups from graph observables — with new conjectures and new OEIS sequences."
+
+- id: black-hole-black-boxes
+  title: "Black hole black boxes: numerical black hole metrics via AInstein neural networks"
+  authors: "T. Schettini Gherardini, E. Hirst, A. G. Stapleton"
+  year: 2026
+  kind: preprint
+  venue: "arXiv:2607.05489"
+  arxiv: "2607.05489"
+  modes: [approximate]
+  note:
+    pt: "A arquitetura AInstein levada à assinatura lorentziana: recupera a geometria de Schwarzschild e busca novas métricas de Einstein de tipo Petrov I."
+    en: "The AInstein architecture taken to Lorentzian signature: it recovers the Schwarzschild geometry and searches for new Petrov type I Einstein metrics."
+
+- id: pinns-geometry
+  title: "PINNs in more general geometry"
+  authors: "E. Hirst"
+  year: 2026
+  kind: proceedings
+  venue: "arXiv:2604.25020"
+  arxiv: "2604.25020"
+  modes: [approximate]
+  note:
+    pt: "Uma introdução às PINNs para geometria diferencial: como funcionais geométricos viram funções de perda."
+    en: "An introduction to PINNs for differential geometry: how geometric functionals become loss functions."
+
+- id: willmore
+  title: "Minimising Willmore energy via neural flow"
+  authors: "E. Hirst, H. N. Sá Earp, T. S. R. Silva"
+  year: 2026
+  kind: preprint
+  venue: "arXiv:2604.04321"
+  arxiv: "2604.04321"
+  modes: [approximate]
+  featured: true
+  note:
+    pt: "O fluxo de Willmore neural recupera a esfera redonda (gênero 0) e o toro de Clifford (gênero 1), e abre uma nova abordagem para o caso em aberto de gênero 2."
+    en: "The neural Willmore flow recovers the round sphere (genus 0) and the Clifford torus (genus 1), and opens a new approach to the open genus-2 case."
+
+- id: saito
+  title: "A penalised Saito functional for heuristic search of free line arrangements"
+  authors: "T. S. R. Silva"
+  year: 2026
+  kind: preprint
+  venue: "arXiv:2604.02995"
+  arxiv: "2604.02995"
+  modes: [search]
+  featured: true
+  note:
+    pt: "Um funcional que se anula exatamente nos arranjos livres guia a busca; cada exemplo é certificado em aritmética exata. Resultado: 6.146 representantes até n = 28."
+    en: "A functional that vanishes exactly on free arrangements guides the search; every example is certified in exact arithmetic. Result: 6,146 representatives up to n = 28."
+
+- id: g2-neural
+  title: "Neural and numerical methods for G<sub>2</sub>-structures on contact Calabi–Yau 7-manifolds"
+  authors: "E. Heyes, E. Hirst, H. N. Sá Earp, T. S. R. Silva"
+  year: 2026
+  kind: article
+  venue: "Physics Letters B 878, 140566"
+  arxiv: "2602.12438"
+  doi: "10.1016/j.physletb.2026.140566"
+  modes: [approximate]
+  featured: true
+  note:
+    pt: "Métricas Ricci-planas neurais em variedades de Calabi–Yau de dimensão complexa 3 geram 3-formas G<sub>2</sub> nos links de dimensão 7, que depois são aprendidas diretamente por uma rede."
+    en: "Neural Ricci-flat metrics on Calabi–Yau threefolds yield G<sub>2</sub> 3-forms on the 7-dimensional links, which are then learned directly by a network."
+
+- id: brane-tilings
+  title: "Metaheuristic generation of brane tilings"
+  authors: "Y.-H. He, V. Jejjala, T. S. R. Silva"
+  year: 2025
+  kind: article
+  venue: "Physics Letters B 862, 139365"
+  arxiv: "2412.19313"
+  doi: "10.1016/j.physletb.2025.139365"
+  code: "https://github.com/TomasSilva/Metaheuristic-brane-tiling-search"
+  modes: [search]
+  note:
+    pt: "Recozimento simulado constrói brane tilings geometricamente consistentes e encontra um exemplo novo, com 26 campos."
+    en: "Simulated annealing constructs geometrically consistent brane tilings and finds a new example with 26 fields."

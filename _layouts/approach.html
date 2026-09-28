@@ -1,0 +1,141 @@
+---
+layout: default
+---
+{%- assign L = page.lang -%}
+{%- assign T = site.data.text.approach -%}
+{%- assign C = site.data.text.common -%}
+{%- assign R = site.data.routes -%}
+<section class="page-hero">
+  <div class="container">
+    <p class="kicker">{{ T.hero.kicker[L] }}</p>
+    <h1>{{ T.hero.title[L] }}</h1>
+    <p class="lede">{{ T.hero.lede[L] }}</p>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="stories-title">
+  <div class="container">
+    <header class="section-head">
+      <p class="kicker">{{ T.stories.kicker[L] }}</p>
+      <h2 id="stories-title">{{ T.stories.title[L] }}</h2>
+      <p>{{ T.stories.lede[L] }}</p>
+    </header>
+    <div class="grid-2">
+      <article class="card story">
+        <h3>{{ T.stories.productivity.name[L] }}</h3>
+        <p class="verbs">{{ T.stories.productivity.verbs[L] }}</p>
+        <p>{{ T.stories.productivity.text[L] }}</p>
+      </article>
+      <article class="card story discovery">
+        <h3>{{ T.stories.discovery.name[L] }}</h3>
+        <p class="verbs">{{ T.stories.discovery.verbs[L] }}</p>
+        <p>{{ T.stories.discovery.text[L] }}</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section tint" id="{% if L == 'en' %}loop{% else %}ciclo{% endif %}" aria-labelledby="loop-title">
+  <div class="container">
+    <header class="section-head">
+      <p class="kicker">{{ T.loop.kicker[L] }}</p>
+      <h2 id="loop-title">{{ T.loop.title[L] }}</h2>
+      <p>{{ T.loop.lede[L] }}</p>
+    </header>
+    <div class="loop-grid">
+      {% include loop-diagram.html %}
+      <ol class="stage-list">
+        {%- for s in site.data.pipeline %}
+        <li>
+          <span class="num" aria-hidden="true">0{{ forloop.index }}</span>
+          <div>
+            <h3>{{ s.name[L] }}</h3>
+            <p>{{ s.text[L] }}</p>
+            <span class="out"><span class="visually-hidden">{{ T.loop.output[L] }}: </span>{{ s.output[L] }}</span>
+          </div>
+        </li>
+        {%- endfor %}
+      </ol>
+    </div>
+    {%- assign ex = site.data.publications | where: "id", T.loop.example_pub | first %}
+    <aside class="callout" aria-labelledby="loop-example-title">
+      <div>
+        <h3 id="loop-example-title">{{ T.loop.example_title[L] }}</h3>
+        <p>{{ T.loop.example[L] }}</p>
+      </div>
+      <a class="chip-link" href="https://arxiv.org/abs/{{ ex.arxiv }}">arXiv:{{ ex.arxiv }}</a>
+    </aside>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="modes-title">
+  <div class="container">
+    <header class="section-head">
+      <p class="kicker">{{ T.modes.kicker[L] }}</p>
+      <h2 id="modes-title">{{ T.modes.title[L] }}</h2>
+      <p>{{ T.modes.lede[L] }}</p>
+    </header>
+    <div class="grid-4">
+      {%- assign primary_modes = site.data.modes | where_exp: "m", "m.secondary != true" -%}
+      {%- for m in primary_modes %}
+      {% include mode-card.html mode=m index=forloop.index detailed=true %}
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section tint" aria-labelledby="principles-title">
+  <div class="container">
+    <header class="section-head">
+      <p class="kicker">{{ T.principles.kicker[L] }}</p>
+      <h2 id="principles-title">{{ T.principles.title[L] }}</h2>
+    </header>
+    <ol class="principles">
+      {%- for p in site.data.principles %}
+      <li>
+        <h3>{{ p.title[L] }}</h3>
+        <p>{{ p.text[L] }}</p>
+      </li>
+      {%- endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="section" id="{% if L == 'en' %}fit{% else %}diagnostico{% endif %}" aria-labelledby="fit-title">
+  <div class="container">
+    <header class="section-head">
+      <p class="kicker">{{ T.fit.kicker[L] }}</p>
+      <h2 id="fit-title">{{ T.fit.title[L] }}</h2>
+    </header>
+    <div class="grid-2">
+      <div class="card fit-card fit-good">
+        <h3>{{ T.fit.good_title[L] }}</h3>
+        <ul class="fit-list">
+          {%- for g in T.fit.good %}<li>{% include icon.html name="check" %}<span>{{ g[L] }}</span></li>{% endfor %}
+        </ul>
+      </div>
+      <div class="card fit-card fit-hard">
+        <h3>{{ T.fit.hard_title[L] }}</h3>
+        <ul class="fit-list">
+          {%- for g in T.fit.hard %}<li>{% include icon.html name="minus" %}<span>{{ g[L] }}</span></li>{% endfor %}
+        </ul>
+      </div>
+    </div>
+    <p class="fit-note"><span>{{ T.fit.note[L] }}</span><a class="link-arrow" href="{{ R.collaborate[L] | relative_url }}">{{ C.nav.cta[L] }}{% include icon.html name="arrow" %}</a></p>
+  </div>
+</section>
+
+<section class="section tint" aria-labelledby="process-title">
+  <div class="container">
+    <header class="section-head split">
+      <div>
+        <p class="kicker">{{ T.process.kicker[L] }}</p>
+        <h2 id="process-title">{{ T.process.title[L] }}</h2>
+      </div>
+      <a class="link-arrow" href="{{ R.example[L] | relative_url }}">{{ site.data.triage.example_link[L] }}{% include icon.html name="arrow" %}</a>
+    </header>
+    {% include triage-steps.html %}
+  </div>
+</section>
+
+{% include cta-band.html %}

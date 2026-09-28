@@ -1,0 +1,22 @@
+---
+layout: null
+permalink: /sitemap.xml
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+{%- for pair in site.data.routes -%}
+{%- assign key = pair[0] -%}
+{%- assign r = pair[1] -%}
+{%- if key != "nav" and key != "notfound" %}
+  {%- for lang in (1..2) %}
+  {%- if forloop.first -%}{%- assign loc = r.pt -%}{%- else -%}{%- assign loc = r.en -%}{%- endif %}
+  <url>
+    <loc>{{ loc | absolute_url }}</loc>
+    <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="{{ r.pt | absolute_url }}"/>
+    <xhtml:link rel="alternate" hreflang="en" href="{{ r.en | absolute_url }}"/>
+  </url>
+  {%- endfor %}
+{%- endif %}
+{%- endfor %}
+</urlset>

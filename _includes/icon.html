@@ -1,0 +1,24 @@
+{%- comment -%} Ícones de linha, 24×24, herdam a cor do texto. Uso: {% include icon.html name="arrow" %} {%- endcomment -%}
+{%- assign n = include.name -%}
+<svg class="icon icon-{{ n }} {{ include.class }}" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+{%- case n -%}
+{%- when "approximate" -%}<path d="M3 17.5c2.2-7 4.6-9.6 7.2-6.4 2.3 2.9 3.6 5.4 6 2.6 1.6-1.9 2.6-5.1 4.8-7.2"/><circle cx="4.6" cy="13.2" r="1" fill="currentColor" stroke="none"/><circle cx="8" cy="8.6" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="13.9" r="1" fill="currentColor" stroke="none"/><circle cx="15.9" cy="15.6" r="1" fill="currentColor" stroke="none"/><circle cx="19.6" cy="9.1" r="1" fill="currentColor" stroke="none"/>
+{%- when "predict" -%}<path d="M3.5 19.5 20.5 5.5"/><path d="M16.5 5.5h4v4"/><circle cx="6" cy="14.4" r="1.1" fill="currentColor" stroke="none"/><circle cx="8.6" cy="16.9" r="1.1" fill="currentColor" stroke="none"/><circle cx="10.4" cy="11.6" r="1.1" fill="currentColor" stroke="none"/><circle cx="13.6" cy="12.9" r="1.1" fill="currentColor" stroke="none"/><circle cx="15.2" cy="7.9" r="1.1" fill="currentColor" stroke="none"/>
+{%- when "search" -%}<path d="M2.5 9c1.6 0 2.4 4 4 4s2-6 3.6-6 2.2 11 4.4 11 2.3-7 4-7c1.2 0 1.7 2 3 2"/><path d="M6.5 6.5c1.2-2 3-2.4 4.4-.9M11.9 4.4c2-1.6 3.9-.8 4.3 2" stroke-dasharray="1.2 2.2"/><circle cx="14.5" cy="18" r="1.9" fill="currentColor" stroke="none"/>
+{%- when "assist" -%}<path d="M4.5 5.5h15a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7.5l-4.5 3.5v-3.5h-3a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2Z"/><path d="M12 8.2v5M9.5 10.7h5M10.3 9l3.4 3.4M13.7 9l-3.4 3.4"/>
+{%- when "geometry-for-ai" -%}<path d="M3 16.5c3.5-3 14.5-3 18 0"/><path d="M3 11.5c3.5-3 14.5-3 18 0" opacity=".55"/><path d="M3 6.5c3.5-3 14.5-3 18 0" opacity=".3"/><path d="M5.5 18.5C8 12 13 8 18.5 6.5" stroke-dasharray="0.1 2.6" stroke-width="2"/><circle cx="5.5" cy="18.5" r="1.7" fill="currentColor" stroke="none"/><circle cx="18.5" cy="6.5" r="1.7" fill="currentColor" stroke="none"/>
+{%- when "arrow" -%}<path d="M4.5 12h15M13.5 6l6 6-6 6"/>
+{%- when "external" -%}<path d="M14 4.5h5.5V10M19.5 4.5 11 13M18 14v4.5a1 1 0 0 1-1 1H5.5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1H10"/>
+{%- when "file-up" -%}<path d="M14 3.5H7a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8.5Z"/><path d="M14 3.5v5h5"/><path d="M12 17.5v-6M9.5 14l2.5-2.5 2.5 2.5"/>
+{%- when "download" -%}<path d="M12 4v11M7 10.5l5 5 5-5M5 19.5h14"/>
+{%- when "mail" -%}<rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4 7 8 6 8-6"/>
+{%- when "github" -%}<path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/>
+{%- when "theme" -%}<circle cx="12" cy="12" r="7.5"/><path d="M12 4.5a7.5 7.5 0 0 0 0 15Z" fill="currentColor"/>
+{%- when "menu" -%}<path d="M4 7h16M4 12h16M4 17h10"/>
+{%- when "close" -%}<path d="M6 6l12 12M18 6 6 18"/>
+{%- when "check" -%}<path d="m5 12.5 4.5 4.5L19 7.5"/>
+{%- when "chat" -%}<path d="M5 18.5 3.5 21l.5-4A8.5 8.5 0 1 1 7.5 19.8Z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01" stroke-width="2.4"/>
+{%- when "plus" -%}<path d="M12 5v14M5 12h14"/>
+{%- when "minus" -%}<path d="M5 12h14"/>
+{%- endcase -%}
+</svg>

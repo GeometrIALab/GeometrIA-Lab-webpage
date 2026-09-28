@@ -1,0 +1,37 @@
+# Novidades (mais recentes primeiro). date: AAAA-MM-DD (exibimos mês e ano).
+# `pub` liga a uma publicação de publications.yml; `url` é um link externo opcional.
+
+- date: 2026-09-23
+  text:
+    pt: "Nasce o GeometrIA · CBG – Laboratório de IA e Geometria, do Centro Brasileiro de Geometria."
+    en: "GeometrIA · CBG – AI &amp; Geometry Lab, of the Brazilian Center for Geometry, is launched."
+
+- date: 2026-09-15
+  pub: fisher-pruning
+  text:
+    pt: "Novo preprint: poda de redes neurais guiada por distâncias de informação de Fisher."
+    en: "New preprint: pruning neural networks with Fisher-information distances."
+
+- date: 2026-08-17
+  pub: ai-tools-talk
+  text:
+    pt: "Palestra no CBG: ferramentas digitais e IA para a produtividade matemática."
+    en: "Talk at CBG: digital tools and AI for mathematical productivity."
+
+- date: 2026-07-06
+  pub: black-hole-black-boxes
+  text:
+    pt: "Novo preprint: métricas de buracos negros aproximadas por redes neurais AInstein."
+    en: "New preprint: black-hole metrics approximated by AInstein neural networks."
+
+- date: 2026-04-06
+  pub: willmore
+  text:
+    pt: "Novo preprint: minimização da energia de Willmore por um fluxo neural."
+    en: "New preprint: minimising Willmore energy with a neural flow."
+
+- date: 2026-02-12
+  pub: g2-neural
+  text:
+    pt: "Métodos neurais e numéricos para estruturas G<sub>2</sub> — publicado depois na Physics Letters B."
+    en: "Neural and numerical methods for G<sub>2</sub>-structures — later published in Physics Letters B."

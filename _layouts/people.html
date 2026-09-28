@@ -1,0 +1,25 @@
+---
+layout: default
+---
+{%- assign L = page.lang -%}
+{%- assign T = site.data.text.people -%}
+{%- assign C = site.data.text.common -%}
+{%- assign R = site.data.routes -%}
+<section class="page-hero">
+  <div class="container">
+    <p class="kicker">{{ T.hero.kicker[L] }}</p>
+    <h1>{{ T.hero.title[L] | replace: "GeometrIA", 'Geometr<span class="lit">IA</span>' }}</h1>
+    <p class="lede">{{ T.hero.lede[L] }}</p>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="team-title">
+  <div class="container">
+    <h2 id="team-title" class="visually-hidden">{{ T.title[L] }}</h2>
+    <div class="people-grid">
+      {%- for p in site.data.people.members %}
+      {% include person-card.html person=p %}
+      {%- endfor %}
+    </div>
+  </div>
+</section>

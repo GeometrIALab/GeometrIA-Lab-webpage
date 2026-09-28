@@ -1,0 +1,163 @@
+title: { pt: "Colabore", en: "Collaborate" }
+description:
+  pt: "Proponha um problema de matemática para explorar com IA, ou conte que quer começar a usar IA na sua pesquisa. Para matemáticos de qualquer área — sem experiência em IA."
+  en: "Propose a mathematics problem to explore with AI, or tell us you want to start using AI in your research. For mathematicians in any area — no AI experience needed."
+
+hero:
+  kicker: { pt: "Colabore", en: "Collaborate" }
+  title: { pt: "Traga um problema.", en: "Bring us a problem." }
+  lede:
+    pt: "Este formulário é para matemáticos — de qualquer área e em qualquer etapa da carreira — que queiram explorar o uso de IA na pesquisa. Não é preciso saber programar nem conhecer aprendizado de máquina."
+    en: "This form is for mathematicians — in any area and at any career stage — who want to explore using AI in their research. No programming or machine-learning background needed."
+
+aside:
+  label: { pt: "Mais informações", en: "More information" }
+  example_title: { pt: "Modelo preenchido", en: "Filled-in example" }
+  example_text:
+    pt: "Veja como uma proposta fictícia preenche cada campo — e o nível de detalhe que ajuda na triagem."
+    en: "See how a fictional proposal fills in each field — and the level of detail that helps the triage."
+  talk_title: { pt: "Dúvidas?", en: "Questions?" }
+  talk_text: { pt: "Escreva para o laboratório:", en: "Write to the lab:" }
+  community_title: { pt: "Comunidade", en: "Community" }
+  community_text:
+    pt: "Temos um canal no Zulip — a MathIA AmLat — onde as pessoas discutem e acompanham notícias sobre IA e matemática. O Zulip é um aplicativo de conversa gratuito e de código aberto, organizado por tópicos, como um fórum em tempo real."
+    en: "We have a channel on Zulip — MathIA AmLat — where people discuss and follow news on AI and mathematics. Zulip is a free, open-source chat app organised by topic, like a real-time forum."
+  community_hint:
+    pt: "Para entrar, peça um convite por e-mail — ou marque a opção no formulário."
+    en: "To join, ask for an invitation by email — or tick the option in the form."
+  community_link: { pt: "Pedir um convite", en: "Ask for an invitation" }
+  fit_link: { pt: "Seu problema é um bom candidato?", en: "Is your problem a good fit?" }
+
+form:
+  required: { pt: "obrigatório", en: "required" }
+  optional: { pt: "opcional", en: "optional" }
+  legend_you: { pt: "Sobre você", en: "About you" }
+  name: { pt: "Nome completo", en: "Full name" }
+  email: { pt: "E-mail", en: "Email" }
+  institution: { pt: "Instituição", en: "Institution" }
+  institution_ph: { pt: "Ex.: IME–USP", en: "e.g. IME–USP" }
+  position: { pt: "Etapa da carreira", en: "Career stage" }
+  choose: { pt: "Selecione…", en: "Select…" }
+  positions:
+    - { value: "Graduação", pt: "Graduação", en: "Undergraduate" }
+    - { value: "Mestrado", pt: "Mestrado", en: "Master's" }
+    - { value: "Doutorado", pt: "Doutorado", en: "PhD" }
+    - { value: "Pós-doutorado", pt: "Pós-doutorado", en: "Postdoc" }
+    - { value: "Docente/pesquisador(a)", pt: "Docente ou pesquisador(a)", en: "Faculty or researcher" }
+    - { value: "Outro", pt: "Outro", en: "Other" }
+  area: { pt: "Área principal", en: "Main area" }
+  areas:
+    - { value: "Geometria diferencial", pt: "Geometria diferencial", en: "Differential geometry" }
+    - { value: "Geometria algébrica", pt: "Geometria algébrica", en: "Algebraic geometry" }
+    - { value: "Geometria discreta e convexa", pt: "Geometria discreta e convexa", en: "Discrete and convex geometry" }
+    - { value: "Topologia", pt: "Topologia", en: "Topology" }
+    - { value: "Física matemática", pt: "Física matemática", en: "Mathematical physics" }
+    - { value: "Combinatória", pt: "Combinatória", en: "Combinatorics" }
+    - { value: "Análise e EDP", pt: "Análise e EDP", en: "Analysis &amp; PDE" }
+    - { value: "Álgebra", pt: "Álgebra", en: "Algebra" }
+    - { value: "Teoria dos números", pt: "Teoria dos números", en: "Number theory" }
+    - { value: "Matemática aplicada", pt: "Matemática aplicada", en: "Applied mathematics" }
+    - { value: "Educação matemática", pt: "Educação matemática", en: "Mathematics education" }
+    - { value: "Outra", pt: "Outra", en: "Other" }
+  cbg_member: { pt: "Você é membro do CBG?", en: "Are you a member of CBG?" }
+  cbg_member_help:
+    pt: "Pesquisador(a) principal ou associado(a), ou bolsista do Centro Brasileiro de Geometria."
+    en: "Principal or associate researcher, or fellow of the Brazilian Center for Geometry."
+  cbg_member_options:
+    - { value: "Sim", pt: "Sim", en: "Yes" }
+    - { value: "Não", pt: "Não", en: "No" }
+
+  legend_interest: { pt: "Seu interesse", en: "Your interest" }
+  interest: { pt: "O que você procura?", en: "What are you looking for?" }
+  interests:
+    - { value: "Propor um problema", pt: "Tenho um problema concreto para propor", en: "I have a concrete problem to propose" }
+    - { value: "Começar a usar IA", pt: "Quero começar a usar IA na minha pesquisa, mas ainda não tenho um problema definido", en: "I want to start using AI in my research, but don't have a specific problem yet" }
+    - { value: "Os dois", pt: "Os dois", en: "Both" }
+  extras_label: { pt: "Também quero", en: "I'd also like" }
+  extras:
+    - { value: "Convite MathIA AmLat", pt: "um convite para o canal da MathIA AmLat no Zulip", en: "an invitation to the MathIA AmLat channel on Zulip" }
+    - { value: "Avisos de seminários", pt: "receber avisos de seminários e oficinas", en: "notices about seminars and workshops" }
+
+  legend_problem: { pt: "O problema", en: "The problem" }
+  problem_hint:
+    pt: "Escreva como para um colega de outra área. Se ainda não há um problema definido, conte o que você estuda."
+    en: "Write as you would to a colleague from another field. If there's no specific problem yet, tell us what you work on."
+  problem_title: { pt: "Título provisório", en: "Working title" }
+  problem_title_ph: { pt: "Ex.: Configurações de energia mínima de n pontos na esfera", en: "e.g. Minimal-energy configurations of n points on the sphere" }
+  question: { pt: "Descreva a pergunta, em duas partes", en: "Describe the question, in two parts" }
+  state_of_art: { pt: "a) Resumo do estado da arte", en: "a) Summary of the state of the art" }
+  state_of_art_help:
+    pt: "O que já se sabe sobre a pergunta: resultados e referências principais, casos resolvidos, onde está a dificuldade."
+    en: "What is known about the question: main results and references, solved cases, where the difficulty lies."
+  approach: { pt: "b) Sua abordagem", en: "b) Your approach" }
+  approach_help:
+    pt: "Como você tem pensado a pergunta: ideias, cálculos ou exemplos que já tem, e onde imagina que a IA poderia ajudar."
+    en: "How you have been thinking about the question: ideas, computations or examples you already have, and where you imagine AI could help."
+  pdf: { pt: "Anexo em PDF", en: "PDF attachment" }
+  pdf_help:
+    pt: "Notas, rascunho ou artigo com definições e exemplos — até %MB% MB."
+    en: "Notes, a draft or a paper with definitions and examples — up to %MB% MB."
+  pdf_choose: { pt: "Escolher PDF", en: "Choose a PDF" }
+  pdf_change: { pt: "Trocar PDF", en: "Replace PDF" }
+  pdf_none: { pt: "Nenhum arquivo — ou arraste um PDF para cá", en: "No file — or drag a PDF here" }
+  pdf_remove: { pt: "Remover", en: "Remove" }
+  pdf_type_error: { pt: "Escolha um arquivo em PDF.", en: "Please choose a PDF file." }
+  pdf_size_error: { pt: "O PDF tem mais de %MB% MB.", en: "The PDF is larger than %MB% MB." }
+  help_type: { pt: "Que tipo de ajuda você imagina?", en: "What kind of help do you have in mind?" }
+  help_types:
+    - { value: "Aproximar", pt: "<b>Aproximar</b> — soluções numéricas de equações ou problemas variacionais", en: "<b>Approximate</b> — numerical solutions of equations or variational problems" }
+    - { value: "Prever", pt: "<b>Prever</b> — padrões e relações em dados ou tabelas", en: "<b>Predict</b> — patterns and relations in data or tables" }
+    - { value: "Buscar", pt: "<b>Buscar</b> — exemplos, contraexemplos ou configurações especiais", en: "<b>Search</b> — examples, counterexamples or special configurations" }
+    - { value: "Auxiliar", pt: "<b>Auxiliar</b> — ferramentas de IA no dia a dia da pesquisa", en: "<b>Assist</b> — AI tools in day-to-day research" }
+    - { value: "Não sei ainda", pt: "Ainda não sei", en: "Not sure yet" }
+  data: { pt: "Existem exemplos ou dados?", en: "Do examples or data exist?" }
+  data_options:
+    - { value: "Base de dados/tabela", pt: "Sim, já tenho uma base de dados ou tabela", en: "Yes, I already have a database or table" }
+    - { value: "Consigo gerar exemplos", pt: "Consigo gerar muitos exemplos por computador", en: "I can generate many examples by computer" }
+    - { value: "Poucos exemplos à mão", pt: "Tenho poucos exemplos, calculados à mão", en: "I have a few hand-computed examples" }
+    - { value: "Não sei", pt: "Ainda não sei", en: "Not sure yet" }
+  experience: { pt: "Sua experiência com programação", en: "Your programming experience" }
+  experience_options:
+    - { value: "Nenhuma", pt: "Nenhuma", en: "None" }
+    - { value: "Alguma", pt: "Alguma (Python, Sage, Mathematica…)", en: "Some (Python, Sage, Mathematica…)" }
+    - { value: "Bastante", pt: "Bastante", en: "A lot" }
+
+  legend_more: { pt: "Para terminar", en: "To finish" }
+  language: { pt: "Idioma preferido para conversarmos", en: "Preferred language for our conversation" }
+  languages:
+    - { value: "Português", pt: "Português", en: "Portuguese" }
+    - { value: "English", pt: "Inglês", en: "English" }
+    - { value: "Español", pt: "Espanhol", en: "Spanish" }
+  message: { pt: "Algo mais?", en: "Anything else?" }
+  consent_lgpd:
+    pt: "Concordo que os dados deste formulário sejam usados pela equipe do GeometrIA apenas para responder a este contato, conforme a LGPD. Posso pedir a exclusão a qualquer momento pelo e-mail %EMAIL%."
+    en: "I agree that the data in this form will be used by the GeometrIA team only to respond to this enquiry, in line with Brazil's data-protection law (LGPD). I can ask for deletion at any time at %EMAIL%."
+  consent_llm:
+    pt: "Estou ciente de que o projeto de pesquisa que proponho — incluindo o PDF anexado — será usado como entrada em modelos de linguagem (LLMs, como Claude ou ChatGPT) para a triagem das propostas."
+    en: "I understand that the research project I propose — including any attached PDF — will be used as input to large language models (LLMs such as Claude or ChatGPT) to triage the proposals."
+  submit: { pt: "Enviar proposta", en: "Send proposal" }
+  sending: { pt: "Enviando…", en: "Sending…" }
+  privacy:
+    pt: "Respostas numa planilha privada da equipe; PDFs numa pasta privada. A triagem usa um modelo de linguagem."
+    en: "Answers go to the team's private spreadsheet; PDFs to a private folder. Triage uses a language model."
+  privacy_mail:
+    pt: "Ao enviar, seu programa de e-mail abre uma mensagem pronta para o laboratório."
+    en: "On sending, your email app opens a ready-made message to the lab."
+  success_title: { pt: "Recebemos sua proposta.", en: "We've received your proposal." }
+  success_text:
+    pt: "Obrigado! Ela entra agora na triagem descrita acima: a versão padronizada chegará ao seu e-mail, e a leitura pela equipe costuma levar algumas semanas."
+    en: "Thank you! It now enters the triage described above: the standardized version will reach your inbox, and the team's reading usually takes a few weeks."
+  success_id: { pt: "Número da proposta:", en: "Proposal number:" }
+  success_again: { pt: "Enviar outra proposta", en: "Send another proposal" }
+  mail_title: { pt: "Quase lá.", en: "Almost there." }
+  mail_text:
+    pt: "Abrimos seu programa de e-mail com a mensagem pronta — é só enviar. Se nada abriu, escreva para"
+    en: "We opened your email app with the message ready — just press send. If nothing opened, write to"
+  mail_pdf:
+    pt: "Não se esqueça de anexar o PDF à mensagem."
+    en: "Don't forget to attach the PDF to the message."
+  error:
+    pt: "Não foi possível enviar agora. Tente de novo ou escreva para"
+    en: "Couldn't send right now. Please try again or write to"
+  invalid: { pt: "Confira os campos destacados.", en: "Please check the highlighted fields." }
+  mail_subject: { pt: "GeometrIA — nova proposta", en: "GeometrIA — new proposal" }

@@ -1,0 +1,87 @@
+title: { pt: "Abordagem", en: "Approach" }
+description:
+  pt: "Como o GeometrIA pensa a IA na matemática: o ciclo de uma colaboração, os quatro modos, nossos princípios e como saber se o seu problema é um bom candidato."
+  en: "How GeometrIA thinks about AI in mathematics: the loop of a collaboration, the four modes, our principles, and how to tell whether your problem is a good fit."
+
+hero:
+  kicker: { pt: "Abordagem", en: "Approach" }
+  title: { pt: "IA como instrumento, não como oráculo.", en: "AI as an instrument, not an oracle." }
+  lede:
+    pt: "A inteligência artificial não substitui o julgamento matemático — ela aumenta o número de ideias testadas, de conexões percebidas e de objetos verificados. Esta página resume como pensamos e como trabalhamos."
+    en: "Artificial intelligence does not replace mathematical judgement — it increases the number of ideas tried, connections noticed and objects checked. This page sums up how we think and how we work."
+
+stories:
+  kicker: { pt: "Duas histórias", en: "Two stories" }
+  title: { pt: "Produtividade e descoberta", en: "Productivity and discovery" }
+  lede:
+    pt: "Há duas maneiras de contar o que a IA faz pela matemática. Trabalhamos nas duas, com ênfase na segunda."
+    en: "There are two ways to tell what AI does for mathematics. We work on both, with an emphasis on the second."
+  productivity:
+    name: { pt: "A história da produtividade", en: "The productivity story" }
+    verbs: { pt: "buscar · resumir · programar · formatar · organizar · comunicar", en: "search · summarise · code · format · organise · communicate" }
+    text:
+      pt: "Tirar atrito do trabalho: triagem da literatura, código, LaTeX, revisão. Delegável com segurança quando o custo de um erro é baixo."
+      en: "Removing friction from the work: literature triage, code, LaTeX, proofreading. Safely delegable when the cost of a mistake is low."
+  discovery:
+    name: { pt: "A história da descoberta", en: "The discovery story" }
+    verbs: { pt: "conjecturar · calcular · demonstrar · verificar · generalizar", en: "conjecture · compute · prove · verify · generalise" }
+    text:
+      pt: "Mudar o que é possível: aproximar objetos sem fórmula, encontrar padrões e exemplos que ninguém encontraria à mão. Exige verificação pesada."
+      en: "Changing what is possible: approximating objects with no formula, finding patterns and examples no one would find by hand. Demands heavy verification."
+
+loop:
+  kicker: { pt: "O ciclo", en: "The loop" }
+  title: { pt: "Da pergunta à verificação — e de volta", en: "From question to verification — and back" }
+  lede:
+    pt: "Todo projeto percorre as mesmas cinco etapas. Cada uma deixa um produto concreto, e a última devolve uma pergunta mais afiada."
+    en: "Every project runs through the same five stages. Each leaves a concrete output, and the last one hands back a sharper question."
+  output: { pt: "produto", en: "output" }
+  again: { pt: "…e o ciclo recomeça, com uma pergunta melhor.", en: "…and the loop starts again, with a sharper question." }
+  example_title: { pt: "Um exemplo do ciclo completo", en: "One full turn of the loop" }
+  example:
+    pt: "Na busca por arranjos livres de retas, um funcional que se anula exatamente nos arranjos livres guia uma busca heurística (experimento). Os valores numéricos servem apenas para escolher candidatos; cada arranjo relatado é certificado em aritmética exata pelo critério de Saito (verificação) — e os exemplos encontrados viram casos de teste para a conjectura de Terao (nova pergunta)."
+    en: "In the search for free line arrangements, a functional that vanishes exactly on free arrangements guides a heuristic search (experiment). Numerical values are used only to select candidates; every reported arrangement is certified in exact arithmetic with Saito's criterion (verification) — and the examples found become test cases for Terao's conjecture (a new question)."
+  example_pub: saito
+
+modes:
+  kicker: { pt: "Quatro modos", en: "Four modes" }
+  title: { pt: "Os quatro modos, com exemplos", en: "The four modes, with examples" }
+  lede:
+    pt: "Uma maneira prática de pensar onde a IA entra num problema. Muitos projetos combinam mais de um modo."
+    en: "A practical way to think about where AI enters a problem. Many projects combine more than one mode."
+  our_work: { pt: "No nosso trabalho", en: "In our work" }
+
+principles:
+  kicker: { pt: "Princípios", en: "Principles" }
+  title: { pt: "Como trabalhamos", en: "How we work" }
+
+fit:
+  kicker: { pt: "Diagnóstico", en: "Diagnosis" }
+  title: { pt: "Seu problema é um bom candidato?", en: "Is your problem a good fit?" }
+  good_title: { pt: "Bons sinais", en: "Good signs" }
+  good:
+    - pt: "Você consegue gerar muitos exemplos — ou já existe uma base de dados, tabela ou classificação."
+      en: "You can generate many examples — or a database, table or classification already exists."
+    - pt: "Existe uma quantidade computável que mede o sucesso: um invariante, uma energia, um erro, um funcional."
+      en: "There is a computable quantity that measures success: an invariant, an energy, an error, a functional."
+    - pt: "Você procura objetos raros num espaço enorme: exemplos extremais, contraexemplos, configurações especiais."
+      en: "You are hunting for rare objects in a huge space: extremal examples, counterexamples, special configurations."
+    - pt: "Você precisa de soluções aproximadas de EDPs ou problemas variacionais sem solução explícita."
+      en: "You need approximate solutions of PDEs or variational problems with no explicit solution."
+    - pt: "Você suspeita de um padrão, mas há dados demais para examinar à mão."
+      en: "You suspect a pattern, but there is too much data to examine by hand."
+  hard_title: { pt: "Ainda difícil", en: "Still hard" }
+  hard:
+    - pt: "Perguntas puramente conceituais, sem exemplos que se possam calcular."
+      en: "Purely conceptual questions, with no examples that can be computed."
+    - pt: "Problemas em que até um único exemplo está fora do alcance computacional."
+      en: "Problems where even a single example is out of computational reach."
+    - pt: "Esperar que a IA entregue sozinha uma demonstração completa — por ora, ela ajuda a encontrar o caminho."
+      en: "Expecting AI to deliver a complete proof on its own — for now, it helps find the way."
+  note:
+    pt: "Na dúvida, escreva mesmo assim: parte do nosso trabalho é justamente ajudar a formular a pergunta."
+    en: "When in doubt, write anyway: part of our job is precisely helping to shape the question."
+
+process:
+  kicker: { pt: "Colaboração", en: "Collaboration" }
+  title: { pt: "Como funciona uma proposta", en: "How a proposal works" }

@@ -1,0 +1,237 @@
+---
+layout: default
+---
+{%- assign L = page.lang -%}
+{%- assign T = site.data.text.collaborate -%}
+{%- assign F = T.form -%}
+{%- assign TR = site.data.triage -%}
+{%- assign C = site.data.text.common -%}
+{%- assign R = site.data.routes -%}
+{%- assign G = site.data.form -%}
+{%- assign mb = G.max_pdf_mb | default: 10 -%}
+{%- assign fit_anchor = "#diagnostico" -%}{%- if L == "en" -%}{%- assign fit_anchor = "#fit" -%}{%- endif -%}
+<section class="page-hero">
+  <div class="container">
+    <p class="kicker">{{ T.hero.kicker[L] }}</p>
+    <h1>{{ T.hero.title[L] }}</h1>
+    <p class="lede">{{ T.hero.lede[L] }}</p>
+  </div>
+</section>
+
+<section class="section tight" aria-labelledby="triage-title">
+  <div class="container">
+    <header class="section-head split">
+      <div>
+        <p class="kicker">{{ TR.title[L] }}</p>
+        <h2 id="triage-title">{{ TR.lede[L] }}</h2>
+      </div>
+      <a class="link-arrow" href="{{ R.example[L] | relative_url }}">{{ TR.example_link[L] }}{% include icon.html name="arrow" %}</a>
+    </header>
+    {% include triage-steps.html %}
+  </div>
+</section>
+
+<section class="section tint">
+  <div class="container collab-grid">
+    <div class="card collab-card">
+      <form class="collab-form" id="proposta" data-form novalidate
+            data-endpoint="{{ G.endpoint }}"
+            data-max-mb="{{ mb }}"
+            data-email="{{ site.contact_email }}" data-lang="{{ L }}" data-subject="{{ F.mail_subject[L] }}"
+            data-msg-invalid="{{ F.invalid[L] }}" data-msg-error="{{ F.error[L] }}" data-msg-sending="{{ F.sending[L] }}"
+            data-msg-pdf-type="{{ F.pdf_type_error[L] }}" data-msg-pdf-size="{{ F.pdf_size_error[L] | replace: '%MB%', mb }}">
+
+        <fieldset>
+          <legend><span class="mono">01</span>{{ F.legend_you[L] }}</legend>
+          <div class="field-row">
+            <div class="field">
+              <label for="f-name">{{ F.name[L] }}<span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="f-name" name="name" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="f-email">{{ F.email[L] }}<span class="req" aria-hidden="true">*</span></label>
+              <input type="email" id="f-email" name="email" autocomplete="email" inputmode="email" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-institution">{{ F.institution[L] }}<span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="f-institution" name="institution" autocomplete="organization" placeholder="{{ F.institution_ph[L] }}" required>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="f-position">{{ F.position[L] }}</label>
+              <select id="f-position" name="position">
+                <option value="">{{ F.choose[L] }}</option>
+                {%- for o in F.positions %}<option value="{{ o.value }}">{{ o[L] }}</option>{% endfor %}
+              </select>
+            </div>
+            <div class="field">
+              <label for="f-area">{{ F.area[L] }}</label>
+              <select id="f-area" name="area">
+                <option value="">{{ F.choose[L] }}</option>
+                {%- for o in F.areas %}<option value="{{ o.value }}">{{ o[L] }}</option>{% endfor %}
+              </select>
+            </div>
+          </div>
+          <fieldset class="choice-group" aria-describedby="f-cbg-help">
+            <legend>{{ F.cbg_member[L] }}<span class="req" aria-hidden="true">*</span></legend>
+            <p class="help" id="f-cbg-help">{{ F.cbg_member_help[L] }}</p>
+            <div class="choices cols-2">
+              {%- for o in F.cbg_member_options %}
+              <label class="choice"><input type="radio" name="cbg_member" value="{{ o.value }}" required><span>{{ o[L] }}</span></label>
+              {%- endfor %}
+            </div>
+          </fieldset>
+        </fieldset>
+
+        <fieldset id="interesse">
+          <legend><span class="mono">02</span>{{ F.legend_interest[L] }}</legend>
+          <fieldset class="choice-group">
+            <legend>{{ F.interest[L] }}<span class="req" aria-hidden="true">*</span></legend>
+            <div class="choices">
+              {%- for o in F.interests %}
+              <label class="choice"><input type="radio" name="interest" value="{{ o.value }}" required><span>{{ o[L] }}</span></label>
+              {%- endfor %}
+            </div>
+          </fieldset>
+          <fieldset class="choice-group">
+            <legend>{{ F.extras_label[L] }}<span class="opt">({{ F.optional[L] }})</span></legend>
+            <div class="choices cols-2">
+              {%- for o in F.extras %}
+              <label class="choice"><input type="checkbox" name="extras" value="{{ o.value }}"><span>{{ o[L] }}</span></label>
+              {%- endfor %}
+            </div>
+          </fieldset>
+        </fieldset>
+
+        <fieldset>
+          <legend><span class="mono">03</span>{{ F.legend_problem[L] }}</legend>
+          <p class="fieldset-hint">{{ F.problem_hint[L] }} <a href="{{ R.example[L] | relative_url }}">{{ TR.example_link[L] }}</a>.</p>
+          <div class="field">
+            <label for="f-problem-title">{{ F.problem_title[L] }}<span class="opt">({{ F.optional[L] }})</span></label>
+            <input type="text" id="f-problem-title" name="problem_title" placeholder="{{ F.problem_title_ph[L] }}">
+          </div>
+          <div class="question-parts" role="group" aria-labelledby="f-question-title">
+            <p class="question-title" id="f-question-title">{{ F.question[L] }}</p>
+            <div class="field" data-need-problem>
+              <label for="f-state">{{ F.state_of_art[L] }}<span class="req" aria-hidden="true" data-req-mark hidden>*</span></label>
+              <p class="help" id="f-state-help">{{ F.state_of_art_help[L] }}</p>
+              <textarea id="f-state" name="state_of_art" rows="6" aria-describedby="f-state-help"></textarea>
+            </div>
+            <div class="field" data-need-problem>
+              <label for="f-approach">{{ F.approach[L] }}<span class="req" aria-hidden="true" data-req-mark hidden>*</span></label>
+              <p class="help" id="f-approach-help">{{ F.approach_help[L] }}</p>
+              <textarea id="f-approach" name="approach" rows="6" aria-describedby="f-approach-help"></textarea>
+            </div>
+          </div>
+          <div class="field file-field">
+            <label for="f-pdf">{{ F.pdf[L] }}<span class="opt">({{ F.optional[L] }})</span></label>
+            <p class="help" id="f-pdf-help">{{ F.pdf_help[L] | replace: '%MB%', mb }}</p>
+            <div class="file-drop" data-pdf-drop>
+              <input type="file" id="f-pdf" name="pdf" accept="application/pdf,.pdf" aria-describedby="f-pdf-help f-pdf-status" data-pdf-input>
+              <span class="file-icon" aria-hidden="true">{% include icon.html name="file-up" %}</span>
+              <span class="file-text">
+                <span class="file-cta" aria-hidden="true" data-pdf-cta data-choose="{{ F.pdf_choose[L] }}" data-change="{{ F.pdf_change[L] }}">{{ F.pdf_choose[L] }}</span>
+                <span class="file-name" id="f-pdf-status" data-pdf-name data-empty="{{ F.pdf_none[L] }}">{{ F.pdf_none[L] }}</span>
+              </span>
+              <button class="btn btn-ghost btn-sm file-remove" type="button" data-pdf-remove hidden>{{ F.pdf_remove[L] }}</button>
+            </div>
+            <p class="field-error" id="f-pdf-error" data-pdf-error hidden></p>
+          </div>
+          <fieldset class="choice-group">
+            <legend>{{ F.help_type[L] }}</legend>
+            <div class="choices">
+              {%- for o in F.help_types %}
+              <label class="choice"><input type="checkbox" name="help_type" value="{{ o.value }}"><span>{{ o[L] }}</span></label>
+              {%- endfor %}
+            </div>
+          </fieldset>
+          <fieldset class="choice-group">
+            <legend>{{ F.data[L] }}</legend>
+            <div class="choices cols-2">
+              {%- for o in F.data_options %}
+              <label class="choice"><input type="radio" name="data" value="{{ o.value }}"><span>{{ o[L] }}</span></label>
+              {%- endfor %}
+            </div>
+          </fieldset>
+          <fieldset class="choice-group">
+            <legend>{{ F.experience[L] }}</legend>
+            <div class="choices">
+              {%- for o in F.experience_options %}
+              <label class="choice"><input type="radio" name="experience" value="{{ o.value }}"><span>{{ o[L] }}</span></label>
+              {%- endfor %}
+            </div>
+          </fieldset>
+        </fieldset>
+
+        <fieldset>
+          <legend><span class="mono">04</span>{{ F.legend_more[L] }}</legend>
+          <fieldset class="choice-group">
+            <legend>{{ F.language[L] }}</legend>
+            <div class="choices cols-3">
+              {%- for o in F.languages %}
+              <label class="choice"><input type="radio" name="language" value="{{ o.value }}"{% if forloop.first and L == "pt" %} checked{% elsif o.value == "English" and L == "en" %} checked{% endif %}><span>{{ o[L] }}</span></label>
+              {%- endfor %}
+            </div>
+          </fieldset>
+          <div class="field">
+            <label for="f-message">{{ F.message[L] }}<span class="opt">({{ F.optional[L] }})</span></label>
+            <textarea id="f-message" name="message" rows="3"></textarea>
+          </div>
+          <div class="hp" aria-hidden="true">
+            <label for="f-website">Website</label>
+            <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+          <div class="consent">
+            <label class="choice"><input type="checkbox" name="consent_lgpd" value="Sim" required><span>{{ F.consent_lgpd[L] | replace: '%EMAIL%', site.contact_email }}<span class="req" aria-hidden="true">*</span></span></label>
+            <label class="choice"><input type="checkbox" name="consent_llm" value="Sim" required><span>{{ F.consent_llm[L] }}<span class="req" aria-hidden="true">*</span></span></label>
+          </div>
+        </fieldset>
+
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit" data-submit>{{ F.submit[L] }}{% include icon.html name="arrow" %}</button>
+          <p class="form-privacy">{% if G.endpoint != "" %}{{ F.privacy[L] }}{% else %}{{ F.privacy_mail[L] }}{% endif %}</p>
+        </div>
+        <p class="form-status" role="status" aria-live="polite" data-status></p>
+        <noscript><p class="form-status">{{ F.error[L] }} <a href="mailto:{{ site.contact_email }}">{{ site.contact_email }}</a>.</p></noscript>
+      </form>
+
+      <div class="form-done" data-done="sent" hidden tabindex="-1">
+        {% include mark.html id="done1" %}
+        <h2>{{ F.success_title[L] }}</h2>
+        <p>{{ F.success_text[L] }}</p>
+        <p class="mono done-id" data-done-id hidden>{{ F.success_id[L] }} <strong data-done-id-value></strong></p>
+        <button class="btn btn-ghost" type="button" data-again>{{ F.success_again[L] }}</button>
+      </div>
+      <div class="form-done" data-done="mail" hidden tabindex="-1">
+        {% include mark.html id="done2" %}
+        <h2>{{ F.mail_title[L] }}</h2>
+        <p>{{ F.mail_text[L] }} <a href="mailto:{{ site.contact_email }}">{{ site.contact_email }}</a>.</p>
+        <p data-mail-pdf hidden><strong>{{ F.mail_pdf[L] }}</strong></p>
+        <button class="btn btn-ghost" type="button" data-again>{{ F.success_again[L] }}</button>
+      </div>
+    </div>
+
+    <aside class="collab-aside" aria-label="{{ T.aside.label[L] }}">
+      <div class="card">
+        <h2>{{ T.aside.example_title[L] }}</h2>
+        <p>{{ T.aside.example_text[L] }}</p>
+        <p><a class="link-arrow" href="{{ R.example[L] | relative_url }}">{{ TR.example_link[L] }}{% include icon.html name="arrow" %}</a></p>
+      </div>
+      <div class="card">
+        <h2>{{ T.aside.talk_title[L] }}</h2>
+        <p>{{ T.aside.talk_text[L] }}<br><a href="mailto:{{ site.contact_email }}">{{ site.contact_email }}</a></p>
+        <p><a class="link-arrow" href="{{ R.approach[L] | relative_url }}{{ fit_anchor }}">{{ T.aside.fit_link[L] }}{% include icon.html name="arrow" %}</a></p>
+      </div>
+      <div class="card community-card">
+        <div class="community-head">
+          <img class="community-logo" src="{{ '/assets/img/community/mathia-amlat.jpg' | relative_url }}" alt="MathIA AmLat" width="360" height="360" loading="lazy">
+          <h2>{{ T.aside.community_title[L] }}</h2>
+        </div>
+        <p>{{ T.aside.community_text[L] }}</p>
+        <p>{{ T.aside.community_hint[L] }}</p>
+        <p><a class="link-arrow" href="{% include invite-href.html %}">{{ T.aside.community_link[L] }}{% include icon.html name="arrow" %}</a></p>
+      </div>
+    </aside>
+  </div>
+</section>

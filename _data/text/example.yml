@@ -1,0 +1,81 @@
+# Modelo de proposta preenchida (fictício) — página /colabore/exemplo/.
+title: { pt: "Modelo de proposta", en: "Example proposal" }
+description:
+  pt: "Um exemplo fictício de proposta preenchida no formulário do GeometrIA: o nível de detalhe que ajuda na triagem."
+  en: "A fictional example of a proposal filled in on the GeometrIA form: the level of detail that helps the triage."
+
+hero:
+  kicker: { pt: "Modelo preenchido", en: "Filled-in example" }
+  title: { pt: "Uma proposta, campo a campo.", en: "A proposal, field by field." }
+  lede:
+    pt: "Este exemplo é fictício. Ele mostra o nível de detalhe que ajuda a triagem — não é preciso escrever tanto, nem saber IA para preencher."
+    en: "This example is fictional. It shows the level of detail that helps the triage — you don't need to write this much, or know any AI, to fill it in."
+  badge: { pt: "Exemplo fictício", en: "Fictional example" }
+
+cta: { pt: "Preencher o formulário", en: "Fill in the form" }
+tip_label: { pt: "Dica", en: "Tip" }
+
+sections:
+  - legend: { pt: "Sobre você", en: "About you" }
+    fields:
+      - label: { pt: "Nome completo", en: "Full name" }
+        value: { pt: "Maria Exemplo", en: "Maria Exemplo" }
+      - label: { pt: "E-mail", en: "Email" }
+        value: { pt: "maria@exemplo.org", en: "maria@example.org" }
+      - label: { pt: "Instituição", en: "Institution" }
+        value: { pt: "Universidade Exemplo", en: "Example University" }
+      - label: { pt: "Etapa da carreira", en: "Career stage" }
+        value: { pt: "Docente ou pesquisador(a)", en: "Faculty or researcher" }
+      - label: { pt: "Área principal", en: "Main area" }
+        value: { pt: "Geometria discreta e convexa", en: "Discrete and convex geometry" }
+      - label: { pt: "Você é membro do CBG?", en: "Are you a member of CBG?" }
+        value: { pt: "Não", en: "No" }
+
+  - legend: { pt: "Seu interesse", en: "Your interest" }
+    fields:
+      - label: { pt: "O que você procura?", en: "What are you looking for?" }
+        value: { pt: "Tenho um problema concreto para propor", en: "I have a concrete problem to propose" }
+      - label: { pt: "Também quero", en: "I'd also like" }
+        value: { pt: "um convite para o canal da MathIA AmLat no Zulip", en: "an invitation to the MathIA AmLat channel on Zulip" }
+
+  - legend: { pt: "O problema", en: "The problem" }
+    fields:
+      - label: { pt: "Título provisório", en: "Working title" }
+        value:
+          pt: "Configurações de energia mínima de n pontos na esfera: mapear os mínimos locais do problema de Thomson"
+          en: "Minimal-energy configurations of n points on the sphere: mapping the local minima of the Thomson problem"
+      - label: { pt: "a) Resumo do estado da arte", en: "a) Summary of the state of the art" }
+        long: true
+        value:
+          pt: "O problema de Thomson pede a posição de n cargas unitárias na esfera S² que minimiza a energia de Coulomb E = Σ<sub>i&lt;j</sub> 1/|x<sub>i</sub> − x<sub>j</sub>|. Demonstrações de otimalidade existem apenas para alguns valores pequenos de n; para valores maiores há tabelas de configurações obtidas numericamente, sem prova de que sejam ótimas. Experimentos numéricos indicam que o número de mínimos locais cresce muito depressa com n, o que torna difícil saber se a melhor configuração conhecida é de fato a ótima. Referências principais: [as duas ou três que eu indicaria a um colega]."
+          en: "The Thomson problem asks for the position of n unit charges on the sphere S² that minimises the Coulomb energy E = Σ<sub>i&lt;j</sub> 1/|x<sub>i</sub> − x<sub>j</sub>|. Optimality proofs exist only for a few small values of n; for larger values there are tables of numerically obtained configurations, with no proof that they are optimal. Numerical experiments suggest that the number of local minima grows very fast with n, which makes it hard to know whether the best known configuration is really optimal. Main references: [the two or three I would point a colleague to]."
+        tip:
+          pt: "Não precisa ser exaustivo: o essencial, com as referências que você indicaria a um colega de outra área."
+          en: "It doesn't need to be exhaustive: the essentials, with the references you would give a colleague from another field."
+      - label: { pt: "b) Sua abordagem", en: "b) Your approach" }
+        long: true
+        value:
+          pt: "Tenho um código em Python que faz descida de gradiente a partir de configurações aleatórias e guarda os mínimos locais encontrados — cerca de 50 mil até agora, para n ≤ 200. Suspeito que o grupo de simetrias da configuração final está ligado à energia, mas não sei como explorar isso de forma sistemática. Gostaria de entender se aprendizado de máquina pode (1) prever, a partir de invariantes simples, quais mínimos têm energia mais baixa e (2) propor configurações candidatas para os valores de n em que as tabelas parecem ter lacunas."
+          en: "I have Python code that runs gradient descent from random configurations and stores the local minima it finds — about 50,000 so far, for n ≤ 200. I suspect that the symmetry group of the final configuration is linked to its energy, but I don't know how to explore this systematically. I would like to understand whether machine learning could (1) predict, from simple invariants, which minima have lower energy and (2) propose candidate configurations for the values of n where the tables seem to have gaps."
+        tip:
+          pt: "Conte o que você já tentou e o que seria um resultado útil para você."
+          en: "Say what you have already tried and what would count as a useful result for you."
+      - label: { pt: "Anexo em PDF", en: "PDF attachment" }
+        value: { pt: "thomson-notas.pdf — 4 páginas: definições, tabela de mínimos e gráficos", en: "thomson-notes.pdf — 4 pages: definitions, a table of minima and plots" }
+      - label: { pt: "Que tipo de ajuda você imagina?", en: "What kind of help do you have in mind?" }
+        value: { pt: "Prever · Buscar", en: "Predict · Search" }
+      - label: { pt: "Existem exemplos ou dados?", en: "Do examples or data exist?" }
+        value: { pt: "Consigo gerar muitos exemplos por computador", en: "I can generate many examples by computer" }
+      - label: { pt: "Sua experiência com programação", en: "Your programming experience" }
+        value: { pt: "Alguma (Python, Sage, Mathematica…)", en: "Some (Python, Sage, Mathematica…)" }
+
+  - legend: { pt: "Para terminar", en: "To finish" }
+    fields:
+      - label: { pt: "Idioma preferido para conversarmos", en: "Preferred language for our conversation" }
+        value: { pt: "Português", en: "Portuguese" }
+      - label: { pt: "Algo mais?", en: "Anything else?" }
+        value: { pt: "Posso compartilhar o código e a base de mínimos locais.", en: "I can share the code and the database of local minima." }
+      - label: { pt: "Consentimentos", en: "Consents" }
+        value:
+          pt: "✓ Uso dos dados conforme a LGPD · ✓ Ciente do uso de modelos de linguagem na triagem"
+          en: "✓ Use of data under the LGPD · ✓ Aware that language models are used in the triage"

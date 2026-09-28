@@ -1,0 +1,45 @@
+{%- comment -%} Uma publicação. Parâmetros: pub, compact (true para cartões). {%- endcomment -%}
+{%- assign L = page.lang | default: "pt" -%}
+{%- assign C = site.data.text.common -%}
+{%- assign RT = site.data.text.research -%}
+{%- assign p = include.pub -%}
+{%- assign authors = p.authors -%}
+{%- for m in site.data.people.members -%}
+  {%- capture strong -%}<strong>{{ m.short | replace: " ", "&nbsp;" }}</strong>{%- endcapture -%}
+  {%- assign authors = authors | replace: m.short, strong -%}
+{%- endfor -%}
+{%- assign authors = authors | replace: ". ", ".&nbsp;" -%}
+{%- if p.arxiv -%}{%- assign main_url = "https://arxiv.org/abs/" | append: p.arxiv -%}{%- elsif p.url -%}{%- assign main_url = p.url -%}{%- elsif p.doi -%}{%- assign main_url = "https://doi.org/" | append: p.doi -%}{%- else -%}{%- assign main_url = nil -%}{%- endif -%}
+{%- if p.venue.pt -%}{%- assign venue = p.venue[L] -%}{%- else -%}{%- assign venue = p.venue -%}{%- endif -%}
+{%- if include.compact -%}
+<article class="card pub-card">
+  <p class="pub-meta mono">
+    {%- for m in p.modes -%}{%- assign md = site.data.modes | where: "id", m | first -%}<span class="mode-tag mode-{{ m }}">{% include icon.html name=m %}{{ md.name[L] }}</span>{%- endfor -%}
+    <span class="pub-year">{{ p.year }}</span>
+  </p>
+  <h3 class="pub-title">{% if main_url %}<a href="{{ main_url }}">{{ p.title }}</a>{% else %}{{ p.title }}{% endif %}</h3>
+  <p class="pub-authors">{{ authors }}</p>
+  <p class="pub-note">{{ p.note[L] }}</p>
+  <p class="pub-venue mono">{{ venue }}</p>
+</article>
+{%- else -%}
+<li class="pub" data-modes="{{ p.modes | join: ' ' }}">
+  <div class="pub-side mono">
+    <span class="pub-year">{{ p.year }}</span>
+    <span class="pub-kind">{{ RT.kinds[p.kind][L] }}</span>
+  </div>
+  <div class="pub-body">
+    <h3 class="pub-title">{% if main_url %}<a href="{{ main_url }}">{{ p.title }}</a>{% else %}{{ p.title }}{% endif %}</h3>
+    <p class="pub-authors">{{ authors }}</p>
+    {%- unless venue contains "arXiv" %}<p class="pub-venue">{{ venue }}</p>{% endunless %}
+    <p class="pub-note">{{ p.note[L] }}</p>
+    <p class="pub-links">
+      {%- for m in p.modes -%}{%- assign md = site.data.modes | where: "id", m | first -%}<span class="mode-tag mode-{{ m }}">{% include icon.html name=m %}{{ md.name[L] }}</span>{%- endfor -%}
+      {%- if p.arxiv %}<a class="chip-link" href="https://arxiv.org/abs/{{ p.arxiv }}">arXiv:{{ p.arxiv }}</a>{% endif -%}
+      {%- if p.doi %}<a class="chip-link" href="https://doi.org/{{ p.doi }}">DOI</a>{% endif -%}
+      {%- if p.code %}<a class="chip-link" href="{{ p.code }}">{% include icon.html name="github" %}{{ C.code[L] }}</a>{% endif -%}
+      {%- if p.slides %}<a class="chip-link" href="{{ p.slides }}">{{ C.slides[L] }}</a>{% endif -%}
+    </p>
+  </div>
+</li>
+{%- endif -%}

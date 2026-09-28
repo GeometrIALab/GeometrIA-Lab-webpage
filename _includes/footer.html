@@ -1,0 +1,51 @@
+{%- assign L = page.lang | default: "pt" -%}
+{%- assign C = site.data.text.common -%}
+{%- assign R = site.data.routes -%}
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a class="brand brand-lg" href="{{ R.home[L] | relative_url }}" aria-label="{{ C.home_label[L] }}">
+        {% include mark.html id="ft" class="brand-mark" %}
+        <span class="brand-word" aria-hidden="true">Geometr<span class="ia">IA</span></span>
+      </a>
+      <p class="footer-sub">{{ C.lab[L] }}</p>
+      <p class="footer-about">{{ C.footer.about[L] }}</p>
+      <a class="footer-cbg" href="{% if L == 'en' %}{{ site.links.cbg_en }}{% else %}{{ site.links.cbg }}{% endif %}">
+        <span>{{ C.footer.cbg_of[L] }}</span>
+        <img src="{{ '/assets/img/cbg/cbg-logo-cor.png' | relative_url }}" alt="{{ C.cbg_name[L] }}" width="1612" height="419" loading="lazy">
+      </a>
+      <p class="footer-note">{{ C.footer.cbg_note[L] }}</p>
+    </div>
+
+    <nav class="footer-col" aria-label="{{ C.footer.lab[L] }}">
+      <h2 class="footer-h">{{ C.footer.lab[L] }}</h2>
+      <ul>
+        <li><a href="{{ R.approach[L] | relative_url }}">{{ C.nav.approach[L] }}</a></li>
+        <li><a href="{{ R.research[L] | relative_url }}">{{ C.nav.research[L] }}</a></li>
+        <li><a href="{{ R.people[L] | relative_url }}">{{ C.nav.people[L] }}</a></li>
+        <li><a href="{{ R.collaborate[L] | relative_url }}">{{ C.nav.cta[L] }}</a></li>
+        <li><a href="{{ R.brand[L] | relative_url }}">{{ C.nav.brand[L] }}</a></li>
+      </ul>
+    </nav>
+
+    <nav class="footer-col" aria-label="{{ C.footer.network[L] }}">
+      <h2 class="footer-h">{{ C.footer.network[L] }}</h2>
+      <ul>
+        <li><a href="{% if L == 'en' %}{{ site.links.cbg_en }}{% else %}{{ site.links.cbg }}{% endif %}">{{ C.footer.cbg[L] }}</a></li>
+        <li><a href="{{ site.links.imecc }}">{{ C.footer.imecc[L] }}</a></li>
+        <li><a href="{% include invite-href.html %}">{{ C.footer.community[L] }}</a></li>
+        <li><a href="{{ site.github_repo }}">{{ C.footer.source[L] }}</a></li>
+      </ul>
+    </nav>
+
+    <div class="footer-col">
+      <h2 class="footer-h">{{ C.footer.contact[L] }}</h2>
+      <p><a href="mailto:{{ site.contact_email }}">{{ site.contact_email }}</a></p>
+      <address>{{ C.footer.address }}</address>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© {{ site.time | date: "%Y" }} GeometrIA · {{ C.lab[L] }}</span>
+    <span class="mono footer-tagline">{{ site.data.text.home.hero.title[L] }}</span>
+  </div>
+</footer>

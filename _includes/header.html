@@ -1,0 +1,32 @@
+{%- assign L = page.lang | default: "pt" -%}
+{%- assign C = site.data.text.common -%}
+{%- assign R = site.data.routes -%}
+{%- if L == "en" -%}{%- assign other = "pt" -%}{%- else -%}{%- assign other = "en" -%}{%- endif -%}
+{%- assign here = page.ref -%}
+{%- if here == "notfound" -%}{%- assign here = "home" -%}{%- endif -%}
+<header class="site-header" data-header>
+  <div class="container header-inner">
+    <a class="brand" href="{{ R.home[L] | relative_url }}" aria-label="{{ C.home_label[L] }}">
+      {% include mark.html id="hd" class="brand-mark" %}
+      <span class="brand-word" aria-hidden="true">Geometr<span class="ia">IA</span></span>
+    </a>
+    <a class="cbg-cobrand" href="{% if L == 'en' %}{{ site.links.cbg_en }}{% else %}{{ site.links.cbg }}{% endif %}" aria-label="{{ C.cbg_name[L] }}">
+      <img class="cbg-logo" src="{{ '/assets/img/cbg/cbg-logo-cor.png' | relative_url }}" alt="" width="1612" height="419">
+    </a>
+
+    <nav class="site-nav" id="site-nav" aria-label="{{ C.menu[L] }}" data-nav>
+      <ul class="nav-list">
+        {%- for key in R.nav %}
+        <li><a href="{{ R[key][L] | relative_url }}"{% if page.ref == key %} aria-current="page"{% endif %}>{{ C.nav[key][L] }}</a></li>
+        {%- endfor %}
+      </ul>
+      <a class="btn btn-primary btn-sm nav-cta" href="{{ R.collaborate[L] | relative_url }}"{% if page.ref == "collaborate" %} aria-current="page"{% endif %}>{{ C.nav.cta[L] }}</a>
+    </nav>
+
+    <div class="header-tools">
+      <a class="lang-switch" href="{{ R[here][other] | relative_url }}" hreflang="{{ C.html_lang[other] }}" lang="{{ C.html_lang[other] }}" title="{{ C.lang_other_label[L] }}"><span class="visually-hidden">{{ C.lang_other_label[L] }}</span><span aria-hidden="true">{{ C.lang_other[L] }}</span></a>
+      <button class="icon-btn" type="button" data-theme-toggle title="{{ C.theme[L] }}"><span class="visually-hidden">{{ C.theme[L] }}</span>{% include icon.html name="theme" %}</button>
+      <button class="icon-btn menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false" data-menu-toggle><span class="visually-hidden">{{ C.menu[L] }}</span>{% include icon.html name="menu" class="i-open" %}{% include icon.html name="close" class="i-close" %}</button>
+    </div>
+  </div>
+</header>

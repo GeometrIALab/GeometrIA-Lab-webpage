@@ -1,0 +1,53 @@
+# ─────────────────────────────────────────────────────────────
+#  GeometrIA · CBG – Laboratório de IA e Geometria
+#  Site estático para GitHub Pages (Jekyll, sem plugins).
+#  Veja README.md para editar conteúdo, pessoas e publicações.
+# ─────────────────────────────────────────────────────────────
+
+title: GeometrIA
+tagline_pt: CBG – Laboratório de IA e Geometria
+tagline_en: CBG – AI & Geometry Lab
+
+# Endereço público. Se o site passar a ter domínio próprio
+# (ex.: geometria.ime.unicamp.br), troque `url` e deixe `baseurl: ""`.
+url: "https://tomassilva.github.io"
+baseurl: "/GeometrIA-Lab"
+
+# E-mail oficial do laboratório (rodapé, formulário, mensagens).
+contact_email: "geometria.lab@cbg.unicamp.br"
+
+github_repo: "https://github.com/TomasSilva/GeometrIA-Lab"
+# Comunidade MathIA AmLat (Zulip): os convites são pedidos por e-mail ao laboratório
+# (contact_email), com este assunto.
+community_invite_subject: "Solicitação convite mathIA AmLat"
+
+# Links institucionais
+links:
+  cbg: "https://www.cbg.ime.unicamp.br/"
+  cbg_en: "https://www.cbg.ime.unicamp.br/en/cbg-homepage-english/"
+  imecc: "https://www.ime.unicamp.br/"
+  unicamp: "https://www.unicamp.br/"
+
+# Sem tema: todo o layout é do próprio site (o GitHub Pages aplicaria o tema "primer" por padrão).
+theme: null
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  auto_ids: false
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - tools/
+  - vendor/
+  - .bundle/
+  - node_modules/
+  - "Claude outputs/"
+
+defaults:
+  - scope: { path: "" }
+    values:
+      layout: default
+      lang: pt

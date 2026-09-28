@@ -1,0 +1,57 @@
+# Textos compartilhados (menu, rodapé, botões). Formato: chave: { pt: "...", en: "..." }
+
+html_lang: { pt: pt-BR, en: en }
+og_locale: { pt: pt_BR, en: en_US }
+lab: { pt: "CBG – Laboratório de IA e Geometria", en: "CBG – AI &amp; Geometry Lab" }
+lab_long: { pt: "CBG – Laboratório de IA e Geometria · Centro Brasileiro de Geometria", en: "CBG – AI &amp; Geometry Lab · Brazilian Center for Geometry" }
+cbg_name: { pt: "Centro Brasileiro de Geometria (CBG)", en: "Brazilian Center for Geometry (CBG)" }
+description:
+  pt: "GeometrIA · CBG – Laboratório de IA e Geometria: o laboratório de inteligência artificial do Centro Brasileiro de Geometria (CBG), no IMECC–Unicamp. Pesquisa em aprendizado de máquina para geometria e uma ponte para matemáticos que querem usar IA."
+  en: "GeometrIA · CBG – AI &amp; Geometry Lab: the artificial intelligence lab of the Brazilian Center for Geometry (CBG) at IMECC–Unicamp. Research in machine learning for geometry, and a bridge for mathematicians who want to use AI."
+
+nav:
+  home: { pt: Início, en: Home }
+  approach: { pt: Abordagem, en: Approach }
+  research: { pt: Pesquisa, en: Research }
+  people: { pt: Pessoas, en: People }
+  collaborate: { pt: Colabore, en: Collaborate }
+  brand: { pt: Identidade visual, en: Visual identity }
+  cta: { pt: "Proponha um problema", en: "Propose a problem" }
+
+skip: { pt: "Pular para o conteúdo", en: "Skip to content" }
+menu: { pt: Menu, en: Menu }
+close: { pt: Fechar, en: Close }
+theme: { pt: "Alternar tema claro/escuro", en: "Toggle light/dark theme" }
+lang_other: { pt: EN, en: PT }
+lang_other_label: { pt: "Read this page in English", en: "Ler esta página em português" }
+home_label: { pt: "GeometrIA — página inicial", en: "GeometrIA — home" }
+
+see_all: { pt: "Ver tudo", en: "See all" }
+learn_more: { pt: "Saiba mais", en: "Learn more" }
+code: { pt: Código, en: Code }
+slides: { pt: Slides, en: Slides }
+website: { pt: Página, en: Website }
+email: { pt: E-mail, en: Email }
+talk: { pt: Palestra, en: Talk }
+preprint: { pt: Preprint, en: Preprint }
+
+months:
+  pt: [jan., fev., mar., abr., mai., jun., jul., ago., set., out., nov., dez.]
+  en: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+
+footer:
+  about:
+    pt: "O GeometrIA é o laboratório de inteligência artificial do Centro Brasileiro de Geometria (CBG), sediado no Instituto de Matemática, Estatística e Computação Científica da Unicamp."
+    en: "GeometrIA is the artificial intelligence lab of the Brazilian Center for Geometry (CBG), hosted at Unicamp's Institute of Mathematics, Statistics and Scientific Computing."
+  cbg_of: { pt: "Um laboratório do", en: "A lab of the" }
+  cbg_note:
+    pt: "O CBG é um Centro de Pesquisa, Inovação e Difusão (CEPID) financiado pela FAPESP."
+    en: "CBG is a Research, Innovation and Dissemination Center (CEPID) funded by FAPESP."
+  lab: { pt: Laboratório, en: Lab }
+  network: { pt: Rede, en: Network }
+  contact: { pt: Contato, en: Contact }
+  address: "IMECC – Unicamp · Rua Sérgio Buarque de Holanda, 651 · Cidade Universitária · 13083-859 Campinas, SP · Brasil"
+  cbg: { pt: "Centro Brasileiro de Geometria", en: "Brazilian Center for Geometry" }
+  imecc: { pt: "IMECC – Unicamp", en: "IMECC – Unicamp" }
+  community: { pt: "MathIA AmLat no Zulip (convite)", en: "MathIA AmLat on Zulip (invitation)" }
+  source: { pt: "Código do site", en: "Site source" }
