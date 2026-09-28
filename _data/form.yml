@@ -8,7 +8,7 @@
 #  para `contact_email` (definido em _config.yml).
 # ─────────────────────────────────────────────────────────────
 
-endpoint: ""
+endpoint: "https://script.google.com/macros/s/AKfycbzFewFTRN2yuE9FgXFLfuFuZo_fjv5-IB8H2QLM76VqOt7q-vZSKkRaVUxwv6KEb5UT/exec"
 
 # Tamanho máximo do PDF anexado (MB). Mantenha igual a MAX_PDF_MB no script.
 max_pdf_mb: 10
