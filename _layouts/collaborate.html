@@ -9,6 +9,8 @@ layout: default
 {%- assign R = site.data.routes -%}
 {%- assign G = site.data.form -%}
 {%- assign mb = G.max_pdf_mb | default: 10 -%}
+{%- assign use_altcha = false -%}{%- if G.endpoint != "" and G.altcha -%}{%- assign use_altcha = true -%}{%- endif -%}
+{%- assign use_verify = false -%}{%- if G.endpoint != "" and G.verify_email -%}{%- assign use_verify = true -%}{%- endif -%}
 {%- assign fit_anchor = "#diagnostico" -%}{%- if L == "en" -%}{%- assign fit_anchor = "#fit" -%}{%- endif -%}
 <section class="page-hero">
   <div class="container">
@@ -39,6 +41,7 @@ layout: default
             data-max-mb="{{ mb }}"
             data-email="{{ site.contact_email }}" data-lang="{{ L }}" data-subject="{{ F.mail_subject[L] }}"
             data-msg-invalid="{{ F.invalid[L] }}" data-msg-error="{{ F.error[L] }}" data-msg-sending="{{ F.sending[L] }}"
+            data-msg-captcha="{{ F.captcha_error[L] }}" data-msg-verify-first="{{ F.verify_first[L] }}"
             data-msg-pdf-type="{{ F.pdf_type_error[L] }}" data-msg-pdf-size="{{ F.pdf_size_error[L] | replace: '%MB%', mb }}">
 
         <fieldset>
@@ -53,6 +56,32 @@ layout: default
               <input type="email" id="f-email" name="email" autocomplete="email" inputmode="email" required>
             </div>
           </div>
+          {%- if use_verify %}
+          <div class="verify-email" role="group" aria-labelledby="verify-title" data-verify
+               data-msg-send="{{ F.code_send[L] }}" data-msg-resend="{{ F.code_resend[L] }}" data-msg-wait="{{ F.code_wait[L] }}"
+               data-msg-sending="{{ F.code_sending[L] }}" data-msg-sent="{{ F.code_sent[L] }}" data-msg-checking="{{ F.code_checking[L] }}"
+               data-msg-wrong="{{ F.code_wrong[L] }}" data-msg-wrong-one="{{ F.code_wrong_one[L] }}" data-msg-expired="{{ F.code_expired[L] }}"
+               data-msg-rate="{{ F.code_rate[L] }}" data-msg-error="{{ F.code_error[L] }}" data-msg-email-first="{{ F.email_first[L] }}"
+               data-msg-again="{{ F.verify_again[L] }}">
+            <p class="verify-title" id="verify-title">{{ F.verify_title[L] }}<span class="req" aria-hidden="true">*</span></p>
+            <p class="help" id="verify-help">{{ F.verify_help[L] }}</p>
+            <div class="verify-row" data-verify-row>
+              {%- if use_altcha %}
+              <div class="form-altcha">
+                <altcha-widget challenge="{{ G.endpoint }}?altcha=1" name="altcha" language="{% if L == 'pt' %}pt-br{% else %}en{% endif %}"
+                               configuration='{"hideFooter": true, "hideLogo": true}'></altcha-widget>
+              </div>
+              {%- endif %}
+              <button class="btn btn-ghost" type="button" data-code-send aria-describedby="verify-help">{{ F.code_send[L] }}</button>
+            </div>
+            <div class="verify-code" data-code-box hidden>
+              <label for="f-code">{{ F.code_label[L] }}</label>
+              <input type="text" id="f-code" inputmode="numeric" autocomplete="one-time-code" spellcheck="false" data-code-input aria-describedby="verify-status">
+            </div>
+            <p class="verify-status" id="verify-status" role="status" aria-live="polite" data-code-status></p>
+            <p class="verify-done" data-verified hidden>{% include icon.html name="check" %}<span>{{ F.verified[L] }} <strong data-verified-email></strong></span></p>
+          </div>
+          {%- endif %}
           <div class="field">
             <label for="f-institution">{{ F.institution[L] }}<span class="req" aria-hidden="true">*</span></label>
             <input type="text" id="f-institution" name="institution" autocomplete="organization" placeholder="{{ F.institution_ph[L] }}" required>
@@ -186,6 +215,12 @@ layout: default
             <label class="choice"><input type="checkbox" name="consent_lgpd" value="Sim" required><span>{{ F.consent_lgpd[L] | replace: '%EMAIL%', site.contact_email }}<span class="req" aria-hidden="true">*</span></span></label>
             <label class="choice"><input type="checkbox" name="consent_llm" value="Sim" required><span>{{ F.consent_llm[L] }}<span class="req" aria-hidden="true">*</span></span></label>
           </div>
+          {%- if use_altcha and use_verify == false %}
+          <div class="form-altcha">
+            <altcha-widget challenge="{{ G.endpoint }}?altcha=1" name="altcha" language="{% if L == 'pt' %}pt-br{% else %}en{% endif %}"
+                           configuration='{"hideFooter": true, "hideLogo": true}'></altcha-widget>
+          </div>
+          {%- endif %}
         </fieldset>
 
         <div class="form-actions">
@@ -235,3 +270,9 @@ layout: default
     </aside>
   </div>
 </section>
+{%- if use_altcha %}
+{%- if L == "pt" %}
+<script type="module" src="{{ '/assets/js/vendor/altcha/pt-br.js' | relative_url }}"></script>
+{%- endif %}
+<script type="module" src="{{ '/assets/js/vendor/altcha/altcha.min.js' | relative_url }}"></script>
+{%- endif %}

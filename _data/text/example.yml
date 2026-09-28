@@ -21,7 +21,10 @@ sections:
       - label: { pt: "Nome completo", en: "Full name" }
         value: { pt: "Maria Exemplo", en: "Maria Exemplo" }
       - label: { pt: "E-mail", en: "Email" }
-        value: { pt: "maria@exemplo.org", en: "maria@example.org" }
+        value: { pt: "maria@exemplo.org ✓ confirmado", en: "maria@example.org ✓ confirmed" }
+        tip:
+          pt: "Logo abaixo do e-mail, marque “Eu não sou um robô” e peça o código: chegam 6 dígitos no seu e-mail, que você digita no formulário. Só propostas com e-mail confirmado são aceitas."
+          en: "Right below the email, tick “I'm not a robot” and request the code: 6 digits arrive in your inbox, and you type them into the form. Only proposals from a confirmed email are accepted."
       - label: { pt: "Instituição", en: "Institution" }
         value: { pt: "Universidade Exemplo", en: "Example University" }
       - label: { pt: "Etapa da carreira", en: "Career stage" }

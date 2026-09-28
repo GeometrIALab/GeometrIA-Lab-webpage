@@ -2,8 +2,10 @@
  *
  * Com `endpoint` preenchido em _data/form.yml, envia a proposta (JSON, com o PDF em
  * base64) para o Google Apps Script em tools/form-backend.gs, que a encaminha por
- * e-mail, com o PDF anexado, para a conta do laboratório. Sem endpoint, abre um
- * e-mail pré-preenchido para contact_email.
+ * e-mail, com o PDF anexado, para a conta do laboratório. Antes, a pessoa confirma o
+ * e-mail com um código de 6 dígitos (veja "confirmação do e-mail"), pedido depois do
+ * anti-robô ALTCHA (veja altchaToken). Sem endpoint, abre um e-mail pré-preenchido
+ * para contact_email.
  */
 (function () {
   "use strict";
@@ -72,18 +74,21 @@
     return "s-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 10);
   }
 
-  function setStatus(msg, isError, withEmail) {
-    status.textContent = msg || "";
-    status.classList.toggle("is-error", !!isError);
+  function say(el, msg, isError, withEmail) {
+    if (!el) return;
+    el.textContent = msg || "";
+    el.classList.toggle("is-error", !!isError);
     if (withEmail) {
       var a = document.createElement("a");
       a.href = "mailto:" + email;
       a.textContent = email;
-      status.appendChild(document.createTextNode(" "));
-      status.appendChild(a);
-      status.appendChild(document.createTextNode("."));
+      el.appendChild(document.createTextNode(" "));
+      el.appendChild(a);
+      el.appendChild(document.createTextNode("."));
     }
   }
+
+  function setStatus(msg, isError, withEmail) { say(status, msg, isError, withEmail); }
 
   /* ---------- a pergunta é obrigatória quando há um problema concreto ---------- */
   var needProblem = form.querySelectorAll("[data-need-problem]");
@@ -183,6 +188,182 @@
     });
   }
 
+  /* ---------- anti-robô (ALTCHA) ---------- */
+  // O widget <altcha-widget> (assets/js/vendor/altcha) pede um desafio ao script e o navegador
+  // o resolve. Quem não marcou "Eu não sou um robô" antes de enviar não precisa voltar: a
+  // verificação roda sozinha no envio. Cada verificação vale para um único envio.
+  var altcha = form.querySelector("altcha-widget");
+
+  function altchaValue() {
+    var el = form.querySelector('input[name="altcha"]');
+    return el && el.value ? el.value : "";
+  }
+
+  function altchaToken() {
+    if (!altcha) return Promise.resolve("");
+    var ready = altchaValue();
+    if (ready) return Promise.resolve(ready);
+    if (typeof altcha.verify !== "function") return Promise.reject(new Error("captcha"));
+    return new Promise(function (resolve, reject) {
+      function done(value) { if (value) resolve(value); else reject(new Error("captcha")); }
+      if (typeof altcha.getState === "function" && altcha.getState() === "verifying") {
+        // A pessoa acabou de marcar a caixa: espera essa verificação terminar.
+        var onChange = function (ev) {
+          var st = ev.detail && ev.detail.state;
+          if (st === "verifying") return;
+          altcha.removeEventListener("statechange", onChange);
+          done(altchaValue() || (st === "verified" && ev.detail.payload) || "");
+        };
+        altcha.addEventListener("statechange", onChange);
+        return;
+      }
+      altcha.verify().then(function (res) { done((res && res.payload) || altchaValue()); }, function () { done(""); });
+    });
+  }
+
+  function altchaReset() {
+    if (altcha && typeof altcha.reset === "function") altcha.reset();
+  }
+
+  /* ---------- confirmação do e-mail por código ---------- */
+  // "Enviar código" (depois do anti-robô) → o script manda 6 dígitos ao endereço → ao digitar
+  // o sexto dígito, o site confere e recebe uma confirmação assinada, que vai com a proposta.
+  var verifyBox = form.querySelector("[data-verify]");
+  var emailInput = form.querySelector("#f-email");
+  var codeSend = verifyBox && verifyBox.querySelector("[data-code-send]");
+  var codeBox = verifyBox && verifyBox.querySelector("[data-code-box]");
+  var codeInput = verifyBox && verifyBox.querySelector("[data-code-input]");
+  var codeStatus = verifyBox && verifyBox.querySelector("[data-code-status]");
+  var verifyRow = verifyBox && verifyBox.querySelector("[data-verify-row]");
+  var verifiedBox = verifyBox && verifyBox.querySelector("[data-verified]");
+  var codeEmail = "";     // para onde foi o último código
+  var tokenEmail = "";    // e-mail já confirmado
+  var emailToken = "";    // confirmação assinada pelo script
+  var checking = false;
+  var cooldown = null;
+
+  function vmsg(name) { return verifyBox.getAttribute("data-msg-" + name) || ""; }
+  function currentEmail() { return (emailInput && emailInput.value || "").trim().toLowerCase(); }
+  function codeSay(msg, isError, withEmail) { say(codeStatus, msg, isError, withEmail); }
+
+  function stopCooldown(label) {
+    if (cooldown) { clearInterval(cooldown); cooldown = null; }
+    if (codeSend) { codeSend.disabled = false; codeSend.textContent = label || vmsg("send"); }
+  }
+
+  function startCooldown(seconds) {
+    var left = seconds;
+    if (cooldown) clearInterval(cooldown);
+    codeSend.disabled = true;
+    function tick() {
+      if (left <= 0) { stopCooldown(vmsg("resend")); return; }
+      codeSend.textContent = vmsg("wait").replace("%S%", left);
+      left -= 1;
+    }
+    tick();
+    cooldown = setInterval(tick, 1000);
+  }
+
+  function showVerified(on) {
+    verifyBox.classList.toggle("is-verified", on);
+    verifiedBox.hidden = !on;
+    verifyRow.hidden = on;
+    codeBox.hidden = on || !codeEmail;
+    if (on) {
+      verifiedBox.querySelector("[data-verified-email]").textContent = tokenEmail;
+      codeSay("");
+    }
+  }
+
+  function resetVerify() {
+    codeEmail = ""; tokenEmail = ""; emailToken = "";
+    stopCooldown();
+    if (codeInput) codeInput.value = "";
+    showVerified(false);
+    codeSay("");
+  }
+
+  function focusVerify() {
+    var target = codeBox && !codeBox.hidden ? codeInput : codeSend;
+    verifyBox.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
+    if (target) target.focus({ preventScroll: true });
+  }
+
+  function sendCode() {
+    var address = currentEmail();
+    if (!address || !emailInput.checkValidity()) {
+      emailInput.setAttribute("aria-invalid", "true");
+      codeSay(vmsg("email-first"), true);
+      emailInput.focus();
+      return;
+    }
+    codeSend.disabled = true;
+    codeSay(vmsg("sending"));
+    altchaToken()
+      .then(function (token) { return post({ action: "code", email: address, altcha: token, site_lang: lang }); })
+      .then(function (res) {
+        altchaReset();   // cada verificação vale um pedido; um reenvio faz outra
+        if (!res || res.ok === false) throw new Error((res && res.error) || "error");
+        codeEmail = address;
+        codeBox.hidden = false;
+        codeInput.value = "";
+        codeSay(vmsg("sent").replace("%EMAIL%", address));
+        startCooldown(45);
+        codeInput.focus();
+      })
+      .catch(function (err) {
+        altchaReset();
+        stopCooldown(codeEmail ? vmsg("resend") : vmsg("send"));
+        var e = err && err.message;
+        if (e === "captcha") codeSay(form.getAttribute("data-msg-captcha"), true, true);
+        else if (e === "code-rate") codeSay(vmsg("rate"), true, true);
+        else if (e === "invalid") { codeSay(vmsg("email-first"), true); emailInput.focus(); }
+        else codeSay(vmsg("error"), true, true);
+      });
+  }
+
+  function checkCode(code) {
+    checking = true;
+    codeSay(vmsg("checking"));
+    post({ action: "verify", email: codeEmail, code: code })
+      .then(function (res) {
+        if (res && res.ok && res.token) {
+          emailToken = res.token;
+          tokenEmail = codeEmail;
+          stopCooldown(vmsg("resend"));
+          showVerified(true);
+          return;
+        }
+        var e = (res && res.error) || "error";
+        if (e === "code-wrong") {
+          codeSay(res.left === 1 ? vmsg("wrong-one") : vmsg("wrong").replace("%N%", res.left), true);
+          codeInput.select();
+        } else if (e === "code-expired" || e === "code-locked") {
+          codeInput.value = "";
+          if (!cooldown) stopCooldown(vmsg("resend"));
+          codeSay(vmsg("expired"), true);
+        } else {
+          codeSay(vmsg("error"), true, true);
+        }
+      }, function () { codeSay(vmsg("error"), true, true); })
+      .then(function () { checking = false; });
+  }
+
+  if (verifyBox) {
+    codeSend.addEventListener("click", sendCode);
+    codeInput.addEventListener("input", function () {
+      var digits = codeInput.value.replace(/\D/g, "");
+      if (digits.length === 6 && !checking) checkCode(digits);
+    });
+    codeInput.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") e.preventDefault();   // Enter aqui não envia a proposta
+    });
+    emailInput.addEventListener("input", function () {
+      var address = currentEmail();
+      if ((tokenEmail || codeEmail) && address !== tokenEmail && address !== codeEmail) resetVerify();
+    });
+  }
+
   /* ---------- validação ---------- */
   function validate() {
     var bad = [];
@@ -190,7 +371,7 @@
     var seen = {};
     for (var i = 0; i < controls.length; i++) {
       var el = controls[i];
-      if (el.name === "website" || el.type === "file") continue;
+      if (el.name === "website" || el.type === "file" || el.hasAttribute("data-code-input") || (el.closest && el.closest("altcha-widget"))) continue;
       if (el.type === "radio") {
         if (seen[el.name]) continue;
         seen[el.name] = true;
@@ -225,7 +406,9 @@
   var againBtns = card.querySelectorAll("[data-again]");
   for (var a = 0; a < againBtns.length; a++) {
     againBtns[a].addEventListener("click", function () {
-      form.reset(); syncRequired(); pdfUI(null, ""); setStatus("");
+      form.reset(); syncRequired(); pdfUI(null, ""); setStatus(""); altchaReset();
+      // O e-mail confirmado continua valendo para a próxima proposta (a confirmação dura horas).
+      if (verifyBox) { if (tokenEmail) { emailInput.value = tokenEmail; codeInput.value = ""; showVerified(true); } else resetVerify(); }
       var panels = card.querySelectorAll("[data-done]");
       for (var i = 0; i < panels.length; i++) panels[i].hidden = true;
       form.hidden = false; startedAt = Date.now();
@@ -262,21 +445,17 @@
   }
 
   function post(payload) {
-    var body = JSON.stringify(payload);
     // text/plain evita o preflight CORS; o Apps Script lê e.postData.contents.
-    return fetch(endpoint, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: body, redirect: "follow" })
-      .then(function (res) {
-        return res.text().then(function (txt) {
-          var json = null;
-          try { json = JSON.parse(txt); } catch (e) { json = null; }
-          if (!json) throw new Error("bad-response");
-          return json;
-        });
-      }, function () {
-        // Resposta ilegível por CORS/rede: reenvia sem ler a resposta.
-        // O servidor ignora duplicatas pelo submission_id.
-        return fetch(endpoint, { method: "POST", mode: "no-cors", body: body })
-          .then(function () { return { ok: true, id: "" }; });
+    // Só conta como enviado com a confirmação do servidor ({ ok: true, id }). Falha de rede,
+    // bloqueio de CORS ou uma implantação fora do ar (página de erro em HTML) mostram o erro,
+    // com o e-mail do laboratório — o site nunca diz "recebemos" sem ter recebido.
+    return fetch(endpoint, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload), redirect: "follow" })
+      .then(function (res) { return res.text(); })
+      .then(function (txt) {
+        var json = null;
+        try { json = JSON.parse(txt); } catch (e) { json = null; }
+        if (!json || typeof json !== "object") throw new Error("bad-response");
+        return json;
       });
   }
 
@@ -302,9 +481,22 @@
       return;
     }
 
+    if (verifyBox) {
+      if (!emailToken || tokenEmail !== currentEmail()) {
+        setStatus(form.getAttribute("data-msg-verify-first"), true);
+        focusVerify();
+        return;
+      }
+      data.email_token = emailToken;
+    }
+
     submit.disabled = true;
     setStatus(form.getAttribute("data-msg-sending"));
-    (pdfFile ? readPdf(pdfFile) : Promise.resolve(null))
+    (verifyBox ? Promise.resolve("") : altchaToken())   // com o e-mail confirmado, o anti-robô já foi feito
+      .then(function (token) {
+        if (token) data.altcha = token;
+        return pdfFile ? readPdf(pdfFile) : null;
+      })
       .then(function (pdf) {
         if (pdf) data.pdf = pdf;
         return post(data);
@@ -314,8 +506,17 @@
         setStatus("");
         show("sent", res.id || "");
       })
-      .catch(function () {
-        setStatus(form.getAttribute("data-msg-error"), true, true);
+      .catch(function (err) {
+        var e = err && err.message;
+        if (!verifyBox) altchaReset();   // a próxima tentativa faz uma verificação nova
+        if (verifyBox && e === "email-unverified") {
+          resetVerify();                 // a confirmação venceu: pede um código novo
+          codeSay(vmsg("again"), true);
+          setStatus(form.getAttribute("data-msg-verify-first"), true);
+          focusVerify();
+          return;
+        }
+        setStatus(form.getAttribute(e === "captcha" ? "data-msg-captcha" : "data-msg-error"), true, true);
       })
       .then(function () { submit.disabled = false; });
   });

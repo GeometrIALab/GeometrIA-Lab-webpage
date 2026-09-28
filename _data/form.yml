@@ -8,7 +8,16 @@
 #  para `contact_email` (definido em _config.yml).
 # ─────────────────────────────────────────────────────────────
 
-endpoint: "https://script.google.com/macros/s/AKfycbzFewFTRN2yuE9FgXFLfuFuZo_fjv5-IB8H2QLM76VqOt7q-vZSKkRaVUxwv6KEb5UT/exec"
+endpoint: "https://script.google.com/macros/s/AKfycbwC0rgNQVW6nr6YqqNIZE1EJTOAz6FCz6TYx5g-E-nJ2gZS0e_p5JToXPsiUSqycljX/exec"
+
+# Só aceita proposta com e-mail confirmado por um código de 6 dígitos (modo endpoint).
+# Mantenha igual a VERIFY_EMAIL no script: mude os dois juntos.
+verify_email: true
+
+# Anti-robô ALTCHA ("Eu não sou um robô"), só no modo endpoint. O desafio vem do próprio script.
+# Com verify_email, protege o pedido de código; sem ele, o envio da proposta.
+# Mantenha igual a ALTCHA_REQUIRED no script: mude os dois juntos.
+altcha: true
 
 # Tamanho máximo do PDF anexado (MB). Mantenha igual a MAX_PDF_MB no script.
 max_pdf_mb: 10

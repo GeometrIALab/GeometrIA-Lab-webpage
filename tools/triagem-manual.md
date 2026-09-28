@@ -1,7 +1,7 @@
 # Triagem manual das propostas, com o Claude
 
-Por enquanto, o formulário do site só envia cada proposta por e-mail para
-`geometria.lab@cbg.unicamp.br` (veja `form-backend.gs`). A padronização e a nota descritas no site
+Por enquanto, o formulário do site só envia cada proposta por e-mail para a caixa do laboratório,
+`geometrialab@gmail.com` (veja `form-backend.gs`). A padronização e a nota descritas no site
 ("Como funciona", etapa 2) são feitas à mão, no Claude, com este roteiro.
 
 ## Uma vez só

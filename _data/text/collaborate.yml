@@ -138,8 +138,8 @@ form:
   submit: { pt: "Enviar proposta", en: "Send proposal" }
   sending: { pt: "Enviando…", en: "Sending…" }
   privacy:
-    pt: "Respostas e PDF vão por e-mail só para a equipe do laboratório. A triagem usa um modelo de linguagem."
-    en: "Answers and the PDF are emailed only to the lab team. Triage uses a language model."
+    pt: "Respostas e PDF vão por e-mail só para a equipe do laboratório. A triagem usa um modelo de linguagem. O anti-robô (ALTCHA) não usa cookies."
+    en: "Answers and the PDF are emailed only to the lab team. Triage uses a language model. The anti-bot check (ALTCHA) uses no cookies."
   privacy_mail:
     pt: "Ao enviar, seu programa de e-mail abre uma mensagem pronta para o laboratório."
     en: "On sending, your email app opens a ready-made message to the lab."
@@ -160,4 +160,33 @@ form:
     pt: "Não foi possível enviar agora. Tente de novo ou escreva para"
     en: "Couldn't send right now. Please try again or write to"
   invalid: { pt: "Confira os campos destacados.", en: "Please check the highlighted fields." }
+  verify_title: { pt: "Confirme seu e-mail", en: "Confirm your email" }
+  verify_help:
+    pt: "Só aceitamos propostas com e-mail confirmado. Marque “Eu não sou um robô” e peça um código de 6 dígitos para o endereço acima."
+    en: "We only accept proposals from a confirmed email. Tick “I'm not a robot” and request a 6-digit code for the address above."
+  code_send: { pt: "Enviar código", en: "Send code" }
+  code_resend: { pt: "Reenviar código", en: "Resend code" }
+  code_wait: { pt: "Reenviar em %S% s", en: "Resend in %S% s" }
+  code_label: { pt: "Código recebido por e-mail", en: "Code received by email" }
+  code_sending: { pt: "Enviando o código…", en: "Sending the code…" }
+  code_sent:
+    pt: "Enviamos um código para %EMAIL%. Pode levar alguns minutos; confira também o spam. Ele vale 15 minutos."
+    en: "We sent a code to %EMAIL%. It may take a few minutes; check your spam folder too. It's valid for 15 minutes."
+  code_checking: { pt: "Conferindo o código…", en: "Checking the code…" }
+  code_wrong: { pt: "Código incorreto. Restam %N% tentativas.", en: "Wrong code. %N% attempts left." }
+  code_wrong_one: { pt: "Código incorreto. Resta 1 tentativa.", en: "Wrong code. 1 attempt left." }
+  code_expired: { pt: "Esse código expirou ou já foi usado. Peça um novo.", en: "This code has expired or was already used. Please request a new one." }
+  code_rate:
+    pt: "Muitos códigos pedidos para este e-mail. Tente de novo daqui a uma hora ou escreva para"
+    en: "Too many codes requested for this email. Please try again in an hour or write to"
+  code_error:
+    pt: "Não foi possível enviar o código agora. Tente de novo ou escreva para"
+    en: "Couldn't send the code right now. Please try again or write to"
+  email_first: { pt: "Preencha um e-mail válido antes de pedir o código.", en: "Enter a valid email before requesting the code." }
+  verified: { pt: "E-mail confirmado:", en: "Email confirmed:" }
+  verify_first: { pt: "Confirme seu e-mail com o código antes de enviar.", en: "Please confirm your email with the code before sending." }
+  verify_again: { pt: "A confirmação do e-mail expirou. Peça um novo código.", en: "Your email confirmation has expired. Please request a new code." }
+  captcha_error:
+    pt: "Não foi possível confirmar que você não é um robô. Tente de novo ou escreva para"
+    en: "We couldn't confirm that you're not a robot. Please try again or write to"
   mail_subject: { pt: "GeometrIA — nova proposta", en: "GeometrIA — new proposal" }

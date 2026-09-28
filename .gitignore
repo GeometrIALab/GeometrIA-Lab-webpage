@@ -3,7 +3,7 @@ _site/
 .jekyll-cache/
 .jekyll-metadata
 .bundle/
-vendor/
+/vendor/
 Gemfile.lock
 .DS_Store
 # arquivos entregues pelo app do Claude (não fazem parte do site)
