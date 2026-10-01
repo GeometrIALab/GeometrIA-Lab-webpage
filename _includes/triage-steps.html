@@ -1,4 +1,4 @@
-{%- comment -%} As 4 etapas de uma proposta + a nota sobre a decisão do laboratório (dados em _data/triage.yml). {%- endcomment -%}
+{%- comment -%} As 4 etapas de uma proposta (dados em _data/triage.yml). Parâmetro opcional show_decision="no" esconde a nota sobre a decisão do laboratório. {%- endcomment -%}
 {%- assign L = page.lang | default: "pt" -%}
 {%- assign TR = site.data.triage -%}
 <ol class="steps steps-4 triage-steps">
@@ -11,9 +11,11 @@
   </li>
   {%- endfor %}
 </ol>
+{%- unless include.show_decision == "no" %}
 <aside class="callout decision" aria-labelledby="decision-title">
   <div>
     <h3 id="decision-title">{{ TR.decision.title[L] }}</h3>
     <p>{{ TR.decision.text[L] }}</p>
   </div>
 </aside>
+{%- endunless %}

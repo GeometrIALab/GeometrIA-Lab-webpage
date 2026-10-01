@@ -1,15 +1,15 @@
-# Modelo de proposta preenchida (fictício) — página /colabore/exemplo/.
+# Modelo de proposta preenchida (fictício), usado na página /colabore/exemplo/.
 title: { pt: "Modelo de proposta", en: "Example proposal" }
 description:
-  pt: "Um exemplo fictício de proposta preenchida no formulário do GeometrIA: o nível de detalhe que ajuda na triagem."
-  en: "A fictional example of a proposal filled in on the GeometrIA form: the level of detail that helps the triage."
+  pt: "Um exemplo fictício de proposta preenchida no formulário do GeometrIA, para mostrar o nível de detalhe que ajuda na triagem."
+  en: "A fictional example of a proposal filled in on the GeometrIA form, showing the level of detail that helps the triage."
 
 hero:
   kicker: { pt: "Modelo preenchido", en: "Filled-in example" }
   title: { pt: "Uma proposta, campo a campo.", en: "A proposal, field by field." }
   lede:
-    pt: "Este exemplo é fictício. Ele mostra o nível de detalhe que ajuda a triagem — não é preciso escrever tanto, nem saber IA para preencher."
-    en: "This example is fictional. It shows the level of detail that helps the triage — you don't need to write this much, or know any AI, to fill it in."
+    pt: "Este exemplo é fictício e mostra o nível de detalhe que ajuda na triagem. Não é preciso escrever tanto, nem saber IA, para preencher o formulário."
+    en: "This example is fictional and shows the level of detail that helps the triage. You don't need to write this much, or know any AI, to fill in the form."
   badge: { pt: "Exemplo fictício", en: "Fictional example" }
 
 cta: { pt: "Preencher o formulário", en: "Fill in the form" }
@@ -23,8 +23,12 @@ sections:
       - label: { pt: "E-mail", en: "Email" }
         value: { pt: "maria@exemplo.org ✓ confirmado", en: "maria@example.org ✓ confirmed" }
         tip:
-          pt: "Logo abaixo do e-mail, marque “Eu não sou um robô” e peça o código: chegam 6 dígitos no seu e-mail, que você digita no formulário. Só propostas com e-mail confirmado são aceitas."
-          en: "Right below the email, tick “I'm not a robot” and request the code: 6 digits arrive in your inbox, and you type them into the form. Only proposals from a confirmed email are accepted."
+          pt: "Logo abaixo do e-mail, marque “Eu não sou um robô” e peça o código. Você receberá 6 dígitos no seu e-mail para digitar no formulário. Só aceitamos propostas com e-mail confirmado."
+          en: "Right below the email, tick “I'm not a robot” and request the code. You will receive 6 digits in your inbox to type into the form. We only accept proposals from a confirmed email."
+        value_wp: { pt: "maria@exemplo.org (e-mail da conta no site do CBG)", en: "maria@example.org (email of the CBG website account)" }
+        tip_wp:
+          pt: "Para enviar uma proposta, entre com a sua conta do site do CBG. O formulário usa o e-mail dessa conta, e é por ele que vamos responder. Quem ainda não tem conta pode se cadastrar na mesma página."
+          en: "To send a proposal, log in with your CBG website account. The form uses that account's email, and we will reply to it. If you don't have an account yet, you can sign up on the same page."
       - label: { pt: "Instituição", en: "Institution" }
         value: { pt: "Universidade Exemplo", en: "Example University" }
       - label: { pt: "Etapa da carreira", en: "Career stage" }
@@ -34,8 +38,8 @@ sections:
       - label: { pt: "Você é membro do CBG?", en: "Are you a member of CBG?" }
         value: { pt: "Não", en: "No" }
         tip:
-          pt: "A padronização automática consome tokens, então membros do CBG têm prioridade na alocação desses recursos. Propostas de quem não é membro também são bem-vindas."
-          en: "The automatic standardization consumes tokens, so CBG members have priority in the allocation of these resources. Proposals from non-members are welcome too."
+          pt: "Como a padronização automática consome tokens, membros do CBG têm prioridade na alocação desses recursos. Propostas de quem não é membro são igualmente bem-vindas."
+          en: "Since the automatic standardization consumes tokens, CBG members have priority in the allocation of these resources. Proposals from non-members are just as welcome."
 
   - legend: { pt: "Seu interesse", en: "Your interest" }
     fields:
@@ -48,26 +52,26 @@ sections:
     fields:
       - label: { pt: "Título provisório", en: "Working title" }
         value:
-          pt: "Configurações de energia mínima de n pontos na esfera: mapear os mínimos locais do problema de Thomson"
-          en: "Minimal-energy configurations of n points on the sphere: mapping the local minima of the Thomson problem"
+          pt: "Mapeando os mínimos locais do problema de Thomson para n pontos na esfera"
+          en: "Mapping the local minima of the Thomson problem for n points on the sphere"
       - label: { pt: "a) Resumo do estado da arte", en: "a) Summary of the state of the art" }
         long: true
         value:
-          pt: "O problema de Thomson pede a posição de n cargas unitárias na esfera S² que minimiza a energia de Coulomb E = Σ<sub>i&lt;j</sub> 1/|x<sub>i</sub> − x<sub>j</sub>|. Demonstrações de otimalidade existem apenas para alguns valores pequenos de n; para valores maiores há tabelas de configurações obtidas numericamente, sem prova de que sejam ótimas. Experimentos numéricos indicam que o número de mínimos locais cresce muito depressa com n, o que torna difícil saber se a melhor configuração conhecida é de fato a ótima. Referências principais: [as duas ou três que eu indicaria a um colega]."
-          en: "The Thomson problem asks for the position of n unit charges on the sphere S² that minimises the Coulomb energy E = Σ<sub>i&lt;j</sub> 1/|x<sub>i</sub> − x<sub>j</sub>|. Optimality proofs exist only for a few small values of n; for larger values there are tables of numerically obtained configurations, with no proof that they are optimal. Numerical experiments suggest that the number of local minima grows very fast with n, which makes it hard to know whether the best known configuration is really optimal. Main references: [the two or three I would point a colleague to]."
+          pt: "O problema de Thomson pede a posição de n cargas unitárias na esfera S² que minimiza a energia de Coulomb E = Σ<sub>i&lt;j</sub> 1/|x<sub>i</sub> − x<sub>j</sub>|. Demonstrações de otimalidade existem apenas para alguns valores pequenos de n; para valores maiores há tabelas de configurações obtidas numericamente, sem prova de que sejam ótimas. Experimentos numéricos indicam que o número de mínimos locais cresce muito depressa com n, o que torna difícil saber se a melhor configuração conhecida é de fato a ótima. As referências principais seriam [as duas ou três que eu indicaria a um colega]."
+          en: "The Thomson problem asks for the position of n unit charges on the sphere S² that minimises the Coulomb energy E = Σ<sub>i&lt;j</sub> 1/|x<sub>i</sub> − x<sub>j</sub>|. Optimality proofs exist only for a few small values of n; for larger values there are tables of numerically obtained configurations, with no proof that they are optimal. Numerical experiments suggest that the number of local minima grows very fast with n, which makes it hard to know whether the best known configuration is really optimal. The main references would be [the two or three I would point a colleague to]."
         tip:
-          pt: "Não precisa ser exaustivo: o essencial, com as referências que você indicaria a um colega de outra área."
-          en: "It doesn't need to be exhaustive: the essentials, with the references you would give a colleague from another field."
+          pt: "Não precisa ser exaustivo. Basta o essencial, com as referências que você indicaria a um colega de outra área."
+          en: "It doesn't need to be exhaustive. The essentials are enough, with the references you would give a colleague from another field."
       - label: { pt: "b) Sua abordagem", en: "b) Your approach" }
         long: true
         value:
-          pt: "Tenho um código em Python que faz descida de gradiente a partir de configurações aleatórias e guarda os mínimos locais encontrados — cerca de 50 mil até agora, para n ≤ 200. Suspeito que o grupo de simetrias da configuração final está ligado à energia, mas não sei como explorar isso de forma sistemática. Gostaria de entender se aprendizado de máquina pode (1) prever, a partir de invariantes simples, quais mínimos têm energia mais baixa e (2) propor configurações candidatas para os valores de n em que as tabelas parecem ter lacunas."
-          en: "I have Python code that runs gradient descent from random configurations and stores the local minima it finds — about 50,000 so far, for n ≤ 200. I suspect that the symmetry group of the final configuration is linked to its energy, but I don't know how to explore this systematically. I would like to understand whether machine learning could (1) predict, from simple invariants, which minima have lower energy and (2) propose candidate configurations for the values of n where the tables seem to have gaps."
+          pt: "Tenho um código em Python que faz descida de gradiente a partir de configurações aleatórias e guarda os mínimos locais encontrados, que já somam cerca de 50 mil para n ≤ 200. Suspeito que o grupo de simetrias da configuração final está ligado à energia, mas não sei como explorar isso de forma sistemática. Gostaria de entender se aprendizado de máquina pode (1) prever, a partir de invariantes simples, quais mínimos têm energia mais baixa e (2) propor configurações candidatas para os valores de n em que as tabelas parecem ter lacunas."
+          en: "I have Python code that runs gradient descent from random configurations and stores the local minima it finds, about 50,000 so far for n ≤ 200. I suspect that the symmetry group of the final configuration is linked to its energy, but I don't know how to explore this systematically. I would like to understand whether machine learning could (1) predict, from simple invariants, which minima have lower energy and (2) propose candidate configurations for the values of n where the tables seem to have gaps."
         tip:
           pt: "Conte o que você já tentou e o que seria um resultado útil para você."
           en: "Say what you have already tried and what would count as a useful result for you."
       - label: { pt: "Anexo em PDF", en: "PDF attachment" }
-        value: { pt: "thomson-notas.pdf — 4 páginas: definições, tabela de mínimos e gráficos", en: "thomson-notes.pdf — 4 pages: definitions, a table of minima and plots" }
+        value: { pt: "thomson-notas.pdf, com 4 páginas de definições, uma tabela de mínimos e gráficos", en: "thomson-notes.pdf, with 4 pages of definitions, a table of minima and plots" }
       - label: { pt: "Que tipo de ajuda você imagina?", en: "What kind of help do you have in mind?" }
         value: { pt: "Prever · Buscar", en: "Predict · Search" }
       - label: { pt: "Existem exemplos ou dados?", en: "Do examples or data exist?" }

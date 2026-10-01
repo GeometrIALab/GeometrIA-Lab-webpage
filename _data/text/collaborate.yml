@@ -1,30 +1,30 @@
 title: { pt: "Colabore", en: "Collaborate" }
 description:
-  pt: "Proponha um problema de matemática para explorar com IA, ou conte que quer começar a usar IA na sua pesquisa. Para matemáticos de qualquer área — sem experiência em IA."
-  en: "Propose a mathematics problem to explore with AI, or tell us you want to start using AI in your research. For mathematicians in any area — no AI experience needed."
+  pt: "Proponha um problema de matemática para explorarmos juntos com IA, ou conte que deseja começar a usar IA na sua pesquisa. O formulário é aberto a matemáticos de qualquer área, mesmo sem experiência em IA."
+  en: "Propose a mathematics problem for us to explore together with AI, or let us know you would like to start using AI in your research. The form is open to mathematicians in any area, even with no AI experience."
 
 hero:
   kicker: { pt: "Colabore", en: "Collaborate" }
   title: { pt: "Traga um problema.", en: "Bring us a problem." }
   lede:
-    pt: "Este formulário é para matemáticos — de qualquer área e em qualquer etapa da carreira — que queiram explorar o uso de IA na pesquisa. Não é preciso saber programar nem conhecer aprendizado de máquina."
-    en: "This form is for mathematicians — in any area and at any career stage — who want to explore using AI in their research. No programming or machine-learning background needed."
+    pt: "Este formulário é destinado a matemáticos de qualquer área e em qualquer etapa da carreira que queiram explorar o uso de IA na pesquisa. Não é preciso saber programar nem conhecer aprendizado de máquina."
+    en: "This form is for mathematicians in any area and at any stage of their career who would like to explore the use of AI in their research. No programming or machine-learning background is needed."
 
 aside:
   label: { pt: "Mais informações", en: "More information" }
   example_title: { pt: "Modelo preenchido", en: "Filled-in example" }
   example_text:
-    pt: "Veja como uma proposta fictícia preenche cada campo — e o nível de detalhe que ajuda na triagem."
-    en: "See how a fictional proposal fills in each field — and the level of detail that helps the triage."
+    pt: "Veja como uma proposta fictícia preenche cada campo e qual nível de detalhe ajuda na triagem."
+    en: "See how a fictional proposal fills in each field and what level of detail helps the triage."
   talk_title: { pt: "Dúvidas?", en: "Questions?" }
-  talk_text: { pt: "Escreva para o laboratório:", en: "Write to the lab:" }
+  talk_text: { pt: "Escreva para o laboratório pelo e-mail", en: "You can write to the lab at" }
   community_title: { pt: "Comunidade", en: "Community" }
   community_text:
-    pt: "Temos um canal no Zulip — a MathIA AmLat — onde as pessoas discutem e acompanham notícias sobre IA e matemática. O Zulip é um aplicativo de conversa gratuito e de código aberto, organizado por tópicos, como um fórum em tempo real."
-    en: "We have a channel on Zulip — MathIA AmLat — where people discuss and follow news on AI and mathematics. Zulip is a free, open-source chat app organised by topic, like a real-time forum."
+    pt: "Temos um canal no Zulip, a MathIA AmLat, onde as pessoas conversam e acompanham notícias sobre IA e matemática. O Zulip é um aplicativo de conversa gratuito e de código aberto, organizado por tópicos, como um fórum em tempo real."
+    en: "We have a channel on Zulip, MathIA AmLat, where people talk about and follow news on AI and mathematics. Zulip is a free, open-source chat app organised by topic, like a real-time forum."
   community_hint:
-    pt: "Para entrar, peça um convite por e-mail — ou marque a opção no formulário."
-    en: "To join, ask for an invitation by email — or tick the option in the form."
+    pt: "Para participar, peça um convite por e-mail ou marque a opção correspondente no formulário."
+    en: "To join, ask for an invitation by email or tick the corresponding option in the form."
   community_link: { pt: "Pedir um convite", en: "Ask for an invitation" }
   fit_link: { pt: "Seu problema é um bom candidato?", en: "Is your problem a good fit?" }
 
@@ -35,7 +35,7 @@ form:
   name: { pt: "Nome completo", en: "Full name" }
   email: { pt: "E-mail", en: "Email" }
   institution: { pt: "Instituição", en: "Institution" }
-  institution_ph: { pt: "Ex.: IME–USP", en: "e.g. IME–USP" }
+  institution_ph: { pt: "Por exemplo, IME–USP", en: "For example, IME–USP" }
   position: { pt: "Etapa da carreira", en: "Career stage" }
   choose: { pt: "Selecione…", en: "Select…" }
   positions:
@@ -60,9 +60,6 @@ form:
     - { value: "Educação matemática", pt: "Educação matemática", en: "Mathematics education" }
     - { value: "Outra", pt: "Outra", en: "Other" }
   cbg_member: { pt: "Você é membro do CBG?", en: "Are you a member of CBG?" }
-  cbg_member_help:
-    pt: "Pesquisador(a) principal ou associado(a), ou bolsista do Centro Brasileiro de Geometria. A padronização automática consome tokens, e membros do CBG têm prioridade na alocação desses recursos."
-    en: "Principal or associate researcher, or fellow of the Brazilian Center for Geometry. The automatic standardization consumes tokens, and CBG members have priority in the allocation of these resources."
   cbg_member_options:
     - { value: "Sim", pt: "Sim", en: "Yes" }
     - { value: "Não", pt: "Não", en: "No" }
@@ -80,35 +77,35 @@ form:
 
   legend_problem: { pt: "O problema", en: "The problem" }
   problem_hint:
-    pt: "Escreva como para um colega de outra área. Se ainda não há um problema definido, conte o que você estuda."
-    en: "Write as you would to a colleague from another field. If there's no specific problem yet, tell us what you work on."
+    pt: "Escreva como se estivesse explicando a um colega de outra área. Se ainda não tiver um problema definido, conte o que você estuda."
+    en: "Write as if you were explaining it to a colleague from another field. If you don't have a specific problem yet, tell us what you work on."
   problem_title: { pt: "Título provisório", en: "Working title" }
-  problem_title_ph: { pt: "Ex.: Configurações de energia mínima de n pontos na esfera", en: "e.g. Minimal-energy configurations of n points on the sphere" }
+  problem_title_ph: { pt: "Por exemplo, configurações de energia mínima de n pontos na esfera", en: "For example, minimal-energy configurations of n points on the sphere" }
   question: { pt: "Descreva a pergunta, em duas partes", en: "Describe the question, in two parts" }
   state_of_art: { pt: "a) Resumo do estado da arte", en: "a) Summary of the state of the art" }
   state_of_art_help:
-    pt: "O que já se sabe sobre a pergunta: resultados e referências principais, casos resolvidos, onde está a dificuldade."
-    en: "What is known about the question: main results and references, solved cases, where the difficulty lies."
+    pt: "Conte o que já se sabe sobre a pergunta, como os principais resultados e referências, os casos já resolvidos e onde está a dificuldade."
+    en: "Tell us what is already known about the question, such as the main results and references, the cases already solved and where the difficulty lies."
   approach: { pt: "b) Sua abordagem", en: "b) Your approach" }
   approach_help:
-    pt: "Como você tem pensado a pergunta: ideias, cálculos ou exemplos que já tem, e onde imagina que a IA poderia ajudar."
-    en: "How you have been thinking about the question: ideas, computations or examples you already have, and where you imagine AI could help."
+    pt: "Conte como você tem pensado a pergunta, quais ideias, cálculos ou exemplos já tem e onde imagina que a IA poderia ajudar."
+    en: "Tell us how you have been thinking about the question, which ideas, computations or examples you already have, and where you imagine AI could help."
   pdf: { pt: "Anexo em PDF", en: "PDF attachment" }
   pdf_help:
-    pt: "Notas, rascunho ou artigo com definições e exemplos — até %MB% MB."
-    en: "Notes, a draft or a paper with definitions and examples — up to %MB% MB."
+    pt: "Notas, rascunho ou artigo com definições e exemplos, com até %MB% MB."
+    en: "Notes, a draft or a paper with definitions and examples, up to %MB% MB."
   pdf_choose: { pt: "Escolher PDF", en: "Choose a PDF" }
   pdf_change: { pt: "Trocar PDF", en: "Replace PDF" }
-  pdf_none: { pt: "Nenhum arquivo — ou arraste um PDF para cá", en: "No file — or drag a PDF here" }
+  pdf_none: { pt: "Nenhum arquivo selecionado. Você também pode arrastar um PDF para cá.", en: "No file selected. You can also drag a PDF here." }
   pdf_remove: { pt: "Remover", en: "Remove" }
   pdf_type_error: { pt: "Escolha um arquivo em PDF.", en: "Please choose a PDF file." }
   pdf_size_error: { pt: "O PDF tem mais de %MB% MB.", en: "The PDF is larger than %MB% MB." }
   help_type: { pt: "Que tipo de ajuda você imagina?", en: "What kind of help do you have in mind?" }
   help_types:
-    - { value: "Aproximar", pt: "<b>Aproximar</b> — soluções numéricas de equações ou problemas variacionais", en: "<b>Approximate</b> — numerical solutions of equations or variational problems" }
-    - { value: "Prever", pt: "<b>Prever</b> — padrões e relações em dados ou tabelas", en: "<b>Predict</b> — patterns and relations in data or tables" }
-    - { value: "Buscar", pt: "<b>Buscar</b> — exemplos, contraexemplos ou configurações especiais", en: "<b>Search</b> — examples, counterexamples or special configurations" }
-    - { value: "Auxiliar", pt: "<b>Auxiliar</b> — ferramentas de IA no dia a dia da pesquisa", en: "<b>Assist</b> — AI tools in day-to-day research" }
+    - { value: "Aproximar", pt: "<b>Aproximar</b> soluções de equações ou de problemas variacionais", en: "<b>Approximate</b> solutions of equations or of variational problems" }
+    - { value: "Prever", pt: "<b>Prever</b> invariantes, padrões e relações a partir de dados ou tabelas", en: "<b>Predict</b> invariants, patterns and relations from data or tables" }
+    - { value: "Buscar", pt: "<b>Buscar</b> exemplos, contraexemplos ou configurações especiais", en: "<b>Search</b> for examples, counterexamples or special configurations" }
+    - { value: "Auxiliar", pt: "<b>Auxiliar</b> o dia a dia da pesquisa com ferramentas de IA", en: "<b>Assist</b> day-to-day research with AI tools" }
     - { value: "Não sei ainda", pt: "Ainda não sei", en: "Not sure yet" }
   data: { pt: "Existem exemplos ou dados?", en: "Do examples or data exist?" }
   data_options:
@@ -133,37 +130,47 @@ form:
     pt: "Concordo que os dados deste formulário sejam usados pela equipe do GeometrIA apenas para responder a este contato, conforme a LGPD. Posso pedir a exclusão a qualquer momento pelo e-mail %EMAIL%."
     en: "I agree that the data in this form will be used by the GeometrIA team only to respond to this enquiry, in line with Brazil's data-protection law (LGPD). I can ask for deletion at any time at %EMAIL%."
   consent_llm:
-    pt: "Estou ciente de que o projeto de pesquisa que proponho — incluindo o PDF anexado — será usado como entrada em modelos de linguagem (LLMs, como Claude ou ChatGPT) para a triagem das propostas."
-    en: "I understand that the research project I propose — including any attached PDF — will be used as input to large language models (LLMs such as Claude or ChatGPT) to triage the proposals."
+    pt: "Estou ciente de que o projeto de pesquisa que proponho, incluindo o PDF anexado, será usado como entrada em modelos de linguagem (LLMs, como Claude ou ChatGPT) na triagem das propostas."
+    en: "I understand that the research project I propose, including any attached PDF, will be used as input to large language models (LLMs such as Claude or ChatGPT) in the triage of proposals."
   submit: { pt: "Enviar proposta", en: "Send proposal" }
   sending: { pt: "Enviando…", en: "Sending…" }
   privacy:
-    pt: "Respostas e PDF vão por e-mail só para a equipe do laboratório. A triagem usa um modelo de linguagem. O anti-robô (ALTCHA) não usa cookies."
-    en: "Answers and the PDF are emailed only to the lab team. Triage uses a language model. The anti-bot check (ALTCHA) uses no cookies."
+    pt: "Suas respostas e o PDF são enviados por e-mail somente para a equipe do laboratório. A triagem conta com o apoio de um modelo de linguagem, e a verificação anti-robô (ALTCHA) não usa cookies."
+    en: "Your answers and the PDF are emailed only to the lab team. The triage is supported by a language model, and the anti-bot check (ALTCHA) uses no cookies."
+  privacy_wp:
+    pt: "Suas respostas e o PDF são enviados por e-mail somente para a equipe do laboratório. A triagem conta com o apoio de um modelo de linguagem."
+    en: "Your answers and the PDF are emailed only to the lab team. The triage is supported by a language model."
+  email_wp_help:
+    pt: "É o e-mail da sua conta no site do CBG, e é por ele que vamos responder. Não é você?"
+    en: "This is the email of your account on the CBG website, and we will reply to it. Not you?"
+  wp_logout: { pt: "Sair da conta", en: "Log out" }
+  wp_login_error:
+    pt: "Sua sessão no site do CBG expirou. Recarregue a página, entre de novo e envie a proposta. Se o problema continuar, escreva para"
+    en: "Your session on the CBG website has expired. Reload the page, log in again and send the proposal. If the problem persists, write to"
   privacy_mail:
     pt: "Ao enviar, seu programa de e-mail abre uma mensagem pronta para o laboratório."
     en: "On sending, your email app opens a ready-made message to the lab."
   success_title: { pt: "Recebemos sua proposta.", en: "We've received your proposal." }
   success_text:
-    pt: "Obrigado! Ela entra agora na triagem descrita acima, em que membros do CBG têm prioridade na padronização automática. A versão padronizada chegará ao seu e-mail, e a leitura pela equipe costuma levar algumas semanas."
-    en: "Thank you! It now enters the triage described above, in which CBG members have priority for the automatic standardization. The standardized version will reach your inbox, and the team's reading usually takes a few weeks."
-  success_id: { pt: "Número da proposta:", en: "Proposal number:" }
+    pt: "Muito obrigado pelo interesse. Sua proposta segue agora para a triagem descrita acima, em que membros do CBG têm prioridade na padronização automática. A versão padronizada chegará ao seu e-mail, e a leitura pela equipe costuma levar algumas semanas."
+    en: "Thank you very much for your interest. Your proposal now moves on to the triage described above, in which CBG members have priority for the automatic standardization. The standardized version will reach your inbox, and the team's reading usually takes a few weeks."
+  success_id: { pt: "O número da sua proposta é", en: "Your proposal number is" }
   success_again: { pt: "Enviar outra proposta", en: "Send another proposal" }
   mail_title: { pt: "Quase lá.", en: "Almost there." }
   mail_text:
-    pt: "Abrimos seu programa de e-mail com a mensagem pronta — é só enviar. Se nada abriu, escreva para"
-    en: "We opened your email app with the message ready — just press send. If nothing opened, write to"
+    pt: "Abrimos seu programa de e-mail com a mensagem pronta, e agora é só enviá-la. Se nada abriu, escreva para"
+    en: "We opened your email app with the message ready, so all you need to do is send it. If nothing opened, write to"
   mail_pdf:
     pt: "Não se esqueça de anexar o PDF à mensagem."
     en: "Don't forget to attach the PDF to the message."
   error:
-    pt: "Não foi possível enviar agora. Tente de novo ou escreva para"
-    en: "Couldn't send right now. Please try again or write to"
-  invalid: { pt: "Confira os campos destacados.", en: "Please check the highlighted fields." }
+    pt: "Não foi possível enviar sua proposta agora. Por favor, tente de novo ou escreva para"
+    en: "We couldn't send your proposal right now. Please try again or write to"
+  invalid: { pt: "Por favor, confira os campos destacados.", en: "Please check the highlighted fields." }
   verify_title: { pt: "Confirme seu e-mail", en: "Confirm your email" }
   verify_help:
-    pt: "Só aceitamos propostas com e-mail confirmado. Marque “Eu não sou um robô” e peça um código de 6 dígitos para o endereço acima."
-    en: "We only accept proposals from a confirmed email. Tick “I'm not a robot” and request a 6-digit code for the address above."
+    pt: "Para aceitar a proposta, pedimos que você confirme o seu e-mail. Marque “Eu não sou um robô” e peça um código de 6 dígitos para o endereço informado acima."
+    en: "To accept your proposal, we ask you to confirm your email. Tick “I'm not a robot” and request a 6-digit code for the address above."
   code_send: { pt: "Enviar código", en: "Send code" }
   code_resend: { pt: "Reenviar código", en: "Resend code" }
   code_wait: { pt: "Reenviar em %S% s", en: "Resend in %S% s" }
@@ -177,16 +184,17 @@ form:
   code_wrong_one: { pt: "Código incorreto. Resta 1 tentativa.", en: "Wrong code. 1 attempt left." }
   code_expired: { pt: "Esse código expirou ou já foi usado. Peça um novo.", en: "This code has expired or was already used. Please request a new one." }
   code_rate:
-    pt: "Muitos códigos pedidos para este e-mail. Tente de novo daqui a uma hora ou escreva para"
-    en: "Too many codes requested for this email. Please try again in an hour or write to"
+    pt: "Foram pedidos muitos códigos para este e-mail. Tente de novo daqui a uma hora ou escreva para"
+    en: "Too many codes were requested for this email. Please try again in an hour or write to"
   code_error:
     pt: "Não foi possível enviar o código agora. Tente de novo ou escreva para"
     en: "Couldn't send the code right now. Please try again or write to"
   email_first: { pt: "Preencha um e-mail válido antes de pedir o código.", en: "Enter a valid email before requesting the code." }
-  verified: { pt: "E-mail confirmado:", en: "Email confirmed:" }
-  verify_first: { pt: "Confirme seu e-mail com o código antes de enviar.", en: "Please confirm your email with the code before sending." }
+  verified: { pt: "Seu e-mail", en: "Your email" }
+  verified_after: { pt: "está confirmado.", en: "is confirmed." }
+  verify_first: { pt: "Antes de enviar, por favor confirme seu e-mail com o código.", en: "Before sending, please confirm your email with the code." }
   verify_again: { pt: "A confirmação do e-mail expirou. Peça um novo código.", en: "Your email confirmation has expired. Please request a new code." }
   captcha_error:
     pt: "Não foi possível confirmar que você não é um robô. Tente de novo ou escreva para"
     en: "We couldn't confirm that you're not a robot. Please try again or write to"
-  mail_subject: { pt: "GeometrIA — nova proposta", en: "GeometrIA — new proposal" }
+  mail_subject: { pt: "Nova proposta para o GeometrIA", en: "New proposal for GeometrIA" }

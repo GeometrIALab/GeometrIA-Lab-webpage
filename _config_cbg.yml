@@ -1,0 +1,17 @@
+# ─────────────────────────────────────────────────────────────
+#  Versão hospedada no site do CBG (WordPress):
+#    https://www.cbg.ime.unicamp.br/GeometrIALab/
+#
+#  Este arquivo só troca o endereço e liga o modo WordPress; o resto vem do _config.yml.
+#  O site é servido pelo plugin tools/wordpress/geometria-lab (veja README, seção
+#  "Publicar no site do CBG"). Para gerar o plugin pronto para enviar:
+#    tools/wordpress/build-plugin.sh
+# ─────────────────────────────────────────────────────────────
+
+url: "https://www.cbg.ime.unicamp.br"
+baseurl: "/GeometrIALab"
+
+# Formulário só para quem entrou com a conta do site do CBG (/acesso/). O plugin preenche
+# nome e e-mail da conta e assina um passe que o script confere; sem código por e-mail e
+# sem anti-robô. Mantenha WP_LOGIN_REQUIRED = true no script.
+wp_gate: true

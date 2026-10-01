@@ -1,24 +1,24 @@
 - title: { pt: "A matemática vem primeiro", en: "Mathematics first" }
   text:
-    pt: "Começamos pela pergunta, não pelo modelo. A IA entra quando muda o que conseguimos calcular, testar ou encontrar."
-    en: "We start from the question, not from the model. AI comes in when it changes what we can compute, test or find."
+    pt: "Começamos sempre pela pergunta, e não pelo modelo. A IA entra no trabalho quando amplia o que conseguimos calcular, testar ou encontrar."
+    en: "We always start from the question, not from the model. AI comes into the work when it widens what we can compute, test or find."
 
 - title: { pt: "Evidência não é demonstração", en: "Evidence is not proof" }
   text:
-    pt: "Resultados numéricos sugerem; demonstrações estabelecem. Dizemos sempre qual é qual — e o rigor da verificação cresce com o que está em jogo."
-    en: "Numerical results suggest; proofs establish. We always say which is which — and the rigour of verification grows with what is at stake."
+    pt: "Resultados numéricos sugerem, e demonstrações estabelecem. Deixamos sempre claro qual é qual, e o rigor da verificação acompanha o que está em jogo."
+    en: "Numerical results suggest, and proofs establish. We always make clear which is which, and the rigour of verification matches what is at stake."
 
 - title: { pt: "Proveniência faz parte do resultado", en: "Provenance is part of the result" }
   text:
-    pt: "Código, dados, sementes aleatórias, modelos e prompts são registrados e publicados junto com o artigo."
-    en: "Code, data, random seeds, models and prompts are recorded and published with the paper."
+    pt: "Registramos código, dados, sementes aleatórias, modelos e prompts, e publicamos tudo junto com o artigo."
+    en: "We record code, data, random seeds, models and prompts, and publish them together with the paper."
 
 - title: { pt: "Aberto por padrão", en: "Open by default" }
   text:
-    pt: "Código e bases de dados públicos, para que outros possam reproduzir, criticar e ir além."
-    en: "Public code and datasets, so that others can reproduce, criticise and go further."
+    pt: "Mantemos código e bases de dados públicos, para que outras pessoas possam reproduzir, criticar e ampliar o nosso trabalho."
+    en: "We keep code and datasets public, so that others can reproduce, critique and build on our work."
 
 - title: { pt: "Parceria entre iguais", en: "A partnership of equals" }
   text:
-    pt: "Quem traz a pergunta conduz a matemática; nós ajudamos com o método. Créditos e expectativas são combinados desde a primeira conversa."
-    en: "Whoever brings the question leads the mathematics; we help with the method. Credit and expectations are agreed from the first conversation."
+    pt: "Quem traz a pergunta conduz a matemática, e nós ajudamos com o método. Combinamos créditos e expectativas com transparência desde a primeira conversa."
+    en: "Whoever brings the question leads the mathematics, and we help with the method. We agree on credit and expectations openly from the very first conversation."

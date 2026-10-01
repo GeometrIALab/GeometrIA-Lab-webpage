@@ -1,14 +1,14 @@
 title: { pt: "Pesquisa", en: "Research" }
 description:
-  pt: "Artigos, preprints, código e palestras do GeometrIA: aprendizado de máquina para geometria diferencial, geometria algébrica e física matemática."
-  en: "Papers, preprints, code and talks from GeometrIA: machine learning for differential geometry, algebraic geometry and mathematical physics."
+  pt: "Artigos, preprints, código e palestras do GeometrIA sobre aprendizado de máquina para geometria diferencial, geometria algébrica e física matemática."
+  en: "Papers, preprints, code and talks from GeometrIA on machine learning for differential geometry, algebraic geometry and mathematical physics."
 
 hero:
   kicker: { pt: "Pesquisa", en: "Research" }
   title: { pt: "Nosso trabalho", en: "Our work" }
   lede:
-    pt: "Artigos, preprints, código e palestras dos membros do laboratório, organizados pelos quatro modos — e por uma quinta direção, a geometria a serviço da própria IA."
-    en: "Papers, preprints, code and talks by lab members, organised by the four modes — and by a fifth direction: geometry in the service of AI itself."
+    pt: "Reunimos aqui artigos, preprints, código e palestras dos membros do laboratório, organizados pelos quatro modos e por uma quinta direção, a geometria a serviço da própria IA."
+    en: "Here we gather papers, preprints, code and talks by lab members, organised by the four modes and by a fifth direction, geometry in the service of AI itself."
 
 filter_label: { pt: "Filtrar por modo", en: "Filter by mode" }
 all: { pt: "Tudo", en: "All" }

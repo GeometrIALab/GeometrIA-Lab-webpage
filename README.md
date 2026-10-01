@@ -2,22 +2,121 @@
 
 Site do **GeometrIA**, o laboratório de inteligência artificial e geometria do
 [Centro Brasileiro de Geometria (CBG)](https://www.cbg.ime.unicamp.br/), no IMECC/UNICAMP.
-Bilíngue (português por padrão, inglês em `/en/`), estático, feito para o GitHub Pages
-com Jekyll puro — sem plugins nem etapa de build própria.
+Bilíngue (português por padrão, inglês em `/en/`), estático, feito com Jekyll puro.
 
-**Endereço:** https://tomassilva.github.io/GeometrIA-Lab/
+**No ar em https://www.cbg.ime.unicamp.br/GeometrIALab/**, dentro do site do CBG (WordPress), por
+meio de um plugin feito para ele (`tools/wordpress/geometria-lab/`). O formulário de propostas só
+abre para quem entrou com a conta do site do CBG e manda cada proposta, com o PDF, para o e-mail do
+laboratório por um Google Apps Script (`tools/form-backend.gs`).
+
+Cópias secundárias: https://tomassilva.github.io/GeometrIA-Lab/ (GitHub Pages, se ligado) e
+https://www.ime.unicamp.br/~tomas/GeometrIA-Lab/ (testes no IMECC). Nelas o formulário não envia
+propostas, porque o script só aceita quem entrou pelo site do CBG.
 
 ---
 
-## Publicar no GitHub Pages
+## Atualizar o site (dia a dia)
+
+Toda mudança de conteúdo (texto, publicação, notícia, pessoa) segue o mesmo ciclo. A chave do
+formulário fica salva no WordPress e não precisa ser mexida.
+
+1. **Edite** os arquivos de `_data/` (veja "Onde fica cada coisa", abaixo).
+2. **Confira** localmente (opcional): `bundle exec jekyll serve` e abra
+   http://127.0.0.1:4000/GeometrIA-Lab/ (veja "Pré-visualizar localmente").
+3. **Gere o plugin**, na pasta do repositório:
+   ```bash
+   tools/wordpress/build-plugin.sh      # cria tools/wordpress/dist/geometria-lab.zip
+   ```
+4. **Envie** no painel do CBG (https://www.cbg.ime.unicamp.br/wp-admin/): **Plugins → Adicionar novo →
+   Enviar plugin → Escolher arquivo → Instalar agora**. O WordPress avisa que o plugin já existe:
+   **Substituir o atual pelo enviado**.
+5. **Confira** https://www.cbg.ime.unicamp.br/GeometrIALab/. O navegador pode mostrar a versão antiga
+   por alguns minutos; Cmd+Shift+R (ou Ctrl+Shift+R) recarrega de verdade.
+6. **Commit e push**, para o repositório continuar sendo a fonte oficial.
+
+O script do Google só precisa de uma nova versão quando o `tools/form-backend.gs` muda (veja
+"Formulário", abaixo).
+
+---
+
+## Publicar
+
+### No site do CBG (WordPress), o endereço oficial
+
+O site entra no WordPress do CBG como um **plugin**, instalado pelo painel, sem acesso ao servidor.
+O plugin entrega as páginas em **/GeometrIALab/** e serve CSS, fontes e imagens direto da sua pasta
+(`wp-content/plugins/geometria-lab/site/`). As páginas do formulário (`/GeometrIALab/colabore/` e
+`/GeometrIALab/en/collaborate/`) só abrem para quem entrou com a conta do site em **/acesso/**; quem
+não entrou vai para /acesso/ (com um aviso explicando o motivo) e, depois de entrar, volta ao
+formulário. Nome e e-mail vêm da conta, e o e-mail não pode ser trocado no formulário. Não há código
+por e-mail nem "Eu não sou um robô": o plugin assina um passe (válido por 12 h) com uma chave que só
+ele e o script conhecem, e o script recusa propostas sem passe válido.
+
+O cadastro em /acesso/ é aberto: qualquer pessoa com conta no site do CBG pode enviar propostas.
+
+**Primeira instalação** (já feita; fica aqui para referência)
+
+1. **Script.** Cole o `tools/form-backend.gs` atual no Apps Script (conta geometrialab@gmail.com) e
+   salve. No menu ao lado de **▷ Executar**, escolha **`setup`** (o menu começa em `doGet`, que não
+   faz nada) e execute. No registro de execução aparece a *chave para o plugin do WordPress* (64
+   caracteres); ela também fica em ⚙️ Configurações do projeto → Propriedades do script, como
+   `WP_KEY`, e `mostrarChaveWordPress` mostra de novo. Publique: **Implantar → Gerenciar
+   implantações → editar → Versão: Nova versão → Implantar**.
+2. **Plugin.** Gere o zip com `tools/wordpress/build-plugin.sh`. No painel: **Plugins → Adicionar
+   novo → Enviar plugin → Escolher arquivo → Instalar agora → Ativar plugin**.
+3. **Chave.** Em **Configurações → GeometrIA**, cole a chave do passo 1 e salve. A chave é uma senha
+   entre o WordPress e o script: não a coloque no site nem no repositório.
+4. **Teste.** Numa janela anônima, abra https://www.cbg.ime.unicamp.br/GeometrIALab/, clique em
+   "Proponha um problema", entre com uma conta e envie uma proposta de teste.
+
+Observações:
+- O zip tem menos de 1 MB, porque o servidor do CBG recusa arquivos grandes (`upload_max_filesize`).
+  Para caber, a versão do CBG não leva a página de identidade visual (que não tem link no site) nem
+  o kit da marca e as assinaturas para baixar; o script de build também tira o anti-robô, o mapa do
+  site e as imagens que nenhuma página usa. O limite atual aparece em **Mídia → Adicionar novo**.
+- O `build-plugin.sh` usa `bundle exec jekyll` (veja "Pré-visualizar localmente" para instalar).
+- Não crie uma página do WordPress chamada "GeometrIALab": o plugin responde antes por esse endereço.
+  `/geometrialab` (minúsculas) redireciona para `/GeometrIALab/`.
+- `_config_cbg.yml` guarda o endereço (`url`, `baseurl: /GeometrIALab`) e liga o modo WordPress
+  (`wp_gate: true`), que tira do formulário o código por e-mail e o anti-robô. No script, o
+  interruptor correspondente é `WP_LOGIN_REQUIRED = true`.
+- Para tirar o site do ar: **Plugins → GeometrIA → Desativar**. "Excluir" também apaga a chave.
+
+### No GitHub Pages
 
 1. Faça commit e push deste repositório para `main`.
 2. No GitHub: **Settings → Pages → Build and deployment → Source: Deploy from a branch**,
    branch `main`, pasta `/ (root)`.
-3. Em um ou dois minutos o site estará no endereço acima.
+3. Em um ou dois minutos o site estará em https://tomassilva.github.io/GeometrIA-Lab/. O endereço vem
+   do nome da conta no GitHub (TomasSilva). Repositório privado só publica com GitHub Pro.
 
 Domínio próprio (ex.: `geometria.ime.unicamp.br`): configure o DNS, preencha o campo em
 **Settings → Pages → Custom domain**, e em `_config.yml` troque `url` e deixe `baseurl: ""`.
+
+### Versão de testes no servidor do IMECC
+
+Endereço: **https://www.ime.unicamp.br/~tomas/GeometrIA-Lab/**. O `_config_imecc.yml` troca só o
+endereço (e liga o redirecionamento para https e o `noindex`, para os buscadores não indexarem a
+versão de testes); o resto vem do `_config.yml`.
+
+```bash
+# na pasta do repositório: gera o site para esse endereço em _site_imecc/
+bundle exec jekyll build --config _config.yml,_config_imecc.yml -d _site_imecc
+
+# copia para public_html/GeometrIA-Lab no servidor do IMECC (pede a senha do IMECC)
+chmod -R a+rX _site_imecc
+rsync -av --delete _site_imecc/ tomas@ssh.ime.unicamp.br:public_html/GeometrIA-Lab/
+```
+
+- O IMECC publica a pasta `public_html` da sua conta em `www.ime.unicamp.br/~tomas`; `GeometrIA-Lab`
+  é uma subpasta dela. O `index.html` de `~tomas/`, que redireciona para o site pessoal, não é afetado.
+- O `chmod` deixa os arquivos legíveis pelo servidor; sem isso, o Apache pode responder "Forbidden".
+- Sem rsync, dá para usar um programa de SFTP (Cyberduck, FileZilla) em `ssh.ime.unicamp.br` e copiar o
+  conteúdo de `_site_imecc/` para `public_html/GeometrIA-Lab/`.
+- O servidor também responde em `http://`; o site redireciona para `https://`, porque o anti-robô do
+  formulário só funciona com https.
+- O formulário usa o mesmo script do Apps Script. A página 404 do site não é usada lá: o servidor
+  mostra a dele.
 
 ### Pré-visualizar localmente
 
@@ -57,12 +156,19 @@ Quase todo o conteúdo está em `_data/`, com português e inglês lado a lado
 | `_data/principles.yml` | Princípios da página Abordagem. |
 | `_data/text/*.yml` | Os demais textos de cada página (início, abordagem, pesquisa, pessoas, colabore, marca). |
 | `_data/form.yml` | Endereço (`endpoint`) do back-end do formulário e tamanho máximo do PDF (veja abaixo). |
-| `_data/triage.yml` | As quatro etapas de uma proposta e o aviso de que a decisão é do laboratório. |
+| `_data/triage.yml` | As quatro etapas de uma proposta e a nota sobre a decisão do laboratório (a nota aparece só na Abordagem). |
 | `_data/text/example.yml` | O modelo de proposta preenchida (`/colabore/exemplo/`). |
-| `tools/form-backend.gs` | Back-end do formulário (Google Apps Script): envia cada proposta, com o PDF, para o e-mail do laboratório. |
+| `tools/form-backend.gs` | Back-end do formulário (Google Apps Script): confere o login, envia cada proposta, com o PDF, para o e-mail do laboratório. |
 | `tools/triagem-manual.md` | Roteiro da triagem à mão no Claude: instruções, critérios da nota e mensagens ao proponente. |
 | `_config.yml` | Endereço, e-mail de contato, links institucionais. |
-| `assets/img/brand/` | Logotipos, favicons e o kit da marca (`geometria-brand-kit.zip`). |
+| `assets/img/brand/` | Logotipos, favicons e o kit da marca (`geometria-brand-kit.zip`). Não vão para a versão do CBG (só o favicon). |
+| `_config_cbg.yml` | Endereço da versão do CBG e o modo WordPress (`wp_gate`). |
+| `tools/wordpress/geometria-lab/` | O plugin do WordPress (`geometria-lab.php`). |
+| `tools/wordpress/build-plugin.sh` | Gera o site para o CBG e empacota o plugin em `tools/wordpress/dist/geometria-lab.zip` (fora do Git). |
+
+**Estilo dos textos.** Tom profissional, cordial e humano, em frases completas. O texto do site não usa
+travessões (—) nem dois-pontos; as exceções são o nome oficial com meia-risca ("CBG – Laboratório de IA
+e Geometria"), nomes como Calabi–Yau, os títulos originais dos artigos e os identificadores `arXiv:`.
 
 ### Adicionar uma publicação
 
@@ -103,7 +209,21 @@ Se o e-mail não puder ser enviado, o site mostra um erro com o endereço do lab
 `endpoint` estiver vazio em `_data/form.yml`, o envio abre um e-mail pré-preenchido para
 `contact_email` — e a pessoa precisa anexar o PDF à mão.
 
-### E-mail confirmado e anti-robô
+### Login no site do CBG
+
+Com `WP_LOGIN_REQUIRED = true` (o padrão), o script só aceita propostas que trazem o passe assinado
+pelo plugin: `<validade>.<HMAC-SHA256(WP_KEY, "wp|e-mail|validade")>`, válido por 12 h. Ele confere a
+assinatura, o prazo e se o e-mail do passe é o da proposta. Sem passe válido, responde `login`, e o
+site pede para recarregar a página e entrar de novo. O pedido de código por e-mail fica desligado.
+No e-mail ao laboratório aparece "E-mail confirmado: sim (conta do site do CBG, com login)".
+
+A chave `WP_KEY` (propriedade do script) é criada pelo `setup` e tem de ser a mesma em
+**Configurações → GeometrIA**, no WordPress. Para trocá-la, apague a propriedade, rode `setup` de novo
+e cole a nova chave no WordPress.
+
+### Fora do site do CBG: e-mail confirmado e anti-robô
+
+*Vale só para as cópias fora do site do CBG, com `WP_LOGIN_REQUIRED = false` no script.*
 
 Só entra proposta de quem confirmou o e-mail. Logo abaixo do campo de e-mail fica o bloco
 **"Confirme seu e-mail"**:
@@ -120,9 +240,9 @@ Só entra proposta de quem confirmou o e-mail. Logo abaixo do campo de e-mail fi
 Limites e custos:
 
 - No máximo 3 códigos por endereço e 30 no total, por hora, e o botão só reenvia depois de 45 s.
-- Cota do Gmail: uma conta comum envia até 100 e-mails por dia pelo Apps Script. Cada proposta usa
-  2 (o código e o aviso ao laboratório), o que dá umas 50 propostas por dia. Quando restam 20 e-mails
-  na cota do dia, o script para de mandar códigos, para não faltar e-mail para as propostas.
+- Cota do Gmail: uma conta comum envia até 100 e-mails por dia pelo Apps Script. Neste modo cada
+  proposta usa 2 (o código e o aviso ao laboratório), o que dá umas 50 por dia; no site do CBG, só 1.
+  Quando restam 20 e-mails na cota do dia, o script para de mandar códigos.
 - O código pode cair no spam ou atrasar alguns minutos em servidores de universidade; o site avisa.
 
 O anti-robô é o [ALTCHA](https://altcha.org): código aberto (licença MIT), gratuito, sem conta, sem
@@ -148,8 +268,9 @@ ligada, ele protege o pedido de código — ninguém usa o formulário para disp
 1. Com a conta `geometrialab@gmail.com`, abra <https://script.google.com> → **Novo projeto** e dê
    um nome, por exemplo "GeometrIA — formulário".
 2. Apague o conteúdo de `Código.gs`, cole o arquivo `tools/form-backend.gs` inteiro e salve.
-3. Escolha a função **`setup`** e clique em **Executar**. Autorize o envio de e-mail — é a única
-   permissão. Em contas pessoais aparece "O Google não verificou este app": **Avançado → Acessar** —
+3. No menu ao lado de **▷ Executar**, escolha a função **`setup`** (não a `doGet`, que vem
+   selecionada) e clique em **Executar**. Autorize o envio de e-mail — é a única
+   permissão. Copie a chave para o plugin que aparece no registro (veja "No site do CBG"). Em contas pessoais aparece "O Google não verificou este app": **Avançado → Acessar** —
    o app é o seu próprio script.
 4. **Implantar → Nova implantação → Tipo: App da Web.** *Executar como:* **Eu**.
    *Quem pode acessar:* **Qualquer pessoa**. Copie o URL que termina em `/exec`.
@@ -170,8 +291,8 @@ continuam indo para `LAB_EMAIL`.
 
 - Cada proposta tem um ID (`GIA-2026-0007`), que o proponente também vê na tela ao enviar.
 - Limites: 5 envios por hora por e-mail e 60 no total; o reenvio da mesma proposta é ignorado.
-- Proteções contra robôs: e-mail confirmado por código, o ALTCHA, um campo-armadilha escondido e um
-  tempo mínimo de preenchimento.
+- Proteções: login no site do CBG (passe assinado), um campo-armadilha escondido e um tempo mínimo
+  de preenchimento. Nas cópias fora do CBG, código por e-mail e ALTCHA no lugar do login.
 - PDF: até 10 MB. Para mudar, altere juntos `MAX_PDF_MB` no script e `max_pdf_mb` no `_data/form.yml`.
 - **Pedido de exclusão (LGPD):** apague o e-mail da proposta (também da lixeira) e as conversas do
   Claude em que ela foi usada.
@@ -182,6 +303,22 @@ continuam indo para `LAB_EMAIL`.
   implantação foi arquivada ou não está com **Quem pode acessar: Qualquer pessoa**. Nesse caso, o
   formulário do site mostra um erro com o e-mail do laboratório — ele nunca confirma um envio que o
   script não recebeu.
+
+---
+
+## Custos
+
+Nada é pago, e nada vence ou precisa ser renovado.
+
+| Peça | Observação |
+|---|---|
+| Plugin do WordPress | Código próprio, sem licença, assinatura ou plugin de terceiros. |
+| Hospedagem | O servidor e o WordPress que o CBG já tem. |
+| Google Apps Script e Gmail | Grátis. Limite de ~100 e-mails por dia (no site do CBG, 1 por proposta) e 15 GB de espaço no Gmail, que os PDFs vão ocupando. |
+| Fontes, ALTCHA, Jekyll, Ruby | Código aberto (SIL OFL, MIT etc.). |
+| GitHub | Repositório privado grátis. O GitHub Pages com repositório privado exigiria o plano Pro, mas não é necessário. |
+
+O único custo do processo é o uso do Claude na triagem manual, que o próprio site menciona.
 
 ---
 
@@ -196,7 +333,9 @@ continuam indo para `LAB_EMAIL`.
   site, e nas assinaturas `cobrand-horizontal-*` do kit.
 - **Fontes:** Red Hat Display e Inter (as mesmas do CBG) + JetBrains Mono. Auto-hospedadas, SIL OFL.
 
-Tudo documentado na página [/marca/](https://tomassilva.github.io/GeometrIA-Lab/marca/).
+Tudo documentado na página `/marca/` do site (sem link no menu nem no rodapé, e fora da versão do CBG
+por causa do tamanho do plugin). Ela aparece na pré-visualização local e nas cópias, por exemplo
+http://127.0.0.1:4000/GeometrIA-Lab/marca/.
 
 A animação da página inicial (`assets/js/flow.js`) é uma descida de gradiente real da energia
 de Willmore restrita aos toros de revolução, W(c) = π²c²/√(c²−1), que converge para o

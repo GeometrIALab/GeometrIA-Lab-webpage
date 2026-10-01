@@ -6,8 +6,8 @@ lab: { pt: "CBG – Laboratório de IA e Geometria", en: "CBG – AI &amp; Geome
 lab_long: { pt: "CBG – Laboratório de IA e Geometria · Centro Brasileiro de Geometria", en: "CBG – AI &amp; Geometry Lab · Brazilian Center for Geometry" }
 cbg_name: { pt: "Centro Brasileiro de Geometria (CBG)", en: "Brazilian Center for Geometry (CBG)" }
 description:
-  pt: "GeometrIA · CBG – Laboratório de IA e Geometria: o laboratório de inteligência artificial do Centro Brasileiro de Geometria (CBG), no IMECC/UNICAMP. Pesquisa em aprendizado de máquina para geometria e uma ponte para matemáticos que querem usar IA."
-  en: "GeometrIA · CBG – AI &amp; Geometry Lab: the artificial intelligence lab of the Brazilian Center for Geometry (CBG) at IMECC/UNICAMP. Research in machine learning for geometry, and a bridge for mathematicians who want to use AI."
+  pt: "O GeometrIA · CBG – Laboratório de IA e Geometria é o laboratório de inteligência artificial do Centro Brasileiro de Geometria (CBG), no IMECC/UNICAMP. Fazemos pesquisa em aprendizado de máquina para geometria e ajudamos matemáticos que desejam usar IA em suas pesquisas."
+  en: "GeometrIA · CBG – AI &amp; Geometry Lab is the artificial intelligence lab of the Brazilian Center for Geometry (CBG) at IMECC/UNICAMP. We do research in machine learning for geometry and help mathematicians who wish to use AI in their research."
 
 nav:
   home: { pt: Início, en: Home }
@@ -24,7 +24,7 @@ close: { pt: Fechar, en: Close }
 theme: { pt: "Alternar tema claro/escuro", en: "Toggle light/dark theme" }
 lang_other: { pt: EN, en: PT }
 lang_other_label: { pt: "Read this page in English", en: "Ler esta página em português" }
-home_label: { pt: "GeometrIA — página inicial", en: "GeometrIA — home" }
+home_label: { pt: "Página inicial do GeometrIA", en: "GeometrIA home page" }
 
 see_all: { pt: "Ver tudo", en: "See all" }
 learn_more: { pt: "Saiba mais", en: "Learn more" }

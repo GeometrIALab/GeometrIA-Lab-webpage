@@ -24,8 +24,10 @@ layout: default
           <div class="example-field{% if f.long %} is-long{% endif %}">
             <dt>{{ f.label[L] }}</dt>
             <dd>
-              <div class="example-value">{{ f.value[L] }}</div>
-              {%- if f.tip %}<p class="example-tip"><span class="mono">{{ T.tip_label[L] }}</span> {{ f.tip[L] }}</p>{% endif %}
+              {%- assign v = f.value -%}{%- assign tip = f.tip -%}
+              {%- if site.wp_gate -%}{%- if f.value_wp -%}{%- assign v = f.value_wp -%}{%- endif -%}{%- if f.tip_wp -%}{%- assign tip = f.tip_wp -%}{%- endif -%}{%- endif %}
+              <div class="example-value">{{ v[L] }}</div>
+              {%- if tip %}<p class="example-tip"><span class="mono">{{ T.tip_label[L] }}</span> {{ tip[L] }}</p>{% endif %}
             </dd>
           </div>
           {%- endfor %}

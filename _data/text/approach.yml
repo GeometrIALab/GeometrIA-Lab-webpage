@@ -1,54 +1,54 @@
 title: { pt: "Abordagem", en: "Approach" }
 description:
-  pt: "Como o GeometrIA pensa a IA na matemática: o ciclo de uma colaboração, os quatro modos, nossos princípios e como saber se o seu problema é um bom candidato."
-  en: "How GeometrIA thinks about AI in mathematics: the loop of a collaboration, the four modes, our principles, and how to tell whether your problem is a good fit."
+  pt: "Conheça a forma como o GeometrIA trabalha com inteligência artificial na matemática. Explicamos o ciclo de uma colaboração, os quatro modos de uso da IA, os princípios que seguimos e como avaliar se o seu problema é um bom candidato."
+  en: "Learn how GeometrIA works with artificial intelligence in mathematics. We explain the loop of a collaboration, the four ways AI is used, the principles we follow and how to tell whether your problem is a good fit."
 
 hero:
   kicker: { pt: "Abordagem", en: "Approach" }
-  title: { pt: "IA como instrumento, não como oráculo.", en: "AI as an instrument, not an oracle." }
+  title: { pt: "A IA como instrumento, não como oráculo.", en: "AI as an instrument, not an oracle." }
   lede:
-    pt: "A inteligência artificial não substitui o julgamento matemático — ela aumenta o número de ideias testadas, de conexões percebidas e de objetos verificados. Esta página resume como pensamos e como trabalhamos."
-    en: "Artificial intelligence does not replace mathematical judgement — it increases the number of ideas tried, connections noticed and objects checked. This page sums up how we think and how we work."
+    pt: "Acreditamos que a inteligência artificial não substitui o julgamento matemático. Ela amplia o alcance do nosso trabalho, permitindo testar mais ideias, perceber novas conexões e verificar mais objetos. Nesta página, contamos como pensamos esse trabalho e como ele acontece na prática."
+    en: "We believe artificial intelligence does not replace mathematical judgement. It widens the reach of our work, letting us test more ideas, notice new connections and check more objects. On this page we explain how we think about this work and how it happens in practice."
 
 stories:
   kicker: { pt: "Duas histórias", en: "Two stories" }
   title: { pt: "Produtividade e descoberta", en: "Productivity and discovery" }
   lede:
-    pt: "Há duas maneiras de contar o que a IA faz pela matemática. Trabalhamos nas duas, com ênfase na segunda."
-    en: "There are two ways to tell what AI does for mathematics. We work on both, with an emphasis on the second."
+    pt: "Há duas maneiras de contar o que a IA pode fazer pela matemática. Trabalhamos com as duas, e é na segunda que concentramos a maior parte do nosso esforço."
+    en: "There are two ways to describe what AI can do for mathematics. We work with both, and the second is where we put most of our effort."
   productivity:
     name: { pt: "A história da produtividade", en: "The productivity story" }
     verbs: { pt: "buscar · resumir · programar · formatar · organizar · comunicar", en: "search · summarise · code · format · organise · communicate" }
     text:
-      pt: "Tirar atrito do trabalho: triagem da literatura, código, LaTeX, revisão. Delegável com segurança quando o custo de um erro é baixo."
-      en: "Removing friction from the work: literature triage, code, LaTeX, proofreading. Safely delegable when the cost of a mistake is low."
+      pt: "A IA pode tornar o dia a dia da pesquisa mais leve, ajudando na leitura da literatura, na escrita de código e de LaTeX e na revisão de textos. São tarefas que podem ser delegadas com segurança quando o custo de um erro é baixo."
+      en: "AI can make everyday research lighter, helping with reading the literature, writing code and LaTeX, and proofreading. These tasks can be delegated safely when the cost of a mistake is low."
   discovery:
     name: { pt: "A história da descoberta", en: "The discovery story" }
     verbs: { pt: "conjecturar · calcular · demonstrar · verificar · generalizar", en: "conjecture · compute · prove · verify · generalise" }
     text:
-      pt: "Mudar o que é possível: aproximar objetos sem fórmula, encontrar padrões e exemplos que ninguém encontraria à mão. Exige verificação pesada."
-      en: "Changing what is possible: approximating objects with no formula, finding patterns and examples no one would find by hand. Demands heavy verification."
+      pt: "A IA também pode ampliar o que é possível fazer em matemática, aproximando objetos que não têm fórmula conhecida e revelando padrões e exemplos que dificilmente seriam encontrados à mão. Esse uso pede uma verificação cuidadosa em cada etapa."
+      en: "AI can also widen what is possible in mathematics, approximating objects with no known formula and revealing patterns and examples that would be hard to find by hand. This kind of use calls for careful verification at every step."
 
 loop:
   kicker: { pt: "O ciclo", en: "The loop" }
-  title: { pt: "Da pergunta à verificação — e de volta", en: "From question to verification — and back" }
+  title: { pt: "Da pergunta à verificação, e de volta à pergunta", en: "From question to verification, and back again" }
   lede:
-    pt: "Todo projeto percorre as mesmas cinco etapas. Cada uma deixa um produto concreto, e a última devolve uma pergunta mais afiada."
-    en: "Every project runs through the same five stages. Each leaves a concrete output, and the last one hands back a sharper question."
-  output: { pt: "produto", en: "output" }
-  again: { pt: "…e o ciclo recomeça, com uma pergunta melhor.", en: "…and the loop starts again, with a sharper question." }
-  example_title: { pt: "Um exemplo do ciclo completo", en: "One full turn of the loop" }
+    pt: "Nossos projetos costumam percorrer as mesmas cinco etapas. Cada uma deixa um resultado concreto, e a última nos devolve uma pergunta mais precisa do que a inicial."
+    en: "Our projects usually go through the same five stages. Each one leaves a concrete result, and the last one hands back a question sharper than the one we started with."
+  output: { pt: "Resultado desta etapa", en: "Result of this stage" }
+  again: { pt: "…e o ciclo recomeça, agora com uma pergunta melhor.", en: "…and the loop starts again, now with a sharper question." }
+  example_title: { pt: "Um exemplo do ciclo completo", en: "An example of the full loop" }
   example:
-    pt: "Na busca por arranjos livres de retas, um funcional que se anula exatamente nos arranjos livres guia uma busca heurística (experimento). Os valores numéricos servem apenas para escolher candidatos; cada arranjo relatado é certificado em aritmética exata pelo critério de Saito (verificação) — e os exemplos encontrados viram casos de teste para a conjectura de Terao (nova pergunta)."
-    en: "In the search for free line arrangements, a functional that vanishes exactly on free arrangements guides a heuristic search (experiment). Numerical values are used only to select candidates; every reported arrangement is certified in exact arithmetic with Saito's criterion (verification) — and the examples found become test cases for Terao's conjecture (a new question)."
+    pt: "Na busca por arranjos livres de retas, usamos um funcional que se anula exatamente nos arranjos livres para guiar uma busca heurística (experimento). Os valores numéricos servem apenas para escolher candidatos, e cada arranjo relatado é certificado em aritmética exata pelo critério de Saito (verificação). Os exemplos encontrados passam, então, a servir como casos de teste para a conjectura de Terao (nova pergunta)."
+    en: "In the search for free line arrangements, we use a functional that vanishes exactly on free arrangements to guide a heuristic search (experiment). The numerical values are used only to select candidates, and every reported arrangement is certified in exact arithmetic with Saito's criterion (verification). The examples found then become test cases for Terao's conjecture (a new question)."
   example_pub: saito
 
 modes:
   kicker: { pt: "Quatro modos", en: "Four modes" }
   title: { pt: "Os quatro modos, com exemplos", en: "The four modes, with examples" }
   lede:
-    pt: "Uma maneira prática de pensar onde a IA entra num problema. Muitos projetos combinam mais de um modo."
-    en: "A practical way to think about where AI enters a problem. Many projects combine more than one mode."
+    pt: "Esta é uma forma prática de pensar em que ponto a IA pode contribuir para um problema. Muitos projetos combinam mais de um modo."
+    en: "This is a practical way to think about where AI can contribute to a problem. Many projects combine more than one mode."
   our_work: { pt: "No nosso trabalho", en: "In our work" }
 
 principles:
@@ -60,27 +60,27 @@ fit:
   title: { pt: "Seu problema é um bom candidato?", en: "Is your problem a good fit?" }
   good_title: { pt: "Bons sinais", en: "Good signs" }
   good:
-    - pt: "Você consegue gerar muitos exemplos — ou já existe uma base de dados, tabela ou classificação."
-      en: "You can generate many examples — or a database, table or classification already exists."
-    - pt: "Existe uma quantidade computável que mede o sucesso: um invariante, uma energia, um erro, um funcional."
-      en: "There is a computable quantity that measures success: an invariant, an energy, an error, a functional."
-    - pt: "Você procura objetos raros num espaço enorme: exemplos extremais, contraexemplos, configurações especiais."
-      en: "You are hunting for rare objects in a huge space: extremal examples, counterexamples, special configurations."
-    - pt: "Você precisa de soluções aproximadas de EDPs ou problemas variacionais sem solução explícita."
-      en: "You need approximate solutions of PDEs or variational problems with no explicit solution."
+    - pt: "Você consegue gerar muitos exemplos, ou já existe uma base de dados, uma tabela ou uma classificação."
+      en: "You can generate many examples, or a database, table or classification already exists."
+    - pt: "Existe uma quantidade computável que mede o sucesso, como um invariante, uma energia, um erro ou um funcional."
+      en: "There is a computable quantity that measures success, such as an invariant, an energy, an error or a functional."
+    - pt: "Você procura objetos raros em um espaço muito grande, como exemplos extremais, contraexemplos ou configurações especiais."
+      en: "You are looking for rare objects in a very large space, such as extremal examples, counterexamples or special configurations."
+    - pt: "Você precisa de soluções aproximadas de EDPs ou de problemas variacionais sem solução explícita."
+      en: "You need approximate solutions of PDEs or of variational problems with no explicit solution."
     - pt: "Você suspeita de um padrão, mas há dados demais para examinar à mão."
       en: "You suspect a pattern, but there is too much data to examine by hand."
-  hard_title: { pt: "Ainda difícil", en: "Still hard" }
+  hard_title: { pt: "Ainda desafiador", en: "Still challenging" }
   hard:
     - pt: "Perguntas puramente conceituais, sem exemplos que se possam calcular."
       en: "Purely conceptual questions, with no examples that can be computed."
     - pt: "Problemas em que até um único exemplo está fora do alcance computacional."
       en: "Problems where even a single example is out of computational reach."
-    - pt: "Esperar que a IA entregue sozinha uma demonstração completa — por ora, ela ajuda a encontrar o caminho."
-      en: "Expecting AI to deliver a complete proof on its own — for now, it helps find the way."
+    - pt: "Esperar que a IA produza sozinha uma demonstração completa. Por enquanto, ela ajuda sobretudo a encontrar o caminho."
+      en: "Expecting AI to produce a complete proof on its own. For now, it mostly helps find the way."
   note:
-    pt: "Na dúvida, escreva mesmo assim: parte do nosso trabalho é justamente ajudar a formular a pergunta."
-    en: "When in doubt, write anyway: part of our job is precisely helping to shape the question."
+    pt: "Se estiver em dúvida, escreva para nós mesmo assim. Ajudar a formular a pergunta faz parte do nosso trabalho."
+    en: "If you are unsure, please write to us anyway. Helping to shape the question is part of our work."
 
 process:
   kicker: { pt: "Colaboração", en: "Collaboration" }

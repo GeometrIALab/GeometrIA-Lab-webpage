@@ -1,31 +1,31 @@
-# O ciclo de uma colaboração: da pergunta à verificação — e de volta.
+# O ciclo de uma colaboração, da pergunta à verificação e de volta à pergunta.
 
 - name: { pt: Pergunta, en: Question }
   text:
-    pt: "Uma pergunta matemática precisa: um invariante a entender, um objeto a encontrar, uma equação a resolver, uma conjectura a testar."
-    en: "A precise mathematical question: an invariant to understand, an object to find, an equation to solve, a conjecture to test."
-  output: { pt: "enunciado + o que já se sabe", en: "statement + what is known" }
+    pt: "Tudo começa com uma pergunta matemática precisa, como um invariante que queremos entender, um objeto a encontrar, uma equação a resolver ou uma conjectura a testar."
+    en: "It all starts with a precise mathematical question, such as an invariant we want to understand, an object to find, an equation to solve or a conjecture to test."
+  output: { pt: "enunciado e o que já se sabe", en: "statement and what is known" }
 
 - name: { pt: Representação, en: Representation }
   text:
-    pt: "Traduzir os objetos em dados — pesos, amostras de pontos numa variedade, grafos, coeficientes — e escolher o que medir: uma perda, um escore, um invariante."
-    en: "Translate the objects into data — weights, point samples on a manifold, graphs, coefficients — and choose what to measure: a loss, a score, an invariant."
-  output: { pt: "dados + funcional", en: "data + functional" }
+    pt: "Traduzimos os objetos em dados, como pesos, amostras de pontos em uma variedade, grafos ou coeficientes, e escolhemos o que medir, seja uma função de perda, um escore ou um invariante."
+    en: "We translate the objects into data, such as weights, point samples on a manifold, graphs or coefficients, and choose what to measure, whether a loss function, a score or an invariant."
+  output: { pt: "dados e funcional", en: "data and functional" }
 
 - name: { pt: Experimento, en: Experiment }
   text:
-    pt: "Treinar, buscar ou aproximar: redes neurais, perdas do tipo PINN, regressão simbólica, metaheurísticas, modelos de linguagem."
-    en: "Train, search or approximate: neural networks, PINN-style losses, symbolic regression, metaheuristics, language models."
+    pt: "Treinamos modelos, fazemos buscas ou calculamos aproximações, com ferramentas como redes neurais, perdas do tipo PINN, regressão simbólica, metaheurísticas e modelos de linguagem."
+    en: "We train models, run searches or compute approximations, with tools such as neural networks, PINN-style losses, symbolic regression, metaheuristics and language models."
   output: { pt: "código reprodutível", en: "reproducible code" }
 
 - name: { pt: Interpretação, en: Interpretation }
   text:
-    pt: "Dos números de volta à matemática: que variáveis importam, que fórmula se ajusta, que padrão sugere uma conjectura."
-    en: "From numbers back to mathematics: which features matter, which formula fits, which pattern suggests a conjecture."
-  output: { pt: "conjecturas + candidatos", en: "conjectures + candidates" }
+    pt: "Voltamos dos números para a matemática, procurando entender quais variáveis importam, que fórmula se ajusta aos dados e que padrão sugere uma conjectura."
+    en: "We go from the numbers back to mathematics, trying to understand which variables matter, which formula fits the data and which pattern suggests a conjecture."
+  output: { pt: "conjecturas e candidatos", en: "conjectures and candidates" }
 
 - name: { pt: Verificação, en: Verification }
   text:
-    pt: "Certificar o que for possível — aritmética exata, álgebra computacional, estimativas de erro, prova formal ou demonstração tradicional — dizendo sempre o que é evidência e o que é teorema."
-    en: "Certify whatever can be certified — exact arithmetic, computer algebra, error estimates, formal or traditional proof — always saying what is evidence and what is a theorem."
-  output: { pt: "resultado + proveniência", en: "result + provenance" }
+    pt: "Certificamos tudo o que for possível, com aritmética exata, álgebra computacional, estimativas de erro, prova formal ou demonstração tradicional, e deixamos sempre claro o que é evidência e o que é teorema."
+    en: "We certify everything we can, using exact arithmetic, computer algebra, error estimates, formal proof or traditional proof, and we always make clear what is evidence and what is a theorem."
+  output: { pt: "resultado e proveniência", en: "result and provenance" }

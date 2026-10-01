@@ -25,8 +25,8 @@
   url: "https://tomassilva.github.io/talks/2026-08-17-AI-tools-for-mathematicians"
   modes: [assist]
   note:
-    pt: "Da redução do atrito à mudança da fronteira de pesquisa: uma “história da produtividade” e uma “história da descoberta”."
-    en: "From reducing friction to changing the research frontier: a “productivity story” and a “discovery story”."
+    pt: "Da redução do atrito à mudança da fronteira de pesquisa, a palestra conta uma “história da produtividade” e uma “história da descoberta”."
+    en: "From reducing friction to changing the research frontier, the talk tells a “productivity story” and a “discovery story”."
 
 - id: graphical-symmetries
   title: "Learning the graphical nature of symmetries"
@@ -37,8 +37,8 @@
   arxiv: "2607.12026"
   modes: [predict]
   note:
-    pt: "Um censo de 131.406 grafos de Cayley para aprender propriedades de grupos finitos a partir de observáveis de grafos — com novas conjecturas e novas sequências na OEIS."
-    en: "A census of 131,406 Cayley graphs for learning properties of finite groups from graph observables — with new conjectures and new OEIS sequences."
+    pt: "Um censo de 131.406 grafos de Cayley para aprender propriedades de grupos finitos a partir de observáveis de grafos, que resultou em novas conjecturas e novas sequências na OEIS."
+    en: "A census of 131,406 Cayley graphs for learning properties of finite groups from graph observables, which led to new conjectures and new OEIS sequences."
 
 - id: black-hole-black-boxes
   title: "Black hole black boxes: numerical black hole metrics via AInstein neural networks"
@@ -49,8 +49,8 @@
   arxiv: "2607.05489"
   modes: [approximate]
   note:
-    pt: "A arquitetura AInstein levada à assinatura lorentziana: recupera a geometria de Schwarzschild e busca novas métricas de Einstein de tipo Petrov I."
-    en: "The AInstein architecture taken to Lorentzian signature: it recovers the Schwarzschild geometry and searches for new Petrov type I Einstein metrics."
+    pt: "A arquitetura AInstein, levada à assinatura lorentziana, recupera a geometria de Schwarzschild e busca novas métricas de Einstein de tipo Petrov I."
+    en: "The AInstein architecture, taken to Lorentzian signature, recovers the Schwarzschild geometry and searches for new Petrov type I Einstein metrics."
 
 - id: pinns-geometry
   title: "PINNs in more general geometry"
@@ -61,8 +61,8 @@
   arxiv: "2604.25020"
   modes: [approximate]
   note:
-    pt: "Uma introdução às PINNs para geometria diferencial: como funcionais geométricos viram funções de perda."
-    en: "An introduction to PINNs for differential geometry: how geometric functionals become loss functions."
+    pt: "Uma introdução às PINNs para geometria diferencial, mostrando como funcionais geométricos se tornam funções de perda."
+    en: "An introduction to PINNs for differential geometry, showing how geometric functionals become loss functions."
 
 - id: willmore
   title: "Minimising Willmore energy via neural flow"
@@ -87,8 +87,8 @@
   modes: [search]
   featured: true
   note:
-    pt: "Um funcional que se anula exatamente nos arranjos livres guia a busca; cada exemplo é certificado em aritmética exata. Resultado: 6.146 representantes até n = 28."
-    en: "A functional that vanishes exactly on free arrangements guides the search; every example is certified in exact arithmetic. Result: 6,146 representatives up to n = 28."
+    pt: "Um funcional que se anula exatamente nos arranjos livres guia a busca, e cada exemplo é certificado em aritmética exata. Ao todo, foram encontrados 6.146 representantes até n = 28."
+    en: "A functional that vanishes exactly on free arrangements guides the search, and every example is certified in exact arithmetic. In total, 6,146 representatives were found up to n = 28."
 
 - id: g2-neural
   title: "Neural and numerical methods for G<sub>2</sub>-structures on contact Calabi–Yau 7-manifolds"

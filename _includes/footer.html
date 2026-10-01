@@ -24,7 +24,6 @@
         <li><a href="{{ R.research[L] | relative_url }}">{{ C.nav.research[L] }}</a></li>
         <li><a href="{{ R.people[L] | relative_url }}">{{ C.nav.people[L] }}</a></li>
         <li><a href="{{ R.collaborate[L] | relative_url }}">{{ C.nav.cta[L] }}</a></li>
-        <li><a href="{{ R.brand[L] | relative_url }}">{{ C.nav.brand[L] }}</a></li>
       </ul>
     </nav>
 
@@ -34,7 +33,6 @@
         <li><a href="{% if L == 'en' %}{{ site.links.cbg_en }}{% else %}{{ site.links.cbg }}{% endif %}">{{ C.footer.cbg[L] }}</a></li>
         <li><a href="{{ site.links.imecc }}">{{ C.footer.imecc[L] }}</a></li>
         <li><a href="{% include invite-href.html %}">{{ C.footer.community[L] }}</a></li>
-        <li><a href="{{ site.github_repo }}">{{ C.footer.source[L] }}</a></li>
       </ul>
     </nav>
 

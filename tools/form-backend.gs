@@ -42,6 +42,16 @@
  *   código (ninguém usa o formulário para disparar e-mails a terceiros); sem ele, protege o
  *   envio da proposta.
  *
+ * Login no site do CBG (WP_LOGIN_REQUIRED)
+ *   Na versão hospedada em https://www.cbg.ime.unicamp.br/GeometrIALab, o formulário só abre
+ *   para quem entrou com a conta do site do CBG (/acesso/). O plugin do WordPress
+ *   (tools/wordpress/geometria-lab) preenche o e-mail da conta e assina um passe,
+ *   "<validade>.<HMAC-SHA256(WP_KEY, 'wp|e-mail|validade')>", que vai com a proposta. Com
+ *   WP_LOGIN_REQUIRED, só entra proposta com passe válido, e o código por e-mail e o ALTCHA
+ *   ficam desligados (o pedido de código responde 'disabled'). A chave WP_KEY é criada pelo
+ *   `setup`, que a mostra no registro de execução para colar no plugin (Configurações →
+ *   GeometrIA); `mostrarChaveWordPress` mostra de novo.
+ *
  * A chave secreta que assina os desafios e as confirmações é criada sozinha (propriedade do
  * script HMAC_KEY). Os interruptores daqui valem junto com os do _data/form.yml do site:
  * VERIFY_EMAIL ↔ verify_email e ALTCHA_REQUIRED ↔ altcha — mude os dois lados juntos.
@@ -63,10 +73,13 @@
 // ───────────────────────────── Configuração ─────────────────────────────
 
 const LAB_EMAIL = 'geometrialab@gmail.com';   // quem recebe as propostas
-const VERSION = '2026-09-28d';                 // aparece ao abrir o URL /exec
+const VERSION = '2026-09-30a';                 // aparece ao abrir o URL /exec
 const TZ = 'America/Sao_Paulo';
 
-const VERIFY_EMAIL = true;              // só aceita proposta com e-mail confirmado por código
+const WP_LOGIN_REQUIRED = true;         // só aceita proposta de quem entrou no site do CBG (passe do plugin)
+const WP_PASS_MAX_H = 13;               // validade máxima aceita para um passe (o plugin dá 12 h)
+
+const VERIFY_EMAIL = true;              // sem WP_LOGIN_REQUIRED: só aceita proposta com e-mail confirmado por código
 const CODE_TTL_MIN = 15;                // validade do código enviado por e-mail
 const CODE_MAX_TRIES = 5;               // tentativas por código
 const CODE_MAX_PER_EMAIL_PER_HOUR = 3;  // códigos por endereço, por hora
@@ -107,6 +120,7 @@ function doPost(e) {
   }
   if (!data || typeof data !== 'object' || Array.isArray(data)) return json_({ ok: false, error: 'bad-request' });
   try {
+    if ((data.action === 'code' || data.action === 'verify') && WP_LOGIN_REQUIRED) return json_({ ok: false, error: 'disabled' });
     if (data.action === 'code') return json_(handleCode_(data));
     if (data.action === 'verify') return json_(handleVerify_(data));
     return json_(handleSubmission_(data));
@@ -137,7 +151,15 @@ function handleSubmission_(data) {
       const prev = cache.get(subKey);
       if (prev) return { ok: true, id: prev };
     }
-    if (VERIFY_EMAIL) {
+    if (WP_LOGIN_REQUIRED) {
+      const why = wpPassCheck_(p.email, clean_(data.wp_pass, 200));
+      if (why) {
+        console.warn('Passe do site do CBG recusado: ' + why);
+        return { ok: false, error: 'login' };   // o site pede para recarregar a página e entrar de novo
+      }
+      p.wp_account = true;
+      p.email_verified = true;
+    } else if (VERIFY_EMAIL) {
       const why = verifiedCheck_(p.email, clean_(data.email_token, 200));
       if (why) {
         console.warn('E-mail não confirmado: ' + why);
@@ -253,6 +275,19 @@ function verifiedCheck_(email, token) {
   return '';
 }
 
+/** Passe do plugin do WordPress: '<validade em s>.<HMAC-SHA256(WP_KEY, 'wp|' + e-mail + '|' + validade)>'. */
+function wpPassCheck_(email, pass) {
+  const m = /^(\d{9,11})\.([0-9a-f]{64})$/.exec(pass || '');
+  if (!m) return 'ausente';
+  const key = props_().getProperty('WP_KEY');
+  if (!key) return 'sem chave (execute setup)';
+  if (!sameText_(hmacHex_('wp|' + email + '|' + m[1], key), m[2])) return 'assinatura';
+  const exp = Number(m[1]) * 1000;
+  if (exp < Date.now()) return 'expirado';
+  if (exp > Date.now() + WP_PASS_MAX_H * 3600 * 1000) return 'validade longa demais';
+  return '';
+}
+
 function codeHash_(email, code, key) {
   return hmacHex_('code|' + email + '|' + code, key);
 }
@@ -273,31 +308,33 @@ function codeRateOk_(cache, email) {
 function sendCode_(email, code, lang) {
   const T = {
     pt: {
-      subject: 'GeometrIA — seu código de confirmação: ' + code,
+      subject: 'Seu código de confirmação do GeometrIA é ' + code,
       body: [
         'Olá,',
         '',
-        'Seu código para confirmar este e-mail no formulário do GeometrIA é:',
+        'Obrigado pelo seu interesse no GeometrIA. Use o código abaixo para confirmar este e-mail no formulário.',
         '',
         '    ' + code,
         '',
-        'Ele vale por ' + CODE_TTL_MIN + ' minutos. Se você não pediu este código, ignore esta mensagem: nada é enviado sem ele.',
+        'Ele vale por ' + CODE_TTL_MIN + ' minutos. Se você não pediu este código, pode ignorar esta mensagem, pois nada é enviado sem ele.',
         '',
+        'Atenciosamente,',
         'GeometrIA · CBG – Laboratório de IA e Geometria',
         'Centro Brasileiro de Geometria · IMECC/UNICAMP',
       ],
     },
     en: {
-      subject: 'GeometrIA — your confirmation code: ' + code,
+      subject: 'Your GeometrIA confirmation code is ' + code,
       body: [
         'Hello,',
         '',
-        'Your code to confirm this email on the GeometrIA form is:',
+        'Thank you for your interest in GeometrIA. Please use the code below to confirm this email on the form.',
         '',
         '    ' + code,
         '',
-        'It is valid for ' + CODE_TTL_MIN + ' minutes. If you did not request this code, please ignore this message: nothing is sent without it.',
+        'It is valid for ' + CODE_TTL_MIN + ' minutes. If you did not request this code, you can ignore this message, since nothing is sent without it.',
         '',
+        'Best regards,',
         'GeometrIA · CBG – AI & Geometry Lab',
         'Brazilian Center for Geometry · IMECC/UNICAMP',
       ],
@@ -340,6 +377,7 @@ function validate_(p) {
   if (['Sim', 'Não'].indexOf(p.cbg_member) < 0) bad.push('cbg_member');
   if (INTERESTS.indexOf(p.interest) < 0) bad.push('interest');
   if (p.interest === 'Propor um problema' || p.interest === 'Os dois') {
+    if (!p.problem_title) bad.push('problem_title');
     if (!p.state_of_art) bad.push('state_of_art');
     if (!p.approach) bad.push('approach');
   }
@@ -459,7 +497,7 @@ function sendToLab_(p, id, pdf) {
     'Nova proposta recebida pelo site do GeometrIA: ' + id,
     'Recebida em ' + Utilities.formatDate(new Date(), TZ, 'dd/MM/yyyy HH:mm') + ' (horário de Brasília).',
     '',
-    'E-mail confirmado: ' + (p.email_verified ? 'sim (o proponente digitou o código enviado a esse endereço)' : 'não'),
+    'E-mail confirmado: ' + (p.wp_account ? 'sim (conta do site do CBG, com login)' : p.email_verified ? 'sim (o proponente digitou o código enviado a esse endereço)' : 'não'),
     'Membro do CBG: ' + (member ? 'Sim — prioridade na padronização' : 'Não'),
     'Também quer: ' + V(p.extras),
     'PDF: ' + pdfLine,
@@ -521,16 +559,35 @@ function setup() {
   props_().deleteProperty('LAB_EMAIL');
   props_().deleteProperty('ALTCHA_HMAC_KEY');       // nome antigo da chave secreta
   secretKey_();                                     // cria a chave secreta, se faltar
+  const wpKey = wpKey_();                           // chave compartilhada com o plugin do WordPress
   const quota = MailApp.getRemainingDailyQuota();   // pede a autorização de envio de e-mail
   console.log([
     'GeometrIA ' + VERSION + ': tudo pronto.',
     'As propostas vão para ' + LAB_EMAIL + ' (para mudar, edite LAB_EMAIL no início do script).',
-    'E-mail confirmado por código: ' + (VERIFY_EMAIL ? 'exigido.' : 'desligado.'),
-    'Anti-robô (ALTCHA): ' + (ALTCHA_REQUIRED ? (VERIFY_EMAIL ? 'exigido no pedido de código.' : 'exigido em cada envio.') : 'desligado.'),
+    WP_LOGIN_REQUIRED
+      ? 'Login no site do CBG: exigido (código por e-mail e anti-robô desligados).\n' +
+        'Chave para o plugin do WordPress (Configurações → GeometrIA → Chave do formulário):\n    ' + wpKey
+      : 'E-mail confirmado por código: ' + (VERIFY_EMAIL ? 'exigido.' : 'desligado.') + '\n' +
+        'Anti-robô (ALTCHA): ' + (ALTCHA_REQUIRED ? (VERIFY_EMAIL ? 'exigido no pedido de código.' : 'exigido em cada envio.') : 'desligado.'),
     'E-mails que ainda podem ser enviados hoje: ' + quota + '.',
     'Próximo passo: Implantar → Gerenciar implantações → editar → Versão: "Nova versão" → Implantar',
     '(ou, na primeira vez, Nova implantação → App da Web; Executar como: Eu; Quem pode acessar: Qualquer pessoa).',
   ].join('\n'));
+}
+
+/** Mostra de novo a chave que vai no plugin do WordPress (Configurações → GeometrIA). */
+function mostrarChaveWordPress() {
+  console.log('Chave para o plugin do WordPress:\n    ' + wpKey_());
+}
+
+/** Chave compartilhada com o plugin (propriedade WP_KEY), criada na primeira vez. */
+function wpKey_() {
+  let key = props_().getProperty('WP_KEY');
+  if (!key) {
+    key = (Utilities.getUuid() + Utilities.getUuid()).replace(/-/g, '');
+    props_().setProperty('WP_KEY', key);
+  }
+  return key;
 }
 
 /** Opcional: envia uma proposta de teste para o e-mail do laboratório (não gasta um ID). */

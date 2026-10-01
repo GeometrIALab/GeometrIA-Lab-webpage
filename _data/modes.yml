@@ -16,8 +16,8 @@
 - id: predict
   name: { pt: Prever, en: Predict }
   tagline:
-    pt: "Aprender invariantes a partir de dados — e extrair conjecturas"
-    en: "Learn invariants from data — and extract conjectures"
+    pt: "Aprender invariantes a partir de dados e formular conjecturas"
+    en: "Learn invariants from data and formulate conjectures"
   text:
     pt: "Quando existe uma grande base de exemplos, modelos supervisionados aprendem a prever invariantes caros de calcular. Regressão simbólica e a análise dos modelos transformam boas previsões em fórmulas candidatas e conjecturas."
     en: "When a large database of examples exists, supervised models learn to predict invariants that are expensive to compute. Symbolic regression and model analysis turn good predictions into candidate formulas and conjectures."
@@ -31,8 +31,8 @@
     pt: "Encontrar objetos raros em espaços enormes"
     en: "Find rare objects in huge spaces"
   text:
-    pt: "Exemplos extremais, contraexemplos e configurações especiais costumam viver em espaços combinatórios gigantescos. Metaheurísticas guiadas por um funcional bem escolhido encontram candidatos — que depois são certificados em aritmética exata."
-    en: "Extremal examples, counterexamples and special configurations often live in gigantic combinatorial spaces. Metaheuristics guided by a well-chosen functional find candidates — which are then certified in exact arithmetic."
+    pt: "Exemplos extremais, contraexemplos e configurações especiais costumam estar escondidos em espaços combinatórios enormes. Metaheurísticas guiadas por um funcional bem escolhido encontram candidatos, que depois são certificados em aritmética exata."
+    en: "Extremal examples, counterexamples and special configurations are often hidden in enormous combinatorial spaces. Metaheuristics guided by a well-chosen functional find candidates, which are then certified in exact arithmetic."
   examples:
     pt: "um brane tiling novo com 26 campos · 6.146 arranjos livres de retas certificados"
     en: "a new brane tiling with 26 fields · 6,146 certified free line arrangements"
@@ -43,8 +43,8 @@
     pt: "Modelos de linguagem no dia a dia da pesquisa"
     en: "Language models in day-to-day research"
   text:
-    pt: "Assistentes e agentes de IA já reduzem o atrito da pesquisa — busca bibliográfica, código, LaTeX, organização — e começam a participar de cálculos e demonstrações. A regra: verificar na proporção do que está em jogo."
-    en: "AI assistants and agents already remove friction from research — literature search, code, LaTeX, organisation — and are starting to take part in computations and proofs. The rule: verify in proportion to what is at stake."
+    pt: "Assistentes e agentes de IA já facilitam muitas etapas da pesquisa, como a busca bibliográfica, a programação, a escrita em LaTeX e a organização do trabalho, e começam a participar de cálculos e demonstrações. Nossa regra é verificar sempre na proporção do que está em jogo."
+    en: "AI assistants and agents already make many parts of research easier, such as literature search, programming, writing in LaTeX and organising the work, and they are starting to take part in computations and proofs. Our rule is to always verify in proportion to what is at stake."
   examples:
     pt: "palestra no CBG sobre ferramentas digitais e IA para a produtividade matemática"
     en: "CBG talk on digital tools and AI for mathematical productivity"
@@ -57,8 +57,8 @@
     pt: "A geometria do espaço de modelos a serviço do aprendizado"
     en: "The geometry of model space in the service of learning"
   text:
-    pt: "O caminho também vale ao contrário: métricas de informação e geodésicas no espaço de modelos explicam e melhoram métodos de aprendizado de máquina."
-    en: "The road runs both ways: information metrics and geodesics on model space explain and improve machine-learning methods."
+    pt: "O caminho também vale no sentido inverso. Métricas de informação e geodésicas no espaço de modelos ajudam a explicar e a melhorar métodos de aprendizado de máquina."
+    en: "The road also runs the other way. Information metrics and geodesics on model space help explain and improve machine-learning methods."
   examples:
     pt: "poda de redes neurais por distâncias de informação de Fisher"
     en: "pruning neural networks with Fisher-information distances"

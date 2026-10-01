@@ -13,6 +13,8 @@
   if (!form) return;
 
   var endpoint = (form.getAttribute("data-endpoint") || "").trim();
+  // Versão no site do CBG: o plugin do WordPress põe aqui um passe assinado da conta logada.
+  var wpPass = (form.getAttribute("data-wp-pass") || "").trim();
   var email = form.getAttribute("data-email");
   var lang = form.getAttribute("data-lang") || "pt";
   var maxMB = parseFloat(form.getAttribute("data-max-mb")) || 10;
@@ -440,7 +442,7 @@
     if (pdfFile) lines.push((lang === "en" ? "PDF (please attach): " : "PDF (anexar): ") + pdfFile.name);
     lines.push("", "(" + (lang === "en" ? "sent from the GeometrIA website" : "enviado pelo site do GeometrIA") + ")");
     var body = lines.join("\n");
-    if (body.length > 4000) body = body.slice(0, 4000) + "…\n[" + (lang === "en" ? "text truncated — please paste the rest" : "texto truncado — cole o restante") + "]";
+    if (body.length > 4000) body = body.slice(0, 4000) + "…\n[" + (lang === "en" ? "text truncated, please paste the rest" : "texto truncado, cole o restante") + "]";
     return "mailto:" + email + "?subject=" + encodeURIComponent(form.getAttribute("data-subject") || "GeometrIA") + "&body=" + encodeURIComponent(body);
   }
 
@@ -489,6 +491,7 @@
       }
       data.email_token = emailToken;
     }
+    if (wpPass) data.wp_pass = wpPass;
 
     submit.disabled = true;
     setStatus(form.getAttribute("data-msg-sending"));
@@ -516,7 +519,8 @@
           focusVerify();
           return;
         }
-        setStatus(form.getAttribute(e === "captcha" ? "data-msg-captcha" : "data-msg-error"), true, true);
+        var key = e === "captcha" ? "data-msg-captcha" : (e === "login" && form.getAttribute("data-msg-login")) ? "data-msg-login" : "data-msg-error";
+        setStatus(form.getAttribute(key), true, true);
       })
       .then(function () { submit.disabled = false; });
   });

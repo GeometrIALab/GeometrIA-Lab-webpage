@@ -1,39 +1,40 @@
-# Linha do tempo de uma proposta — usada na página Colabore e na seção "Como funciona" da Abordagem.
+# Etapas de uma proposta, usadas na página Colabore e na seção "Como funciona uma proposta" da Abordagem.
+# A nota `decision` aparece só na Abordagem (a página Colabore inclui as etapas com show_decision="no").
 
 title: { pt: "Como funciona", en: "How it works" }
 lede:
-  pt: "Toda proposta passa pelas mesmas quatro etapas."
-  en: "Every proposal goes through the same four stages."
+  pt: "Cada proposta que recebemos passa por quatro etapas."
+  en: "Every proposal we receive goes through four stages."
 
 steps:
   - name: { pt: "Recebemos sua proposta", en: "We receive your proposal" }
     text:
-      pt: "Você vê uma confirmação na tela. A proposta — e o PDF, se houver — fica registrada apenas para a equipe."
-      en: "You see a confirmation on screen. The proposal — and the PDF, if any — is stored for the team only."
+      pt: "Assim que você envia o formulário, uma confirmação aparece na tela. A proposta e o PDF, se houver, ficam disponíveis apenas para a equipe do laboratório."
+      en: "As soon as you send the form, a confirmation appears on screen. The proposal and the PDF, if any, are available only to the lab team."
     tag: { pt: "imediato", en: "immediate" }
 
-  - name: { pt: "Padronização e nota automáticas", en: "Automatic standardization and scoring" }
+  - name: { pt: "Padronização e nota preliminar", en: "Standard format and preliminary score" }
     text:
-      pt: "Um modelo de linguagem (Claude) converte o problema numa proposta em formato padronizado — que depois enviaremos a você por e-mail — e atribui uma nota preliminar com base em impacto, viabilidade, tempo, custo computacional e dados disponíveis. As notas formam um ranking. Cada proposta padronizada consome tokens, um recurso pago e limitado; por isso, membros do CBG têm prioridade na alocação desses recursos."
-      en: "A language model (Claude) turns the problem into a proposal in a standard format — which we will later email to you — and gives it a preliminary score based on impact, feasibility, time, computational cost and available data. The scores form a ranking. Each standardized proposal consumes tokens, a paid and limited resource; CBG members therefore have priority in the allocation of these resources."
+      pt: "Com a ajuda de um modelo de linguagem (Claude), organizamos o problema em uma proposta de formato padronizado, que depois enviaremos a você por e-mail. O modelo também atribui uma nota preliminar, com base em impacto, viabilidade, tempo, custo computacional e dados disponíveis, e as notas formam um ranking. Como cada proposta padronizada consome tokens, um recurso pago e limitado, membros do CBG têm prioridade nessa etapa."
+      en: "With the help of a language model (Claude), we organise the problem into a proposal in a standard format, which we will later send you by email. The model also gives it a preliminary score based on impact, feasibility, time, computational cost and available data, and the scores form a ranking. Since each standardized proposal consumes tokens, a paid and limited resource, CBG members have priority at this stage."
     tag: { pt: "automático · prioridade CBG", en: "automatic · CBG priority" }
 
   - name: { pt: "Leitura e avaliação pela equipe", en: "Reading and assessment by the team" }
     text:
-      pt: "Lemos as propostas na ordem do ranking e as avaliamos. Esta é a parte humana — e costuma levar algumas semanas."
-      en: "We read the proposals in ranking order and assess them. This is the human part — and it usually takes a few weeks."
+      pt: "Nossa equipe lê as propostas com atenção, seguindo a ordem do ranking. Essa etapa é feita por pessoas e costuma levar algumas semanas."
+      en: "Our team reads the proposals carefully, following the order of the ranking. This stage is done by people and usually takes a few weeks."
     tag: { pt: "algumas semanas", en: "a few weeks" }
 
   - name: { pt: "Entramos em contato", en: "We get in touch" }
     text:
-      pt: "Respondemos por e-mail com a nossa decisão e, quando for o caso, uma proposta de conversa."
-      en: "We reply by email with our decision and, where it applies, an invitation to talk."
+      pt: "Respondemos por e-mail com a nossa decisão e, quando fizer sentido, com um convite para conversarmos."
+      en: "We reply by email with our decision and, when it makes sense, with an invitation to talk."
     tag: { pt: "por e-mail", en: "by email" }
 
 decision:
-  title: { pt: "A decisão é do laboratório.", en: "The decision is the lab's." }
+  title: { pt: "A decisão final cabe ao laboratório.", en: "The final decision rests with the lab." }
   text:
-    pt: "Aceitar ou não uma colaboração é uma decisão do laboratório, a nosso critério — considerando a avaliação da equipe, a nossa capacidade no momento e o encaixe com a nossa pesquisa. A nota automática é só um ponto de partida para a leitura humana."
-    en: "Whether to take on a collaboration is the lab's decision, at our discretion — based on the team's assessment, our capacity at the time and the fit with our research. The automatic score is only a starting point for the human reading."
+    pt: "Ao decidir sobre uma colaboração, levamos em conta a avaliação da equipe, a nossa disponibilidade no momento e a afinidade do problema com as nossas linhas de pesquisa. A nota automática serve apenas como ponto de partida para a leitura feita pela equipe."
+    en: "When deciding on a collaboration, we take into account the team's assessment, our availability at the time and how well the problem fits our lines of research. The automatic score is only a starting point for the team's reading."
 
 example_link: { pt: "Veja um modelo de proposta preenchida", en: "See a filled-in example proposal" }

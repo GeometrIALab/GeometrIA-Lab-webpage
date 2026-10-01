@@ -1,4 +1,5 @@
 _site/
+_site_imecc/
 .sass-cache/
 .jekyll-cache/
 .jekyll-metadata
@@ -8,3 +9,6 @@ Gemfile.lock
 .DS_Store
 # arquivos entregues pelo app do Claude (não fazem parte do site)
 Claude outputs/
+
+# plugin do WordPress gerado por tools/wordpress/build-plugin.sh
+tools/wordpress/dist/

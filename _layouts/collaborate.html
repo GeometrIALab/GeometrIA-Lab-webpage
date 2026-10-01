@@ -9,8 +9,11 @@ layout: default
 {%- assign R = site.data.routes -%}
 {%- assign G = site.data.form -%}
 {%- assign mb = G.max_pdf_mb | default: 10 -%}
-{%- assign use_altcha = false -%}{%- if G.endpoint != "" and G.altcha -%}{%- assign use_altcha = true -%}{%- endif -%}
-{%- assign use_verify = false -%}{%- if G.endpoint != "" and G.verify_email -%}{%- assign use_verify = true -%}{%- endif -%}
+{%- comment -%} Com site.wp_gate (versão hospedada no site do CBG), o plugin do WordPress exige login, preenche
+     nome e e-mail da conta e troca os marcadores %%GIA_…%% por valores reais; o código por e-mail e o anti-robô saem. {%- endcomment -%}
+{%- assign wp = false -%}{%- if site.wp_gate and G.endpoint != "" -%}{%- assign wp = true -%}{%- endif -%}
+{%- assign use_altcha = false -%}{%- if G.endpoint != "" and G.altcha and wp == false -%}{%- assign use_altcha = true -%}{%- endif -%}
+{%- assign use_verify = false -%}{%- if G.endpoint != "" and G.verify_email and wp == false -%}{%- assign use_verify = true -%}{%- endif -%}
 {%- assign fit_anchor = "#diagnostico" -%}{%- if L == "en" -%}{%- assign fit_anchor = "#fit" -%}{%- endif -%}
 <section class="page-hero">
   <div class="container">
@@ -29,7 +32,7 @@ layout: default
       </div>
       <a class="link-arrow" href="{{ R.example[L] | relative_url }}">{{ TR.example_link[L] }}{% include icon.html name="arrow" %}</a>
     </header>
-    {% include triage-steps.html %}
+    {% include triage-steps.html show_decision="no" %}
   </div>
 </section>
 
@@ -42,6 +45,7 @@ layout: default
             data-email="{{ site.contact_email }}" data-lang="{{ L }}" data-subject="{{ F.mail_subject[L] }}"
             data-msg-invalid="{{ F.invalid[L] }}" data-msg-error="{{ F.error[L] }}" data-msg-sending="{{ F.sending[L] }}"
             data-msg-captcha="{{ F.captcha_error[L] }}" data-msg-verify-first="{{ F.verify_first[L] }}"
+            {%- if wp %} data-wp-pass="%%GIA_PASS%%" data-msg-login="{{ F.wp_login_error[L] }}"{% endif %}
             data-msg-pdf-type="{{ F.pdf_type_error[L] }}" data-msg-pdf-size="{{ F.pdf_size_error[L] | replace: '%MB%', mb }}">
 
         <fieldset>
@@ -49,11 +53,16 @@ layout: default
           <div class="field-row">
             <div class="field">
               <label for="f-name">{{ F.name[L] }}<span class="req" aria-hidden="true">*</span></label>
-              <input type="text" id="f-name" name="name" autocomplete="name" required>
+              <input type="text" id="f-name" name="name" autocomplete="name" required{% if wp %} value="%%GIA_NAME%%"{% endif %}>
             </div>
             <div class="field">
               <label for="f-email">{{ F.email[L] }}<span class="req" aria-hidden="true">*</span></label>
+              {%- if wp %}
+              <input type="email" id="f-email" name="email" value="%%GIA_EMAIL%%" readonly required aria-describedby="f-email-help">
+              <p class="help" id="f-email-help">{{ F.email_wp_help[L] }} <a href="%%GIA_LOGOUT%%">{{ F.wp_logout[L] }}</a></p>
+              {%- else %}
               <input type="email" id="f-email" name="email" autocomplete="email" inputmode="email" required>
+              {%- endif %}
             </div>
           </div>
           {%- if use_verify %}
@@ -79,7 +88,7 @@ layout: default
               <input type="text" id="f-code" inputmode="numeric" autocomplete="one-time-code" spellcheck="false" data-code-input aria-describedby="verify-status">
             </div>
             <p class="verify-status" id="verify-status" role="status" aria-live="polite" data-code-status></p>
-            <p class="verify-done" data-verified hidden>{% include icon.html name="check" %}<span>{{ F.verified[L] }} <strong data-verified-email></strong></span></p>
+            <p class="verify-done" data-verified hidden>{% include icon.html name="check" %}<span>{{ F.verified[L] }} <strong data-verified-email></strong> {{ F.verified_after[L] }}</span></p>
           </div>
           {%- endif %}
           <div class="field">
@@ -102,9 +111,8 @@ layout: default
               </select>
             </div>
           </div>
-          <fieldset class="choice-group" aria-describedby="f-cbg-help">
+          <fieldset class="choice-group">
             <legend>{{ F.cbg_member[L] }}<span class="req" aria-hidden="true">*</span></legend>
-            <p class="help" id="f-cbg-help">{{ F.cbg_member_help[L] }}</p>
             <div class="choices cols-2">
               {%- for o in F.cbg_member_options %}
               <label class="choice"><input type="radio" name="cbg_member" value="{{ o.value }}" required><span>{{ o[L] }}</span></label>
@@ -136,8 +144,8 @@ layout: default
         <fieldset>
           <legend><span class="mono">03</span>{{ F.legend_problem[L] }}</legend>
           <p class="fieldset-hint">{{ F.problem_hint[L] }} <a href="{{ R.example[L] | relative_url }}">{{ TR.example_link[L] }}</a>.</p>
-          <div class="field">
-            <label for="f-problem-title">{{ F.problem_title[L] }}<span class="opt">({{ F.optional[L] }})</span></label>
+          <div class="field" data-need-problem>
+            <label for="f-problem-title">{{ F.problem_title[L] }}<span class="req" aria-hidden="true" data-req-mark hidden>*</span></label>
             <input type="text" id="f-problem-title" name="problem_title" placeholder="{{ F.problem_title_ph[L] }}">
           </div>
           <div class="question-parts" role="group" aria-labelledby="f-question-title">
@@ -225,7 +233,7 @@ layout: default
 
         <div class="form-actions">
           <button class="btn btn-primary" type="submit" data-submit>{{ F.submit[L] }}{% include icon.html name="arrow" %}</button>
-          <p class="form-privacy">{% if G.endpoint != "" %}{{ F.privacy[L] }}{% else %}{{ F.privacy_mail[L] }}{% endif %}</p>
+          <p class="form-privacy">{% if wp %}{{ F.privacy_wp[L] }}{% elsif G.endpoint != "" %}{{ F.privacy[L] }}{% else %}{{ F.privacy_mail[L] }}{% endif %}</p>
         </div>
         <p class="form-status" role="status" aria-live="polite" data-status></p>
         <noscript><p class="form-status">{{ F.error[L] }} <a href="mailto:{{ site.contact_email }}">{{ site.contact_email }}</a>.</p></noscript>
@@ -235,7 +243,7 @@ layout: default
         {% include mark.html id="done1" %}
         <h2>{{ F.success_title[L] }}</h2>
         <p>{{ F.success_text[L] }}</p>
-        <p class="mono done-id" data-done-id hidden>{{ F.success_id[L] }} <strong data-done-id-value></strong></p>
+        <p class="mono done-id" data-done-id hidden>{{ F.success_id[L] }} <strong data-done-id-value></strong>.</p>
         <button class="btn btn-ghost" type="button" data-again>{{ F.success_again[L] }}</button>
       </div>
       <div class="form-done" data-done="mail" hidden tabindex="-1">

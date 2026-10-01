@@ -7,36 +7,36 @@ hero:
   kicker: { pt: "Identidade visual", en: "Visual identity" }
   title: { pt: "Tinta e sinal.", en: "Ink and signal." }
   lede:
-    pt: "A marca do GeometrIA é feita de duas camadas: a tinta azul-marinho da estrutura geométrica e o sinal do aprendizado, nas cores do logotipo do CBG. Ela pertence à família visual do CBG — mesmas fontes, mesma paleta — com um caráter próprio."
-    en: "The GeometrIA brand has two layers: the navy ink of geometric structure and the signal of learning, in the colours of CBG's logo. It belongs to CBG's visual family — same typefaces, same palette — with a character of its own."
+    pt: "A marca do GeometrIA combina duas camadas, a tinta azul-marinho da estrutura geométrica e o sinal do aprendizado, nas cores do logotipo do CBG. Ela pertence à família visual do CBG, com as mesmas fontes e a mesma paleta, mas tem um caráter próprio."
+    en: "The GeometrIA brand combines two layers, the navy ink of geometric structure and the signal of learning, in the colours of CBG's logo. It belongs to CBG's visual family, with the same typefaces and the same palette, but has a character of its own."
 
 name:
   kicker: { pt: "O nome", en: "The name" }
   title: { pt: "Geometria já termina em IA.", en: "Geometria already ends in IA." }
   text:
-    pt: "O nome só acende as duas últimas letras: a inteligência artificial não como algo de fora, mas dentro da própria geometria. Falado, é apenas “geometria”; escrito, diz o que fazemos. Funciona em português e em espanhol, e faz par com a MathIA AmLat."
-    en: "“Geometria” is Portuguese for geometry, and IA is the Portuguese acronym for AI. The name simply lights up the last two letters: artificial intelligence not as something external, but inside geometry itself. Spoken, it is just “geometria”; written, it says what we do. It works in Portuguese and Spanish, and pairs with MathIA AmLat."
+    pt: "O nome apenas acende as duas últimas letras, mostrando a inteligência artificial não como algo de fora, mas dentro da própria geometria. Falado, é apenas “geometria”; escrito, diz o que fazemos. Funciona em português e em espanhol, e faz par com a MathIA AmLat."
+    en: "“Geometria” is Portuguese for geometry, and IA is the Portuguese acronym for AI. The name simply lights up the last two letters, showing artificial intelligence not as something external, but inside geometry itself. Spoken, it is just “geometria”; written, it says what we do. It works in Portuguese and Spanish, and pairs with MathIA AmLat."
 
 mark:
   kicker: { pt: "O símbolo", en: "The mark" }
   title: { pt: "Um plano de Fano desenhado como ∇.", en: "A Fano plane drawn as ∇." }
   points:
-    - pt: "<b>7 pontos e 7 retas</b> — seis segmentos e um círculo. É o menor plano projetivo."
-      en: "<b>7 points and 7 lines</b> — six segments and one circle. It is the smallest projective plane."
-    - pt: "<b>Octônions e G<sub>2</sub>.</b> O plano de Fano organiza a multiplicação dos octônions, cujo grupo de automorfismos é G<sub>2</sub> — tema central do laboratório."
-      en: "<b>Octonions and G<sub>2</sub>.</b> The Fano plane encodes octonion multiplication, whose automorphism group is G<sub>2</sub> — a central theme of the lab."
-    - pt: "<b>Nabla.</b> O triângulo invertido é o ∇: em geometria, a conexão; em aprendizado de máquina, o gradiente que move o treinamento."
-      en: "<b>Nabla.</b> The inverted triangle is ∇: in geometry, the connection; in machine learning, the gradient that drives training."
-    - pt: "<b>Uma pequena rede.</b> Nós e arestas: retas em tinta são a estrutura; nós nas cores do CBG são o sinal."
-      en: "<b>A small network.</b> Nodes and edges: lines in ink are the structure; nodes in CBG's colours are the signal."
+    - pt: "<b>7 pontos e 7 retas.</b> São seis segmentos e um círculo, que formam o menor plano projetivo."
+      en: "<b>7 points and 7 lines.</b> Six segments and one circle make up the smallest projective plane."
+    - pt: "<b>Octônions e G<sub>2</sub>.</b> O plano de Fano organiza a multiplicação dos octônions, cujo grupo de automorfismos é G<sub>2</sub>, um tema central do laboratório."
+      en: "<b>Octonions and G<sub>2</sub>.</b> The Fano plane encodes octonion multiplication, whose automorphism group is G<sub>2</sub>, a central theme of the lab."
+    - pt: "<b>Nabla.</b> O triângulo invertido é o ∇, que em geometria representa a conexão e, em aprendizado de máquina, o gradiente que move o treinamento."
+      en: "<b>Nabla.</b> The inverted triangle is ∇, which stands for the connection in geometry and for the gradient that drives training in machine learning."
+    - pt: "<b>Uma pequena rede.</b> As retas em tinta formam a estrutura, e os nós nas cores do CBG são o sinal."
+      en: "<b>A small network.</b> The lines in ink form the structure, and the nodes in CBG's colours are the signal."
 
 versions:
   kicker: { pt: "Versões", en: "Versions" }
   title: { pt: "Assinaturas e arquivos", en: "Lockups and files" }
-  horizontal: { pt: "Horizontal — uso preferencial", en: "Horizontal — preferred" }
+  horizontal: { pt: "Horizontal (uso preferencial)", en: "Horizontal (preferred)" }
   stacked: { pt: "Vertical", en: "Stacked" }
   symbol: { pt: "Símbolo", en: "Mark" }
-  small: { pt: "Símbolo reduzido — até 32 px", en: "Small mark — up to 32 px" }
+  small: { pt: "Símbolo reduzido (até 32 px)", en: "Small mark (up to 32 px)" }
   wordmark: { pt: "Logotipo", en: "Wordmark" }
   on_dark: { pt: "Sobre fundo escuro", en: "On dark" }
   mono: { pt: "Uma cor", en: "One colour" }
@@ -48,8 +48,8 @@ cobrand:
   kicker: { pt: "Com o CBG", en: "With CBG" }
   title: { pt: "Um laboratório do CBG", en: "A lab of CBG" }
   text:
-    pt: "O GeometrIA é um laboratório do Centro Brasileiro de Geometria. Em apresentações, pôsteres e documentos, use a assinatura conjunta — o GeometrIA, um fio vertical e o logotipo do CBG — ou coloque as duas marcas lado a lado, com o mesmo peso visual."
-    en: "GeometrIA is a lab of the Brazilian Center for Geometry. In talks, posters and documents, use the joint lockup — GeometrIA, a thin vertical rule and CBG's logo — or place both logos side by side, with equal visual weight."
+    pt: "O GeometrIA é um laboratório do Centro Brasileiro de Geometria. Em apresentações, pôsteres e documentos, use a assinatura conjunta, formada pelo GeometrIA, um fio vertical e o logotipo do CBG, ou coloque as duas marcas lado a lado, com o mesmo peso visual."
+    en: "GeometrIA is a lab of the Brazilian Center for Geometry. In talks, posters and documents, use the joint lockup, made of GeometrIA, a thin vertical rule and CBG's logo, or place both logos side by side, with equal visual weight."
   light: { pt: "Assinatura conjunta", en: "Joint lockup" }
   dark: { pt: "Assinatura conjunta sobre fundo escuro", en: "Joint lockup on dark" }
 
@@ -59,13 +59,13 @@ rules:
   do:
     - pt: "Deixe ao redor da marca um respiro igual à altura do “IA”."
       en: "Leave clear space around the mark equal to the height of the “IA”."
-    - pt: "Tamanho mínimo: 120 px de largura na horizontal; 16 px no símbolo reduzido."
-      en: "Minimum size: 120 px wide for the horizontal lockup; 16 px for the small mark."
+    - pt: "Use a versão horizontal com pelo menos 120 px de largura e o símbolo reduzido com pelo menos 16 px."
+      en: "Use the horizontal lockup at least 120 px wide and the small mark at least 16 px wide."
     - pt: "Em materiais do laboratório, use a assinatura com o CBG ou as duas marcas lado a lado."
       en: "In lab materials, use the joint lockup with CBG or show both logos side by side."
   dont:
-    - pt: "Não gire o símbolo: o ∇ aponta para baixo."
-      en: "Don't rotate the mark: the ∇ points down."
+    - pt: "Não gire o símbolo, pois o ∇ sempre aponta para baixo."
+      en: "Don't rotate the mark, since the ∇ always points down."
     - pt: "Não mude as cores do “IA” nem use o gradiente em textos corridos."
       en: "Don't recolour the “IA”, or use the gradient on running text."
     - pt: "Não aplique contornos, sombras ou efeitos; sobre fotos, use a versão branca."
@@ -75,8 +75,8 @@ palette:
   kicker: { pt: "Cores", en: "Colour" }
   title: { pt: "Paleta", en: "Palette" }
   lede:
-    pt: "A paleta do CBG, tirada do seu logotipo. O azul-marinho é tinta: texto e estrutura. Sálvia, verde-amarelado e lima formam o sinal — nunca em textos pequenos."
-    en: "CBG's palette, taken from its logo. Navy is ink: text and structure. Sage, yellow-green and lime make up the signal — never on small text."
+    pt: "Usamos a paleta do CBG, tirada do seu logotipo. O azul-marinho é a tinta, usada em textos e na estrutura. Sálvia, verde-amarelado e lima formam o sinal e nunca devem ser usados em textos pequenos."
+    en: "We use CBG's palette, taken from its logo. Navy is the ink, used for text and structure. Sage, yellow-green and lime make up the signal and should never be used on small text."
   swatches:
     - { name: { pt: Tinta, en: Ink }, hex: "#0E2A47", use: { pt: "texto, retas do símbolo", en: "text, lines of the mark" } }
     - { name: { pt: Sálvia CBG, en: CBG sage }, hex: "#79BC9C", use: { pt: "sinal (início)", en: "signal (start)" } }
@@ -93,8 +93,8 @@ type:
   kicker: { pt: "Tipografia", en: "Typography" }
   title: { pt: "Três vozes", en: "Three voices" }
   faces:
-    - { family: "Red Hat Display", css: "display", role: { pt: "Títulos e logotipo — a mesma do CBG", en: "Headings and wordmark — shared with CBG" }, sample: "Régua, compasso e redes neurais" }
-    - { family: "Inter", css: "body", role: { pt: "Texto corrido — a mesma do CBG", en: "Running text — shared with CBG" }, sample: "Métricas, formas e superfícies aproximadas por redes neurais." }
+    - { family: "Red Hat Display", css: "display", role: { pt: "Títulos e logotipo, com a mesma fonte do CBG", en: "Headings and wordmark, shared with CBG" }, sample: "Da régua e compasso para redes neurais" }
+    - { family: "Inter", css: "body", role: { pt: "Texto corrido, com a mesma fonte do CBG", en: "Running text, shared with CBG" }, sample: "Métricas, formas e superfícies aproximadas por redes neurais." }
     - { family: "JetBrains Mono", css: "mono", role: { pt: "Rótulos, dados e código", en: "Labels, data and code" }, sample: "época 0420 · W = 19.7392 → 2π²" }
   license:
     pt: "Todas sob a SIL Open Font License, hospedadas no próprio site."
@@ -104,5 +104,5 @@ graphics:
   kicker: { pt: "Linguagem gráfica", en: "Graphic language" }
   title: { pt: "Superfícies como dados", en: "Surfaces as data" }
   text:
-    pt: "Linhas finas e nuvens de pontos: superfícies desenhadas como amostras, coloridas pela curvatura; rótulos em fonte mono, como anotações num caderno de laboratório. Sempre matemática de verdade — a animação da página inicial é uma descida de gradiente real da energia de Willmore, restrita aos toros de revolução."
-    en: "Fine lines and point clouds: surfaces drawn as samples, coloured by curvature; monospaced labels, like annotations in a lab notebook. Always real mathematics — the home-page animation is an actual gradient descent of the Willmore energy, restricted to tori of revolution."
+    pt: "Usamos linhas finas e nuvens de pontos, com superfícies desenhadas como amostras e coloridas pela curvatura, e rótulos em fonte mono, como anotações num caderno de laboratório. É sempre matemática de verdade. A animação da página inicial, por exemplo, é uma descida de gradiente real da energia de Willmore, restrita aos toros de revolução."
+    en: "We use fine lines and point clouds, with surfaces drawn as samples and coloured by curvature, and monospaced labels, like annotations in a lab notebook. It is always real mathematics. The home-page animation, for instance, is an actual gradient descent of the Willmore energy, restricted to tori of revolution."

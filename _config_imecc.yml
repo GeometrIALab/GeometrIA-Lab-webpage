@@ -1,0 +1,18 @@
+# ─────────────────────────────────────────────────────────────
+#  Versão de testes no servidor do IMECC:
+#    https://www.ime.unicamp.br/~tomas/GeometrIA-Lab/
+#
+#  Este arquivo só troca o endereço; o resto vem do _config.yml. Para gerar:
+#    bundle exec jekyll build --config _config.yml,_config_imecc.yml -d _site_imecc
+#  e copie o conteúdo de _site_imecc/ para public_html/GeometrIA-Lab/ no servidor
+#  (passo a passo no README, seção "Publicar no servidor do IMECC").
+# ─────────────────────────────────────────────────────────────
+
+url: "https://www.ime.unicamp.br"
+baseurl: "/~tomas/GeometrIA-Lab"
+
+# O servidor também responde em http://, e o anti-robô do formulário só funciona em https://.
+force_https: true
+
+# Versão de testes: pede aos buscadores para não indexar. Apague a linha para indexar.
+noindex: true

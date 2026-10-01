@@ -2,16 +2,16 @@ title: { pt: "GeometrIA · CBG – Laboratório de IA e Geometria", en: "Geometr
 
 hero:
   eyebrow: { pt: "CBG – Laboratório de IA e Geometria", en: "CBG – AI &amp; Geometry Lab" }
-  title: { pt: "Régua, compasso e redes neurais.", en: "Ruler, compass and neural networks." }
+  title: { pt: "Da régua e compasso para redes neurais.", en: "From ruler and compass to neural networks." }
   lede:
-    pt: "Somos o laboratório de inteligência artificial do Centro Brasileiro de Geometria. Usamos aprendizado de máquina para aproximar, prever e encontrar objetos geométricos — e ajudamos matemáticos de todo o Brasil a fazer o mesmo em suas pesquisas."
-    en: "We are the artificial intelligence lab of the Brazilian Center for Geometry. We use machine learning to approximate, predict and find geometric objects — and we help mathematicians across Brazil do the same in their own research."
+    pt: "Somos o laboratório de inteligência artificial do Centro Brasileiro de Geometria. Usamos aprendizado de máquina para aproximar, prever e encontrar objetos geométricos, e ajudamos matemáticos de todo o Brasil a fazer o mesmo em suas pesquisas."
+    en: "We are the artificial intelligence lab of the Brazilian Center for Geometry. We use machine learning to approximate, predict and find geometric objects, and we help mathematicians across Brazil do the same in their own research."
   cta_secondary: { pt: "Como trabalhamos", en: "How we work" }
   figure_label: { pt: "fluxo de Willmore · toros de revolução", en: "Willmore flow · tori of revolution" }
   figure_caption:
-    pt: "Descida de gradiente da energia de Willmore W sobre toros de revolução, com pontos coloridos pela curvatura média. A razão c = R/r converge para √2 — o toro de Clifford, com W = 2π²."
-    en: "Gradient descent of the Willmore energy W over tori of revolution, with points coloured by mean curvature. The ratio c = R/r converges to √2 — the Clifford torus, with W = 2π²."
-  figure_ref: { pt: "Referência:", en: "Reference:" }
+    pt: "Descida de gradiente da energia de Willmore W sobre toros de revolução, com pontos coloridos pela curvatura média. A razão c = R/r converge para √2, que corresponde ao toro de Clifford, com W = 2π²."
+    en: "Gradient descent of the Willmore energy W over tori of revolution, with points coloured by mean curvature. The ratio c = R/r converges to √2, which corresponds to the Clifford torus, with W = 2π²."
+  figure_ref: { pt: "Mais detalhes em", en: "More details in" }
   figure_pub: willmore
   epoch: { pt: "época", en: "epoch" }
 
@@ -19,8 +19,8 @@ cbg:
   kicker: { pt: "Um laboratório do CBG", en: "A lab of CBG" }
   title: { pt: "Parte do Centro Brasileiro de Geometria", en: "Part of the Brazilian Center for Geometry" }
   text:
-    pt: "O GeometrIA é o laboratório de inteligência artificial do Centro Brasileiro de Geometria (CBG), um Centro de Pesquisa, Inovação e Difusão (CEPID) financiado pela FAPESP e sediado no IMECC/UNICAMP. O CBG reúne pesquisadores de várias instituições em quatro verticais temáticas — e o laboratório trabalha na interseção de todas elas com a IA."
-    en: "GeometrIA is the artificial intelligence lab of the Brazilian Center for Geometry (CBG), a Research, Innovation and Dissemination Center (CEPID) funded by FAPESP and hosted at IMECC/UNICAMP. CBG brings together researchers from several institutions in four thematic verticals — and the lab works where each of them meets AI."
+    pt: "O GeometrIA é o laboratório de inteligência artificial do Centro Brasileiro de Geometria (CBG), um Centro de Pesquisa, Inovação e Difusão (CEPID) financiado pela FAPESP e sediado no IMECC/UNICAMP. O CBG reúne pesquisadores de várias instituições em quatro verticais temáticas, e o laboratório trabalha na interseção de cada uma delas com a IA."
+    en: "GeometrIA is the artificial intelligence lab of the Brazilian Center for Geometry (CBG), a Research, Innovation and Dissemination Center (CEPID) funded by FAPESP and hosted at IMECC/UNICAMP. CBG brings together researchers from several institutions in four thematic verticals, and the lab works where each of them meets AI."
   verticals:
     - { pt: "Geometria Diferencial", en: "Differential Geometry" }
     - { pt: "Geometria Algébrica", en: "Algebraic Geometry" }
@@ -34,20 +34,20 @@ what:
   items:
     - name: { pt: Pesquisa, en: Research }
       text:
-        pt: "Desenvolvemos métodos de aprendizado de máquina para geometria: métricas e formas diferenciais aproximadas por redes neurais, invariantes topológicos aprendidos a partir de dados e buscas heurísticas por objetos combinatórios raros."
-        en: "We develop machine-learning methods for geometry: metrics and differential forms approximated by neural networks, topological invariants learned from data, and heuristic searches for rare combinatorial objects."
+        pt: "Desenvolvemos métodos de aprendizado de máquina para a geometria, como métricas e formas diferenciais aproximadas por redes neurais, invariantes topológicos aprendidos a partir de dados e buscas heurísticas por objetos combinatórios raros."
+        en: "We develop machine-learning methods for geometry, such as metrics and differential forms approximated by neural networks, topological invariants learned from data, and heuristic searches for rare combinatorial objects."
       link: research
       link_text: { pt: "Ver publicações", en: "See publications" }
     - name: { pt: Ponte, en: Bridge }
       text:
-        pt: "Conversamos com matemáticos que não trabalham com IA para descobrir, juntos, se — e como — essas ferramentas podem ajudar suas pesquisas. Você traz a pergunta; nós ajudamos a montar o experimento."
-        en: "We talk with mathematicians who don't work with AI to find out, together, whether — and how — these tools can help their research. You bring the question; we help build the experiment."
+        pt: "Conversamos com matemáticos que não trabalham com IA para descobrir, juntos, se essas ferramentas podem ajudar em suas pesquisas e de que forma. Você traz a pergunta, e nós ajudamos a montar o experimento."
+        en: "We talk with mathematicians who don't work with AI to find out, together, whether these tools can help their research and how. You bring the question, and we help design the experiment."
       link: collaborate
       link_text: { pt: "Propor um problema", en: "Propose a problem" }
     - name: { pt: Comunidade, en: Community }
       text:
-        pt: "Temos um canal no Zulip, a MathIA AmLat, onde matemáticos da América Latina discutem e acompanham notícias sobre IA e matemática. O Zulip é um aplicativo de conversa gratuito e de código aberto, organizado por tópicos — como um fórum em tempo real."
-        en: "We have a channel on Zulip, MathIA AmLat, where Latin American mathematicians discuss and follow news on AI and mathematics. Zulip is a free, open-source chat app organised by topic — like a real-time forum."
+        pt: "Temos um canal no Zulip, a MathIA AmLat, onde matemáticos da América Latina discutem e acompanham notícias sobre IA e matemática. O Zulip é um aplicativo de conversa gratuito e de código aberto, organizado por tópicos, como um fórum em tempo real."
+        en: "We have a channel on Zulip, MathIA AmLat, where Latin American mathematicians discuss and follow news on AI and mathematics. Zulip is a free, open-source chat app organised by topic, like a real-time forum."
       link: community
       link_text: { pt: "Pedir um convite", en: "Ask for an invitation" }
       logo: /assets/img/community/mathia-amlat.jpg
@@ -56,15 +56,15 @@ modes:
   kicker: { pt: "Quatro modos", en: "Four modes" }
   title: { pt: "Como a IA entra na matemática", en: "How AI enters mathematics" }
   lede:
-    pt: "Na prática, quase todo projeto de IA em matemática cai em um — ou mais — destes quatro modos. Todos têm exemplos no nosso trabalho."
-    en: "In practice, almost every AI-for-mathematics project falls into one — or more — of these four modes. Each has examples in our own work."
+    pt: "Na prática, quase todo projeto de IA em matemática se encaixa em um ou mais destes quatro modos, e todos eles aparecem no nosso trabalho."
+    en: "In practice, almost every AI-for-mathematics project fits one or more of these four modes, and all of them appear in our own work."
 
 loop:
   kicker: { pt: "Abordagem", en: "Approach" }
   title: { pt: "Um ciclo, não uma caixa-preta", en: "A loop, not a black box" }
   lede:
-    pt: "Toda colaboração percorre o mesmo ciclo: da pergunta matemática à verificação — e de volta a uma pergunta melhor."
-    en: "Every collaboration runs through the same loop: from the mathematical question to verification — and back to a sharper question."
+    pt: "Toda colaboração percorre o mesmo ciclo, que vai da pergunta matemática à verificação e depois volta a uma pergunta melhor."
+    en: "Every collaboration follows the same loop, going from the mathematical question to verification and then back to a sharper question."
   link: { pt: "Conheça a abordagem", en: "Read our approach" }
 
 work:
@@ -75,8 +75,8 @@ work:
 cta:
   title: { pt: "Você não precisa saber IA. Precisa de uma boa pergunta.", en: "You don't need to know AI. You need a good question." }
   text:
-    pt: "Se você trabalha com geometria — ou com qualquer área da matemática — e tem um problema com muitos exemplos, um cálculo difícil ou um padrão que ainda não sabe explicar, fale com a gente."
-    en: "If you work in geometry — or any area of mathematics — and have a problem with many examples, a hard computation or a pattern you can't yet explain, talk to us."
+    pt: "Se você trabalha com geometria ou com qualquer outra área da matemática e tem um problema com muitos exemplos, um cálculo difícil ou um padrão que ainda não sabe explicar, vamos conversar."
+    en: "If you work in geometry or in any other area of mathematics and have a problem with many examples, a hard computation or a pattern you can't yet explain, let's talk."
 
 news:
   kicker: { pt: "Novidades", en: "News" }

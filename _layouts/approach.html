@@ -51,7 +51,7 @@ layout: default
           <div>
             <h3>{{ s.name[L] }}</h3>
             <p>{{ s.text[L] }}</p>
-            <span class="out"><span class="visually-hidden">{{ T.loop.output[L] }}: </span>{{ s.output[L] }}</span>
+            <span class="out"><span class="visually-hidden">{{ T.loop.output[L] }}, </span>{{ s.output[L] }}</span>
           </div>
         </li>
         {%- endfor %}
@@ -111,13 +111,13 @@ layout: default
       <div class="card fit-card fit-good">
         <h3>{{ T.fit.good_title[L] }}</h3>
         <ul class="fit-list">
-          {%- for g in T.fit.good %}<li>{% include icon.html name="check" %}<span>{{ g[L] }}</span></li>{% endfor %}
+          {%- for g in T.fit.good %}<li>{% include icon.html name="check-circle" %}<span>{{ g[L] }}</span></li>{% endfor %}
         </ul>
       </div>
       <div class="card fit-card fit-hard">
         <h3>{{ T.fit.hard_title[L] }}</h3>
         <ul class="fit-list">
-          {%- for g in T.fit.hard %}<li>{% include icon.html name="minus" %}<span>{{ g[L] }}</span></li>{% endfor %}
+          {%- for g in T.fit.hard %}<li>{% include icon.html name="minus-circle" %}<span>{{ g[L] }}</span></li>{% endfor %}
         </ul>
       </div>
     </div>
