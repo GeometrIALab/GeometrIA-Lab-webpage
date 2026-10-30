@@ -5,6 +5,8 @@
 # ─────────────────────────────────────────────────────────────
 
 title: GeometrIA
+# Fuso das datas dos posts (o GitHub gera o site em UTC).
+timezone: America/Sao_Paulo
 tagline_pt: CBG – Laboratório de IA e Geometria
 tagline_en: CBG – AI & Geometry Lab
 
@@ -16,7 +18,7 @@ baseurl: "/GeometrIA-Lab"
 # E-mail oficial do laboratório (rodapé, formulário, mensagens).
 contact_email: "geometria.lab@cbg.unicamp.br"
 
-github_repo: "https://github.com/TomasSilva/GeometrIA-Lab"
+github_repo: "https://github.com/GeometrIALab/GeometrIA-Lab-webpage"
 # Comunidade MathIA AmLat (Zulip): os convites são pedidos por e-mail ao laboratório
 # (contact_email), com este assunto.
 community_invite_subject: "Solicitação convite mathIA AmLat"

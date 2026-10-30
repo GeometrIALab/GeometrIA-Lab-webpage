@@ -1,0 +1,90 @@
+# Publicação automática no site do CBG (https://www.cbg.ime.unicamp.br/GeometrIALab/).
+#
+# A cada push na branch main (ou pelo botão "Run workflow" na aba Actions), o GitHub:
+#   1. gera o site na versão do CBG (tools/wordpress/build-site.sh);
+#   2. publica o pacote numa release do repositório (geometria-lab-site.zip e build.json),
+#      mantendo só as 10 mais recentes;
+#   3. avisa o WordPress do CBG, que baixa o pacote, confere e põe a versão nova no ar.
+# O aviso usa o segredo CBG_DEPLOY_SECRET (Settings → Secrets and variables → Actions), que é a
+# "Chave de publicação" mostrada em Configurações → GeometrIA, no WordPress. Sem o segredo, ou se o
+# aviso falhar, o WordPress encontra a versão nova sozinho, na verificação de hora em hora.
+name: Publicar no site do CBG
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publicar-cbg
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    env:
+      CBG_URL: https://www.cbg.ime.unicamp.br
+      JEKYLL: jekyll
+      JEKYLL_NO_BUNDLER_REQUIRE: "true"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+
+      - name: Instalar o Jekyll
+        run: |
+          gem install --no-document jekyll -v 3.10.0
+          gem install --no-document kramdown-parser-gfm
+
+      - name: Gerar o site do CBG
+        run: tools/wordpress/build-site.sh dist/site
+
+      - name: Empacotar
+        run: |
+          TAG="site-$(date -u +%Y%m%d-%H%M%S)-${GITHUB_SHA::7}"
+          (cd dist/site && zip -qrX ../geometria-lab-site.zip .)
+          SHA256="$(sha256sum dist/geometria-lab-site.zip | cut -d' ' -f1)"
+          printf '{"tag":"%s","sha256":"%s","commit":"%s","time":%s}' "$TAG" "$SHA256" "$GITHUB_SHA" "$(date -u +%s)" > dist/build.json
+          echo "TAG=$TAG" >> "$GITHUB_ENV"
+          cat dist/build.json
+
+      - name: Publicar a release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$TAG" dist/geometria-lab-site.zip dist/build.json \
+            --target "$GITHUB_SHA" --latest \
+            --title "Site $TAG" \
+            --notes "Gerado automaticamente a partir do commit ${GITHUB_SHA}."
+          # Mantém só as 10 releases mais recentes do site.
+          gh release list --limit 100 --json tagName,createdAt \
+            --jq '[.[] | select(.tagName | startswith("site-"))] | sort_by(.createdAt) | reverse | .[10:] | .[].tagName' |
+            while read -r old; do gh release delete "$old" --cleanup-tag --yes; done
+
+      - name: Avisar o WordPress do CBG
+        env:
+          SECRET: ${{ secrets.CBG_DEPLOY_SECRET }}
+        run: |
+          if [ -z "$SECRET" ]; then
+            echo "::notice::Sem o segredo CBG_DEPLOY_SECRET. O site do CBG vai buscar a versão nova sozinho, de hora em hora."
+            exit 0
+          fi
+          BODY="$(cat dist/build.json)"
+          SIG="$(printf '%s' "$BODY" | openssl dgst -sha256 -hmac "$SECRET" -r | cut -d' ' -f1)"
+          for URL in "$CBG_URL/wp-json/geometria-lab/v1/publicar" "$CBG_URL/?rest_route=/geometria-lab/v1/publicar"; do
+            echo "Avisando $URL"
+            if curl -sS --fail-with-body --max-time 180 -X POST \
+                 -H "Content-Type: application/json" -H "X-GeometrIA-Signature: sha256=$SIG" \
+                 --data-binary "$BODY" "$URL"; then
+              echo; echo "Versão $TAG no ar."
+              exit 0
+            fi
+            echo
+          done
+          echo "::error::O WordPress do CBG não confirmou a atualização. Veja o registro em Configurações → GeometrIA. A verificação de hora em hora tenta de novo."
+          exit 1

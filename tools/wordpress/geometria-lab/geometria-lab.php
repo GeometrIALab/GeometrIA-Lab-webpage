@@ -1,9 +1,9 @@
 <?php
 /**
  * Plugin Name:       GeometrIA · CBG – Laboratório de IA e Geometria
- * Plugin URI:        https://github.com/TomasSilva/GeometrIA-Lab
+ * Plugin URI:        https://github.com/GeometrIALab/GeometrIA-Lab-webpage
  * Description:       Publica o site do GeometrIA em /GeometrIALab. O formulário de propostas só abre para quem entrou com a conta do site (página /acesso/).
- * Version:           1.1.9
+ * Version:           2.0.0
  * Requires at least: 5.8
  * Requires PHP:      7.4
  * Author:            GeometrIA · CBG
@@ -11,10 +11,11 @@
  * Text Domain:       geometria-lab
  *
  * Como funciona
- *   O site (HTML, CSS, imagens) fica pronto na pasta site/ deste plugin, gerado pelo Jekyll com
- *   _config_cbg.yml (tools/wordpress/build-plugin.sh). As páginas são entregues por este
+ *   O site (HTML, CSS, imagens) é gerado pelo Jekyll com _config_cbg.yml. A cada push no GitHub, a
+ *   versão nova é baixada e posta no ar sozinha (publicar.php), em <uploads>/geometria-lab/; até a
+ *   primeira publicação vale a cópia da pasta site/ deste plugin. As páginas são entregues por este
  *   arquivo no endereço /GeometrIALab/…; CSS, fontes e imagens são servidos direto da pasta do
- *   plugin, sem passar pelo PHP.
+ *   site, sem passar pelo PHP.
  *
  *   As páginas do formulário (colabore/ e en/collaborate/) exigem login. Sem login, a pessoa vai
  *   para /acesso/ e, depois de entrar, volta ao formulário. Com login, o plugin preenche nome e
@@ -26,7 +27,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-const GIA_VERSION   = '1.1.9';
+require_once __DIR__ . '/publicar.php';
+
+const GIA_VERSION   = '2.0.0';
 const GIA_BASE      = '/GeometrIALab';                     // igual ao baseurl do _config_cbg.yml
 const GIA_BUILD_URL = 'https://www.cbg.ime.unicamp.br';     // igual ao url do _config_cbg.yml
 const GIA_LOGIN     = '/acesso/';                          // página de login e cadastro do site
@@ -56,8 +59,16 @@ register_deactivation_hook( __FILE__, 'gia_deactivate' );
 
 /* ---------------------------------------------------------------- endereços */
 
+/** Pasta do site no ar: a última versão baixada do GitHub ou, antes disso, a cópia que veio no plugin. */
 function gia_site_dir() {
-	return __DIR__ . '/site';
+	$cur = gia_pub_current();
+	return $cur ? $cur['path'] : __DIR__ . '/site';
+}
+
+/** Endereço da mesma pasta (com a barra final), de onde o servidor entrega CSS, fontes e imagens. */
+function gia_site_url() {
+	$cur = gia_pub_current();
+	return $cur ? $cur['url'] : plugins_url( 'site/', __FILE__ );
 }
 
 /** Caminho do site no servidor, ex.: "/GeometrIALab" (ou "/wp/GeometrIALab" se o WordPress estiver numa subpasta). */
@@ -171,9 +182,9 @@ function gia_content_type( $file ) {
 	return isset( $types[ $ext ] ) ? $types[ $ext ] : 'application/octet-stream';
 }
 
-/** No HTML, CSS e imagens passam a vir direto da pasta do plugin (o servidor entrega sem PHP). */
+/** No HTML, CSS e imagens passam a vir direto da pasta do site (o servidor entrega sem PHP). */
 function gia_rewrite_html( $html ) {
-	$assets = plugins_url( 'site/assets/', __FILE__ );
+	$assets = gia_site_url() . 'assets/';
 	$home   = untrailingslashit( home_url( GIA_BASE ) );
 	$html   = str_replace( GIA_BUILD_URL . GIA_BASE . '/assets/', $assets, $html );
 	if ( GIA_BUILD_URL . GIA_BASE !== $home ) {
@@ -528,6 +539,7 @@ function gia_purge_cache_request() {
 function gia_deactivate() {
 	gia_purge_page_cache();
 	delete_option( GIA_CACHE_VER );
+	gia_pub_unschedule();
 }
 
 /* ---------------------------------------------------------------- configurações */
@@ -593,7 +605,7 @@ function gia_settings_page() {
 		<h1>GeometrIA</h1>
 		<p>O site do laboratório está em <a href="<?php echo esc_url( $url ); ?>"><?php echo esc_html( $url ); ?></a>. O formulário de propostas só abre para quem entrou com a conta do site, pela página <a href="<?php echo esc_url( home_url( GIA_LOGIN ) ); ?>"><?php echo esc_html( GIA_LOGIN ); ?></a>.</p>
 		<?php if ( $build ) : ?>
-			<p>Versão do site neste plugin, <code><?php echo esc_html( $build ); ?></code>.</p>
+			<p>Versão do site no ar, gerada em <code><?php echo esc_html( $build ); ?></code>.</p>
 		<?php endif; ?>
 		<form method="post" action="options.php">
 			<?php settings_fields( 'geometria_lab' ); ?>
@@ -620,12 +632,13 @@ function gia_settings_page() {
 		<?php if ( isset( $_GET['gia_cache'] ) ) : // phpcs:ignore WordPress.Security.NonceVerification.Recommended ?>
 			<div class="notice notice-success inline"><p>Cache das páginas do laboratório limpo (<?php echo (int) $_GET['gia_cache']; // phpcs:ignore WordPress.Security.NonceVerification.Recommended ?> arquivos apagados). Recarregue o site com Cmd+Shift+R (ou Ctrl+Shift+R).</p></div>
 		<?php endif; ?>
-		<p>O WP Fastest Cache guarda cópias das páginas e do CSS do laboratório. Elas são apagadas sozinhas a cada plugin enviado. Use o botão se alguma página continuar mostrando a versão antiga.</p>
+		<p>O WP Fastest Cache guarda cópias das páginas e do CSS do laboratório. Elas são apagadas sozinhas a cada versão nova do site. Use o botão se alguma página continuar mostrando a versão antiga.</p>
 		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 			<input type="hidden" name="action" value="gia_purge_cache">
 			<?php wp_nonce_field( 'gia_purge_cache' ); ?>
 			<?php submit_button( 'Limpar o cache das páginas do laboratório', 'secondary', 'gia-purge', false ); ?>
 		</form>
+		<?php gia_pub_settings_section(); ?>
 	</div>
 	<?php
 }

@@ -5,7 +5,9 @@ Site do **GeometrIA**, o laboratório de inteligência artificial e geometria do
 Bilíngue (português por padrão, inglês em `/en/`), estático, feito com Jekyll puro.
 
 **No ar em https://www.cbg.ime.unicamp.br/GeometrIALab/**, dentro do site do CBG (WordPress), por
-meio de um plugin feito para ele (`tools/wordpress/geometria-lab/`). O formulário de propostas só
+meio de um plugin feito para ele (`tools/wordpress/geometria-lab/`). O repositório é
+[GeometrIALab/GeometrIA-Lab-webpage](https://github.com/GeometrIALab/GeometrIA-Lab-webpage), e cada
+push na branch `main` vai sozinho para o ar (veja "Publicação automática", abaixo). O formulário de propostas só
 abre para quem entrou com a conta do site do CBG e manda cada proposta, com o PDF, para o e-mail do
 laboratório por um Google Apps Script (`tools/form-backend.gs`).
 
@@ -17,26 +19,22 @@ propostas, porque o script só aceita quem entrou pelo site do CBG.
 
 ## Atualizar o site (dia a dia)
 
-Toda mudança de conteúdo (texto, publicação, notícia, pessoa) segue o mesmo ciclo. A chave do
+Toda mudança de conteúdo (texto, publicação, notícia, post, pessoa) segue o mesmo ciclo. A chave do
 formulário fica salva no WordPress e não precisa ser mexida.
 
-1. **Edite** os arquivos de `_data/` (veja "Onde fica cada coisa", abaixo).
+1. **Edite** os arquivos (veja "Onde fica cada coisa", abaixo). Dá para editar direto no site do
+   GitHub, pelo lápis de cada arquivo, sem instalar nada.
 2. **Confira** localmente (opcional): `bundle exec jekyll serve` e abra
    http://127.0.0.1:4000/GeometrIA-Lab/ (veja "Pré-visualizar localmente").
-3. **Gere o plugin**, na pasta do repositório:
-   ```bash
-   tools/wordpress/build-plugin.sh      # cria tools/wordpress/dist/geometria-lab.zip
-   ```
-4. **Envie** no painel do CBG (https://www.cbg.ime.unicamp.br/wp-admin/): **Plugins → Adicionar novo →
-   Enviar plugin → Escolher arquivo → Instalar agora**. O WordPress avisa que o plugin já existe:
-   **Substituir o atual pelo enviado**.
-5. **Confira** https://www.cbg.ime.unicamp.br/GeometrIALab/ com Cmd+Shift+R (ou Ctrl+Shift+R). O
-   WP Fastest Cache do CBG guarda cópias das páginas e uma cópia "minificada" do CSS (cujo nome
-   ignora o `?v=`, então ela nunca se atualiza sozinha), e o menu dele fica escondido dos
-   administradores. Desde o plugin 1.1.5, a primeira página do painel depois de enviar um plugin
-   novo apaga essas cópias do laboratório (as do resto do site ficam). Se alguma página continuar
-   antiga, use **Configurações → GeometrIA → Limpar o cache das páginas do laboratório**.
-6. **Commit e push**, para o repositório continuar sendo a fonte oficial.
+3. **Commit e push** na branch `main`. No site do GitHub, o botão "Commit changes" já faz isso.
+4. **Pronto.** Em dois ou três minutos, o GitHub gera o site e o WordPress do CBG põe a versão nova no
+   ar. O andamento aparece na aba **Actions** do repositório, e a versão no ar em
+   **Configurações → GeometrIA**, no WordPress. Para conferir, recarregue
+   https://www.cbg.ime.unicamp.br/GeometrIALab/ com Cmd+Shift+R (ou Ctrl+Shift+R).
+
+O plugin só precisa ser enviado de novo ao WordPress quando o código dele muda
+(`tools/wordpress/geometria-lab/*.php`). Nesse caso, gere o zip com `tools/wordpress/build-plugin.sh`
+e envie em **Plugins → Adicionar novo → Enviar plugin → Substituir o atual pelo enviado**.
 
 O script do Google só precisa de uma nova versão quando o `tools/form-backend.gs` muda (veja
 "Formulário", abaixo).
@@ -48,8 +46,9 @@ O script do Google só precisa de uma nova versão quando o `tools/form-backend.
 ### No site do CBG (WordPress), o endereço oficial
 
 O site entra no WordPress do CBG como um **plugin**, instalado pelo painel, sem acesso ao servidor.
-O plugin entrega as páginas em **/GeometrIALab/** e serve CSS, fontes e imagens direto da sua pasta
-(`wp-content/plugins/geometria-lab/site/`). As páginas do formulário (`/GeometrIALab/colabore/` e
+O plugin entrega as páginas em **/GeometrIALab/** e serve CSS, fontes e imagens direto da pasta do
+site, `<uploads>/geometria-lab/site-…/` (a versão baixada do GitHub; antes da primeira publicação
+automática, a cópia que vem no plugin, em `wp-content/plugins/geometria-lab/site/`). As páginas do formulário (`/GeometrIALab/colabore/` e
 `/GeometrIALab/en/collaborate/`) só abrem para quem entrou com a conta do site em **/acesso/**; quem
 não entrou vai para /acesso/ (com um aviso explicando o motivo) e, depois de entrar, volta ao
 formulário. Nome e e-mail vêm da conta, e o e-mail não pode ser trocado no formulário. Não há código
@@ -85,7 +84,7 @@ Observações:
 - `_config_cbg.yml` guarda o endereço (`url`, `baseurl: /GeometrIALab`) e liga o modo WordPress
   (`wp_gate: true`), que tira do formulário o código por e-mail e o anti-robô. No script, o
   interruptor correspondente é `WP_LOGIN_REQUIRED = true`.
-- Para tirar o site do ar: **Plugins → GeometrIA → Desativar** (as cópias do WP Fastest Cache saem junto). "Excluir" também apaga a chave.
+- Para tirar o site do ar: **Plugins → GeometrIA → Desativar** (as cópias do WP Fastest Cache saem junto). "Excluir" também apaga a chave e as versões baixadas do GitHub.
 - A volta ao formulário depois do login funciona com o login do Forminator usado em /acesso/ (o
   plugin troca o destino que o Forminator mandaria) e com o login padrão do WordPress. O formulário
   de login do CBG manda, por conta própria, para `https://cbg.webcontent.website/wp-admin/`, um
@@ -97,6 +96,47 @@ Observações:
 - O site do CBG também responde em `cbg.ime.unicamp.br` (sem www), mas o login vale só em `www`. O plugin
   (1.1.2) manda quem chega sem www para `www.cbg.ime.unicamp.br/GeometrIALab/`; sem isso, a pessoa não voltava
   ao formulário depois do login. Use sempre o endereço com www nos links.
+
+### Publicação automática
+
+A cada push na `main` (ou pelo botão **Run workflow** na aba Actions), o workflow
+`.github/workflows/publicar-cbg.yml`:
+
+1. gera o site na versão do CBG (`tools/wordpress/build-site.sh`, o mesmo que o plugin usa);
+2. publica o pacote numa release do repositório (`geometria-lab-site.zip` e `build.json`, com o
+   SHA-256 do pacote), mantendo só as 10 mais recentes;
+3. avisa o WordPress em `https://www.cbg.ime.unicamp.br/wp-json/geometria-lab/v1/publicar`, com uma
+   assinatura feita com o segredo `CBG_DEPLOY_SECRET`.
+
+O plugin (a partir da versão 2.0.0, arquivo `publicar.php`) confere a assinatura, baixa o pacote da
+release, confere o SHA-256 e só aceita arquivos estáticos (HTML, CSS, JS, imagens e fontes; nada de
+PHP). Ele põe a versão nova em `<uploads>/geometria-lab/site-…/`, guarda a anterior e limpa o cache do
+WP Fastest Cache. Se o aviso não chegar, o WordPress confere sozinho a release mais recente de hora em
+hora. O repositório precisa ser público, porque o WordPress baixa o pacote sem senha.
+
+**Configuração (uma vez só)**
+
+1. Envie o plugin 2.0.0 ou mais novo ao WordPress (veja acima).
+2. No WordPress, em **Configurações → GeometrIA → Publicação automática**, clique em **Gerar chave**
+   e copie a chave.
+3. No GitHub, em **Settings → Secrets and variables → Actions → New repository secret**, crie o segredo
+   `CBG_DEPLOY_SECRET` com essa chave.
+4. Na aba **Actions**, rode **Publicar no site do CBG → Run workflow** (ou faça um push). Em
+   Configurações → GeometrIA, a versão no ar passa a ser a do GitHub.
+
+**Em Configurações → GeometrIA** ficam a versão no ar (com o commit), **Atualizar agora**,
+**Voltar para a versão anterior** (que também pausa as atualizações automáticas, até alguém reativar),
+**Pausar as atualizações automáticas**, **Testar a conexão com o GitHub** e o registro das últimas
+tentativas.
+
+**Se algo falhar**
+
+- O workflow falha em "Publicar a release" com erro 403: em **Settings → Actions → General →
+  Workflow permissions**, escolha **Read and write permissions**.
+- O workflow falha em "Avisar o WordPress do CBG": o motivo aparece no próprio passo e no registro em
+  Configurações → GeometrIA (por exemplo, chave diferente, atualizações pausadas ou o servidor sem
+  acesso ao GitHub). A verificação de hora em hora tenta de novo; **Atualizar agora** força na hora.
+- O navegador pode mostrar a página antiga por até cinco minutos; Cmd+Shift+R recarrega de verdade.
 
 ### No GitHub Pages
 
@@ -182,6 +222,9 @@ Quase todo o conteúdo está em `_data/`, com português e inglês lado a lado
 | `_config_cbg.yml` | Endereço da versão do CBG e o modo WordPress (`wp_gate`). |
 | `tools/wordpress/geometria-lab/` | O plugin do WordPress (`geometria-lab.php`). |
 | `tools/wordpress/build-plugin.sh` | Gera o site para o CBG e empacota o plugin em `tools/wordpress/dist/geometria-lab.zip` (fora do Git). |
+| `tools/wordpress/build-site.sh` | Gera só o site na versão do CBG (usado pelo plugin e pela publicação automática). |
+| `.github/workflows/publicar-cbg.yml` | Publicação automática no site do CBG a cada push (veja "Publicação automática"). |
+| `tools/wordpress/geometria-lab/publicar.php` | A parte do plugin que recebe o aviso do GitHub, baixa e põe no ar cada versão. |
 
 **Estilo dos textos.** Tom profissional, cordial e humano, em frases completas. O texto do site não usa
 travessões (—) nem dois-pontos; as exceções são o nome oficial com meia-risca ("CBG – Laboratório de IA
