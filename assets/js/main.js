@@ -44,7 +44,7 @@
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && document.body.classList.contains("nav-open")) { setMenu(false); menuBtn.focus(); }
     });
-    var wide = window.matchMedia("(min-width: 900px)");
+    var wide = window.matchMedia("(min-width: 1080px)");   // igual ao menu recolhido em main.css
     var onWide = function () { if (wide.matches) setMenu(false); };
     if (wide.addEventListener) wide.addEventListener("change", onWide); else if (wide.addListener) wide.addListener(onWide);
   }

@@ -14,6 +14,9 @@ nav:
   approach: { pt: Abordagem, en: Approach }
   research: { pt: Pesquisa, en: Research }
   people: { pt: Pessoas, en: People }
+  blog: { pt: Blog, en: Blog }
+  working_papers: { pt: "Working papers", en: "Working papers" }
+  on_github: { pt: "(no GitHub)", en: "(on GitHub)" }
   collaborate: { pt: Colabore, en: Collaborate }
   brand: { pt: Identidade visual, en: Visual identity }
   cta: { pt: "Proponha um problema", en: "Propose a problem" }
@@ -38,6 +41,9 @@ preprint: { pt: Preprint, en: Preprint }
 months:
   pt: [jan., fev., mar., abr., mai., jun., jul., ago., set., out., nov., dez.]
   en: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+months_long:
+  pt: [janeiro, fevereiro, março, abril, maio, junho, julho, agosto, setembro, outubro, novembro, dezembro]
+  en: [January, February, March, April, May, June, July, August, September, October, November, December]
 
 footer:
   about:

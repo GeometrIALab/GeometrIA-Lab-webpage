@@ -1,0 +1,38 @@
+---
+layout: default
+---
+{%- comment -%} Página do blog (/blog/ e /en/blog/): todos os posts no idioma da página, do mais novo ao mais antigo. {%- endcomment -%}
+{%- assign L = page.lang -%}
+{%- assign T = site.data.text.blog -%}
+{%- assign posts = site.posts | where: "lang", L -%}
+<section class="page-hero">
+  <div class="container">
+    <p class="kicker">{{ T.hero.kicker[L] }}</p>
+    <h1>{{ T.hero.title[L] }}</h1>
+    <p class="lede">{{ T.hero.lede[L] }}</p>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="posts-title">
+  <div class="container">
+    <h2 id="posts-title" class="visually-hidden">{{ T.list_label[L] }}</h2>
+    {%- if posts.size > 0 %}
+    <ul class="post-list">
+      {%- for p in posts %}
+      <li class="post-item">
+        <div class="post-side mono">
+          <time datetime="{{ p.date | date: '%Y-%m-%d' }}">{% include post-date.html date=p.date %}</time>
+          <span class="post-kind kind-{{ p.kind | default: 'news' }}">{{ T.kinds[p.kind][L] | default: T.kinds.news[L] }}</span>
+        </div>
+        <div class="post-main">
+          <h3 class="post-title"><a href="{{ p.url | relative_url }}">{{ p.title }}</a></h3>
+          {%- if p.description %}<p class="post-summary">{{ p.description }}</p>{% endif %}
+        </div>
+      </li>
+      {%- endfor %}
+    </ul>
+    {%- else %}
+    <p class="help">{{ T.empty[L] }}</p>
+    {%- endif %}
+  </div>
+</section>

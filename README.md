@@ -30,8 +30,12 @@ formulário fica salva no WordPress e não precisa ser mexida.
 4. **Envie** no painel do CBG (https://www.cbg.ime.unicamp.br/wp-admin/): **Plugins → Adicionar novo →
    Enviar plugin → Escolher arquivo → Instalar agora**. O WordPress avisa que o plugin já existe:
    **Substituir o atual pelo enviado**.
-5. **Confira** https://www.cbg.ime.unicamp.br/GeometrIALab/. O navegador pode mostrar a versão antiga
-   por alguns minutos; Cmd+Shift+R (ou Ctrl+Shift+R) recarrega de verdade.
+5. **Confira** https://www.cbg.ime.unicamp.br/GeometrIALab/ com Cmd+Shift+R (ou Ctrl+Shift+R). O
+   WP Fastest Cache do CBG guarda cópias das páginas e uma cópia "minificada" do CSS (cujo nome
+   ignora o `?v=`, então ela nunca se atualiza sozinha), e o menu dele fica escondido dos
+   administradores. Desde o plugin 1.1.5, a primeira página do painel depois de enviar um plugin
+   novo apaga essas cópias do laboratório (as do resto do site ficam). Se alguma página continuar
+   antiga, use **Configurações → GeometrIA → Limpar o cache das páginas do laboratório**.
 6. **Commit e push**, para o repositório continuar sendo a fonte oficial.
 
 O script do Google só precisa de uma nova versão quando o `tools/form-backend.gs` muda (veja
@@ -56,7 +60,7 @@ O cadastro em /acesso/ é aberto: qualquer pessoa com conta no site do CBG pode 
 
 **Primeira instalação** (já feita; fica aqui para referência)
 
-1. **Script.** Cole o `tools/form-backend.gs` atual no Apps Script (conta geometrialab@gmail.com) e
+1. **Script.** Cole o `tools/form-backend.gs` atual no Apps Script (conta geoialab@unicamp.br) e
    salve. No menu ao lado de **▷ Executar**, escolha **`setup`** (o menu começa em `doGet`, que não
    faz nada) e execute. No registro de execução aparece a *chave para o plugin do WordPress* (64
    caracteres); ela também fica em ⚙️ Configurações do projeto → Propriedades do script, como
@@ -64,7 +68,8 @@ O cadastro em /acesso/ é aberto: qualquer pessoa com conta no site do CBG pode 
    implantações → editar → Versão: Nova versão → Implantar**.
 2. **Plugin.** Gere o zip com `tools/wordpress/build-plugin.sh`. No painel: **Plugins → Adicionar
    novo → Enviar plugin → Escolher arquivo → Instalar agora → Ativar plugin**.
-3. **Chave.** Em **Configurações → GeometrIA**, cole a chave do passo 1 e salve. A chave é uma senha
+3. **Chave e endereço.** Em **Configurações → GeometrIA**, cole a chave do passo 1 e, em
+   **Endereço do script**, o URL da implantação (termina em `/exec`), e salve. A chave é uma senha
    entre o WordPress e o script: não a coloque no site nem no repositório.
 4. **Teste.** Numa janela anônima, abra https://www.cbg.ime.unicamp.br/GeometrIALab/, clique em
    "Proponha um problema", entre com uma conta e envie uma proposta de teste.
@@ -80,7 +85,18 @@ Observações:
 - `_config_cbg.yml` guarda o endereço (`url`, `baseurl: /GeometrIALab`) e liga o modo WordPress
   (`wp_gate: true`), que tira do formulário o código por e-mail e o anti-robô. No script, o
   interruptor correspondente é `WP_LOGIN_REQUIRED = true`.
-- Para tirar o site do ar: **Plugins → GeometrIA → Desativar**. "Excluir" também apaga a chave.
+- Para tirar o site do ar: **Plugins → GeometrIA → Desativar** (as cópias do WP Fastest Cache saem junto). "Excluir" também apaga a chave.
+- A volta ao formulário depois do login funciona com o login do Forminator usado em /acesso/ (o
+  plugin troca o destino que o Forminator mandaria) e com o login padrão do WordPress. O formulário
+  de login do CBG manda, por conta própria, para `https://cbg.webcontent.website/wp-admin/`, um
+  endereço antigo da agência; vale corrigir isso em **Forminator → Formulários → (login) →
+  Comportamento → Redirecionar**, para `https://www.cbg.ime.unicamp.br/acesso/` (corrigido no plugin 1.1.1).
+- Quem chega ao formulário sem login vai para `/acesso/?geometrialab=1`, e só nesse caso aparece o
+  aviso do laboratório. Endereço com parâmetro não entra no cache do WP Fastest Cache, então a cópia
+  de /acesso/ que todos recebem nunca leva o aviso (até a 1.1.6 levava; a 1.1.7 apaga essa cópia).
+- O site do CBG também responde em `cbg.ime.unicamp.br` (sem www), mas o login vale só em `www`. O plugin
+  (1.1.2) manda quem chega sem www para `www.cbg.ime.unicamp.br/GeometrIALab/`; sem isso, a pessoa não voltava
+  ao formulário depois do login. Use sempre o endereço com www nos links.
 
 ### No GitHub Pages
 
@@ -150,11 +166,12 @@ Quase todo o conteúdo está em `_data/`, com português e inglês lado a lado
 |---|---|
 | `_data/publications.yml` | Artigos, preprints e palestras. `featured: true` põe o item na página inicial (use 3). |
 | `_data/people.yml` | Membros (ordem de exibição), bio, links e foto (`assets/img/people/`). |
-| `_data/news.yml` | Novidades da página inicial. |
+| `_data/news.yml` | Novidades da página inicial (junto com os posts do blog, do mais novo ao mais antigo). |
+| `_posts/pt/`, `_posts/en/` | Posts do blog (veja "Escrever um post", abaixo). Textos da página do blog em `_data/text/blog.yml`. |
 | `_data/modes.yml` | Os quatro modos (Aproximar, Prever, Buscar, Auxiliar) + Geometria para IA. |
 | `_data/pipeline.yml` | As cinco etapas do ciclo. |
 | `_data/principles.yml` | Princípios da página Abordagem. |
-| `_data/text/*.yml` | Os demais textos de cada página (início, abordagem, pesquisa, pessoas, colabore, marca). |
+| `_data/text/*.yml` | Os demais textos de cada página (início, abordagem, pesquisa, pessoas, colabore, marca). Os avisos de campo obrigatório do formulário ficam em `collaborate.yml`, em `form.errors`. |
 | `_data/form.yml` | Endereço (`endpoint`) do back-end do formulário e tamanho máximo do PDF (veja abaixo). |
 | `_data/triage.yml` | As quatro etapas de uma proposta e a nota sobre a decisão do laboratório (a nota aparece só na Abordagem). |
 | `_data/text/example.yml` | O modelo de proposta preenchida (`/colabore/exemplo/`). |
@@ -176,6 +193,32 @@ Copie um bloco em `_data/publications.yml` e ajuste. Os campos `modes` aceitam
 `approximate`, `predict`, `search`, `assist` e `geometry-for-ai` — são os filtros da página Pesquisa.
 Os nomes dos membros (campo `short` em `people.yml`) aparecem em negrito automaticamente.
 
+### Escrever um post
+
+O blog fica em `/blog/` (e `/en/blog/`), com os resumos mensais sobre IA e matemática (`kind: digest`)
+e as notícias do laboratório (`kind: news`). Cada post é um arquivo Markdown em `_posts/pt/` e, se
+houver tradução, outro em `_posts/en/`. O nome do arquivo dá a data e o endereço:
+`_posts/pt/2026-11-30-resumo-de-novembro.md` vira `/blog/resumo-de-novembro/`.
+
+```markdown
+---
+title: "Resumo de novembro de 2026"
+description: "Uma ou duas frases, que aparecem na lista do blog, no topo do post e nas buscas."
+news: "Frase curta para as Últimas notícias da página inicial (opcional; sem ela, vai o título)."
+kind: digest
+key: resumo-2026-11
+---
+
+Texto em Markdown. Use ## para os subtítulos, - para listas e [texto](https://...) para links.
+```
+
+- `key` liga o post à tradução: use a mesma nos dois idiomas, e o botão PT/EN leva de um ao outro.
+  Sem tradução, o botão leva à página do blog no outro idioma.
+- Opcional: `author: "Nome"` e botões no topo, como no post da pesquisa
+  (`actions`, cada um com `label`, `url` e `lang`, e `actions_note` para uma linha abaixo deles).
+- Posts com data futura só aparecem quando o site é gerado nessa data ou depois.
+- Para publicar, siga "Atualizar o site": gere o plugin, envie no WordPress e faça commit e push.
+
 ### Adicionar uma pessoa
 
 Copie um bloco em `_data/people.yml`. Sem `photo`, o site desenha um monograma com as iniciais.
@@ -186,7 +229,8 @@ Com foto, coloque o arquivo em `assets/img/people/` e use `photo: /assets/img/pe
 ## Formulário "Colabore" → e-mail do laboratório
 
 O formulário do site é próprio. Com o back-end (`tools/form-backend.gs`, um Google Apps Script)
-instalado na conta `geometrialab@gmail.com`, cada proposta vira um e-mail para essa mesma caixa:
+instalado na conta `geoialab@unicamp.br` (Google Workspace da Unicamp), cada proposta vira um e-mail
+para essa mesma caixa:
 
 - **Assunto:** `[GeometrIA][CBG] GIA-2026-0007 — título`. O `[CBG]` marca as propostas de membros do
   CBG, que têm prioridade na padronização (como diz o site).
@@ -196,10 +240,18 @@ instalado na conta `geometrialab@gmail.com`, cada proposta vira um e-mail para e
 - **Anexo:** o PDF, já conferido (tem de ser um PDF de verdade, com até 10 MB).
 - **Responder** ao e-mail responde direto ao proponente.
 
-O script manda direto para o Gmail, não para o alias `geometria.lab@cbg.unicamp.br` (que encaminha
-para ele): rodando na mesma conta, a cópia que volta pelo alias é descartada pelo Gmail como
-duplicata e fica só em **Enviados**. Para quem escreve de fora, o alias funciona normalmente — por
-isso ele continua sendo o contato público do site.
+O script manda para o endereço principal da conta, não para o alias `geometria.lab@cbg.unicamp.br`
+(que entrega na mesma caixa): rodando na mesma conta, a cópia que volta pelo alias é descartada pelo
+Gmail como duplicata e fica só em **Enviados**. Para quem escreve de fora, o alias funciona
+normalmente — por isso ele continua sendo o contato público do site.
+
+Até 2 de outubro de 2026 o script ficava na conta `geometrialab@gmail.com`; a implantação antiga
+pode ser arquivada depois que a nova estiver no ar.
+
+**Trocar o script de conta** (ou de implantação): instale o script na conta nova (veja
+"Instalação"), rode `setup`, publique, e cole a chave nova e o URL `/exec` novo em **Configurações →
+GeometrIA**, no WordPress. Não é preciso gerar o plugin de novo. Depois, atualize `endpoint` no
+`_data/form.yml`, para o site gerado e as cópias também usarem o endereço novo.
 
 Nada fica guardado fora do e-mail: não há planilha nem pasta de arquivos. A triagem (proposta
 padronizada + nota) é feita à mão, no Claude — o roteiro, as instruções e as mensagens-modelo estão em
@@ -230,7 +282,7 @@ Só entra proposta de quem confirmou o e-mail. Logo abaixo do campo de e-mail fi
 
 1. A pessoa marca **"Eu não sou um robô"** e clica em **"Enviar código"**. (Se clicar sem marcar, a
    verificação roda sozinha.)
-2. O script manda um código de **6 dígitos** para o endereço, de `geometrialab@gmail.com`, com o
+2. O script manda um código de **6 dígitos** para o endereço, de `geoialab@unicamp.br`, com o
    código no assunto. O código vale **15 minutos**, uma vez só, com **5 tentativas**.
 3. Ao digitar o sexto dígito, o site confere o código e mostra **"E-mail confirmado"**. A confirmação
    vale 6 horas e vai junto com a proposta; "Enviar outra proposta" aproveita a mesma.
@@ -240,9 +292,10 @@ Só entra proposta de quem confirmou o e-mail. Logo abaixo do campo de e-mail fi
 Limites e custos:
 
 - No máximo 3 códigos por endereço e 30 no total, por hora, e o botão só reenvia depois de 45 s.
-- Cota do Gmail: uma conta comum envia até 100 e-mails por dia pelo Apps Script. Neste modo cada
-  proposta usa 2 (o código e o aviso ao laboratório), o que dá umas 50 por dia; no site do CBG, só 1.
-  Quando restam 20 e-mails na cota do dia, o script para de mandar códigos.
+- Cota de e-mails: uma conta do Google Workspace envia até 1.500 e-mails por dia pelo Apps Script
+  (uma conta comum do Gmail, 100). Neste modo cada
+  proposta usa 3 (o código, o aviso ao laboratório e a confirmação ao proponente); no site do CBG, 2.
+  Quando restam 20 e-mails na cota do dia, o script para de mandar códigos e confirmações.
 - O código pode cair no spam ou atrasar alguns minutos em servidores de universidade; o site avisa.
 
 O anti-robô é o [ALTCHA](https://altcha.org): código aberto (licença MIT), gratuito, sem conta, sem
@@ -265,7 +318,7 @@ ligada, ele protege o pedido de código — ninguém usa o formulário para disp
 
 ### Instalação (~5 min)
 
-1. Com a conta `geometrialab@gmail.com`, abra <https://script.google.com> → **Novo projeto** e dê
+1. Com a conta `geoialab@unicamp.br`, abra <https://script.google.com> → **Novo projeto** e dê
    um nome, por exemplo "GeometrIA — formulário".
 2. Apague o conteúdo de `Código.gs`, cole o arquivo `tools/form-backend.gs` inteiro e salve.
 3. No menu ao lado de **▷ Executar**, escolha a função **`setup`** (não a `doGet`, que vem
@@ -274,7 +327,8 @@ ligada, ele protege o pedido de código — ninguém usa o formulário para disp
    o app é o seu próprio script.
 4. **Implantar → Nova implantação → Tipo: App da Web.** *Executar como:* **Eu**.
    *Quem pode acessar:* **Qualquer pessoa**. Copie o URL que termina em `/exec`.
-5. Cole o URL em `endpoint`, no `_data/form.yml`. Commit + push.
+5. Cole o URL em **Configurações → GeometrIA → Endereço do script**, no WordPress, e em `endpoint`,
+   no `_data/form.yml`. Commit + push.
 6. Teste: abra o URL `/exec` numa **janela anônima** — deve aparecer `{"ok":true,…,"version":"…"}`.
    Numa janela comum, logada em mais de uma conta Google, o Google costuma mostrar "Não foi possível
    abrir o arquivo", mesmo com tudo certo. Depois, envie uma proposta pelo site. Para testar só o
@@ -283,13 +337,21 @@ ligada, ele protege o pedido de código — ninguém usa o formulário para disp
 Para mandar as propostas a outro endereço, mude `LAB_EMAIL` no início do script e publique uma nova
 versão.
 
-Contas institucionais (Google Workspace) às vezes não permitem o acesso "Qualquer pessoa". Nesse caso,
-peça a liberação ao administrador ou instale o script numa conta Google fora do domínio — as propostas
-continuam indo para `LAB_EMAIL`.
+Contas institucionais (Google Workspace, como a da Unicamp) às vezes não permitem o acesso "Qualquer
+pessoa": no passo 4 só aparece "Qualquer pessoa em unicamp.br", e o site não consegue enviar. Nesse
+caso, peça a liberação à DGTIC ou instale o script numa conta Google comum (por exemplo
+`geometrialab@gmail.com`), mantendo `LAB_EMAIL = 'geoialab@unicamp.br'`: as propostas continuam
+indo para a caixa da Unicamp.
 
 ### No dia a dia
 
 - Cada proposta tem um ID (`GIA-2026-0007`), que o proponente também vê na tela ao enviar.
+- **Confirmação ao proponente:** logo depois do aviso ao laboratório, o script manda ao proponente
+  um "Recebemos sua proposta GIA-…", no idioma da página, com o título, a situação do PDF e os
+  próximos passos (`SEND_RECEIPT`, no início do script; `testReceipt` manda um exemplo PT e EN para
+  o laboratório). Só vai para e-mail confirmado e nunca derruba o envio. Um filtro do Gmail com
+  "Enviar modelo" **não** serve para isso: o e-mail da proposta sai da própria conta do laboratório,
+  e a resposta automática do Gmail volta para ela, não para o proponente (testado em 13/10/2026).
 - Limites: 5 envios por hora por e-mail e 60 no total; o reenvio da mesma proposta é ignorado.
 - Proteções: login no site do CBG (passe assinado), um campo-armadilha escondido e um tempo mínimo
   de preenchimento. Nas cópias fora do CBG, código por e-mail e ALTCHA no lugar do login.
@@ -314,7 +376,7 @@ Nada é pago, e nada vence ou precisa ser renovado.
 |---|---|
 | Plugin do WordPress | Código próprio, sem licença, assinatura ou plugin de terceiros. |
 | Hospedagem | O servidor e o WordPress que o CBG já tem. |
-| Google Apps Script e Gmail | Grátis. Limite de ~100 e-mails por dia (no site do CBG, 1 por proposta) e 15 GB de espaço no Gmail, que os PDFs vão ocupando. |
+| Google Apps Script e e-mail | Grátis, na conta institucional da Unicamp. Limite de 1.500 e-mails por dia (2 por proposta, o aviso ao laboratório e a confirmação ao proponente); os PDFs ocupam o espaço da caixa. |
 | Fontes, ALTCHA, Jekyll, Ruby | Código aberto (SIL OFL, MIT etc.). |
 | GitHub | Repositório privado grátis. O GitHub Pages com repositório privado exigiria o plano Pro, mas não é necessário. |
 

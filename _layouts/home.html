@@ -134,12 +134,36 @@ layout: default
 
 <section class="section" aria-labelledby="news-title">
   <div class="container">
-    <header class="section-head">
-      <p class="kicker">{{ T.news.kicker[L] }}</p>
-      <h2 id="news-title">{{ T.news.title[L] }}</h2>
+    <header class="section-head split">
+      <div>
+        <p class="kicker">{{ T.news.kicker[L] }}</p>
+        <h2 id="news-title">{{ T.news.title[L] }}</h2>
+      </div>
+      <a class="link-arrow" href="{{ R.blog[L] | relative_url }}">{{ T.news.link[L] }}{% include icon.html name="arrow" %}</a>
     </header>
+    {%- comment -%}
+      Novidades = posts do blog (no idioma da página) + itens de _data/news.yml, do mais novo ao
+      mais antigo. Cada item vira "data|tipo|999 menos a posição" para ordenar as duas listas juntas
+      (em caso de empate, mantém a ordem de cada lista).
+    {%- endcomment -%}
+    {%- assign news_posts = site.posts | where: "lang", L -%}
+    {%- assign items = "" | split: "" -%}
+    {%- for n in site.data.news -%}{%- capture k -%}{{ n.date | date: "%Y%m%d%H%M%S" }}|n|{{ 999 | minus: forloop.index0 }}{%- endcapture -%}{%- assign items = items | push: k -%}{%- endfor -%}
+    {%- for p in news_posts -%}{%- capture k -%}{{ p.date | date: "%Y%m%d%H%M%S" }}|p|{{ 999 | minus: forloop.index0 }}{%- endcapture -%}{%- assign items = items | push: k -%}{%- endfor -%}
+    {%- assign items = items | sort | reverse %}
     <ul class="news">
-      {%- for n in site.data.news limit: 6 %}
+      {%- for k in items limit: 6 %}
+      {%- assign parts = k | split: "|" -%}
+      {%- assign i = 999 | minus: parts[2] -%}
+      {%- if parts[1] == "p" -%}
+      {%- assign p = news_posts[i] -%}
+      {%- assign mi = p.date | date: "%-m" | minus: 1 %}
+      <li>
+        <time datetime="{{ p.date | date: '%Y-%m' }}">{{ C.months[L][mi] }} {{ p.date | date: "%Y" }}</time>
+        <p><a href="{{ p.url | relative_url }}">{{ p.news | default: p.title }}</a></p>
+      </li>
+      {%- else -%}
+      {%- assign n = site.data.news[i] -%}
       {%- assign mi = n.date | date: "%-m" | minus: 1 -%}
       {%- assign np = nil -%}
       {%- if n.pub -%}{%- assign np = site.data.publications | where: "id", n.pub | first -%}{%- endif %}
@@ -147,6 +171,7 @@ layout: default
         <time datetime="{{ n.date | date: '%Y-%m' }}">{{ C.months[L][mi] }} {{ n.date | date: "%Y" }}</time>
         <p>{% if np %}{% if np.arxiv %}<a href="https://arxiv.org/abs/{{ np.arxiv }}">{{ n.text[L] }}</a>{% elsif np.url %}<a href="{{ np.url }}">{{ n.text[L] }}</a>{% else %}{{ n.text[L] }}{% endif %}{% elsif n.url %}<a href="{{ n.url }}">{{ n.text[L] }}</a>{% else %}{{ n.text[L] }}{% endif %}</p>
       </li>
+      {%- endif -%}
       {%- endfor %}
     </ul>
   </div>

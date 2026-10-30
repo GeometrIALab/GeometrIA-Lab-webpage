@@ -6,7 +6,8 @@ people:      { pt: /pessoas/,    en: /en/people/ }
 collaborate: { pt: /colabore/,   en: /en/collaborate/ }
 example:     { pt: /colabore/exemplo/, en: /en/collaborate/example/ }
 brand:       { pt: /marca/,      en: /en/brand/ }
+blog:        { pt: /blog/,       en: /en/blog/ }
 notfound:    { pt: /404.html,    en: /404.html }
 
 # Itens do menu principal, na ordem de exibição.
-nav: [approach, research, people]
+nav: [approach, research, people, blog]

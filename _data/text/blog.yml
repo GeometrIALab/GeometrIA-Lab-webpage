@@ -1,0 +1,21 @@
+# Textos do blog (página /blog/ e posts). Os posts ficam em _posts/pt/ e _posts/en/ (veja o README).
+
+title: { pt: "Blog", en: "Blog" }
+description:
+  pt: "Resumos mensais sobre inteligência artificial e matemática e notícias do GeometrIA, o laboratório de IA do Centro Brasileiro de Geometria."
+  en: "Monthly digests on artificial intelligence and mathematics, and news from GeometrIA, the AI lab of the Brazilian Center for Geometry."
+
+hero:
+  kicker: { pt: "Blog", en: "Blog" }
+  title: { pt: "IA e matemática, mês a mês", en: "AI and mathematics, month by month" }
+  lede:
+    pt: "Todo mês reunimos aqui o que aconteceu de mais relevante na interseção entre inteligência artificial e matemática. Também publicamos as notícias do laboratório, como convites, eventos e novos trabalhos."
+    en: "Every month we gather here the most relevant news at the intersection of artificial intelligence and mathematics. We also post news from the lab, such as invitations, events and new work."
+
+list_label: { pt: "Posts do blog", en: "Blog posts" }
+kinds:
+  news: { pt: "Notícia", en: "News" }
+  digest: { pt: "Resumo do mês", en: "Monthly digest" }
+read: { pt: "Ler o post", en: "Read the post" }
+back: { pt: "Todos os posts", en: "All posts" }
+empty: { pt: "Ainda não há posts por aqui.", en: "No posts yet." }

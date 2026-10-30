@@ -1,0 +1,40 @@
+---
+layout: default
+---
+{%- comment -%}
+  Um post do blog. Front matter (modelo no README): title, description, kind (news ou digest), key
+  (a mesma no post em português e na tradução), e, se quiser, author, actions (botões no topo,
+  cada um com label, url e lang) e actions_note (linha curta abaixo dos botões).
+{%- endcomment -%}
+{%- assign L = page.lang -%}
+{%- assign T = site.data.text.blog -%}
+{%- assign R = site.data.routes -%}
+<article class="post" aria-labelledby="post-title">
+  <header class="page-hero post-hero">
+    <div class="container">
+      <p class="kicker">{{ T.kinds[page.kind][L] | default: T.kinds.news[L] }}</p>
+      <h1 id="post-title">{{ page.title }}</h1>
+      {%- if page.description %}
+      <p class="lede">{{ page.description }}</p>
+      {%- endif %}
+      <p class="post-meta mono"><time datetime="{{ page.date | date: '%Y-%m-%d' }}">{% include post-date.html date=page.date long=true %}</time>{% if page.author %}<span aria-hidden="true"> · </span><span>{{ page.author }}</span>{% endif %}</p>
+      {%- if page.actions %}
+      <div class="actions post-actions">
+        {%- for a in page.actions %}
+        <a class="btn {% if forloop.first %}btn-primary{% else %}btn-ghost{% endif %}" href="{{ a.url }}"{% if a.lang %} hreflang="{{ a.lang }}" lang="{{ a.lang }}"{% endif %}>{{ a.label }}{% if forloop.first %}{% include icon.html name="arrow" %}{% endif %}</a>
+        {%- endfor %}
+      </div>
+      {%- if page.actions_note %}<p class="post-actions-note mono">{{ page.actions_note }}</p>{% endif %}
+      {%- endif %}
+    </div>
+  </header>
+
+  <div class="section post-section">
+    <div class="container">
+      <div class="post-body">
+{{ content }}
+      </div>
+      <p class="post-back"><a class="link-arrow link-back" href="{{ R.blog[L] | relative_url }}">{% include icon.html name="arrow" %}{{ T.back[L] }}</a></p>
+    </div>
+  </div>
+</article>

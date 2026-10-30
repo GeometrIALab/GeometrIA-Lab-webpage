@@ -7,9 +7,11 @@
  *   triagem automática: a equipe leva a proposta do e-mail para o Claude à mão
  *   (roteiro em tools/triagem-manual.md).
  *
- *   O destino é o Gmail do laboratório, não o alias geometria.lab@cbg.unicamp.br: com o
- *   script instalado nessa mesma conta, a cópia que volta pelo alias é descartada pelo
- *   Gmail como duplicata e só aparece em "Enviados", nunca na caixa de entrada.
+ *   O script fica na conta do laboratório na Unicamp, geoialab@unicamp.br (Google Workspace),
+ *   e manda para ela mesma, pelo endereço principal. Não use o alias
+ *   geometria.lab@cbg.unicamp.br como destino: a cópia que volta pelo alias para a mesma
+ *   conta é descartada pelo Gmail como duplicata e só aparece em "Enviados". O alias continua
+ *   sendo o contato público do site.
  *
  * O e-mail
  *   • Assunto: "[GeometrIA][CBG] GIA-2026-0007 — título". O [CBG] aparece quando o
@@ -18,6 +20,13 @@
  *     o bloco PROPONENTE, com os dados pessoais; e o bloco PROPOSTA — só o projeto, sem
  *     dados pessoais, pronto para colar no Claude junto com o PDF.
  *   • Responder ao e-mail responde direto ao proponente (Reply-To).
+ *
+ * Confirmação ao proponente (SEND_RECEIPT)
+ *   Logo depois, o proponente recebe um "recebemos" com o número da proposta, no idioma da
+ *   página, a situação do PDF e os próximos passos. Só vai para e-mail confirmado (login ou
+ *   código) e nunca derruba o envio. Um filtro do Gmail com "Enviar modelo" não serve para
+ *   isso: o e-mail da proposta sai da própria conta do laboratório, e a resposta automática
+ *   do Gmail volta para ela, não para o proponente. `testReceipt` manda um exemplo (PT e EN).
  *
  * Proteções: e-mail confirmado por código e anti-robô ALTCHA (abaixo); campo-armadilha e
  * tempo mínimo; validação dos campos; limite de envios por hora; reenvio da mesma proposta
@@ -57,7 +66,7 @@
  * VERIFY_EMAIL ↔ verify_email e ALTCHA_REQUIRED ↔ altcha — mude os dois lados juntos.
  *
  * Instalação (~5 min) — passo a passo no README, seção "Formulário".
- *   1. Com a conta geometrialab@gmail.com, abra https://script.google.com → Novo projeto.
+ *   1. Com a conta geoialab@unicamp.br, abra https://script.google.com → Novo projeto.
  *   2. Apague o conteúdo de Código.gs, cole este arquivo e salve.
  *   3. Execute a função `setup` e autorize o envio de e-mail.
  *   4. Implantar → Nova implantação → tipo "App da Web":
@@ -72,9 +81,12 @@
 
 // ───────────────────────────── Configuração ─────────────────────────────
 
-const LAB_EMAIL = 'geometrialab@gmail.com';   // quem recebe as propostas
-const VERSION = '2026-09-30a';                 // aparece ao abrir o URL /exec
+const LAB_EMAIL = 'geoialab@unicamp.br';      // quem recebe as propostas (a conta onde o script está)
+const VERSION = '2026-10-21a';                 // aparece ao abrir o URL /exec
 const TZ = 'America/Sao_Paulo';
+
+const SEND_RECEIPT = true;              // manda ao proponente uma confirmação com o número da proposta
+const SITE_URL = 'https://www.cbg.ime.unicamp.br/GeometrIALab/';   // vai na assinatura da confirmação
 
 const WP_LOGIN_REQUIRED = true;         // só aceita proposta de quem entrou no site do CBG (passe do plugin)
 const WP_PASS_MAX_H = 13;               // validade máxima aceita para um passe (o plugin dá 12 h)
@@ -141,6 +153,8 @@ function handleSubmission_(data) {
 
   const cache = CacheService.getScriptCache();
   const lock = LockService.getScriptLock();
+  let id = '';
+  let pdf = null;
   lock.waitLock(30000);
   try {
     // A mesma proposta (mesmo submission_id) chegando duas vezes — por exemplo, uma requisição
@@ -174,8 +188,8 @@ function handleSubmission_(data) {
       }
     }
     if (!rateOk_(cache, p.email)) return { ok: false, error: 'rate' };
-    const id = nextId_();
-    const pdf = data.pdf && data.pdf.data ? checkPdf_(data.pdf, id) : null;
+    id = nextId_();
+    pdf = data.pdf && data.pdf.data ? checkPdf_(data.pdf, id) : null;
     try {
       sendToLab_(p, id, pdf);
     } catch (err) {
@@ -183,10 +197,19 @@ function handleSubmission_(data) {
       return { ok: false, error: 'mail' };   // o site mostra o erro com o e-mail do laboratório
     }
     if (subKey) cache.put(subKey, id, 6 * 3600);
-    return { ok: true, id: id };
   } finally {
     lock.releaseLock();
   }
+  // A confirmação ao proponente sai depois do bloqueio e nunca derruba o envio: a proposta já
+  // está no e-mail do laboratório.
+  if (SEND_RECEIPT && p.email_verified) {
+    try {
+      sendReceipt_(p, id, pdf);
+    } catch (err) {
+      console.warn('sendReceipt_', id, err && err.stack ? err.stack : err);
+    }
+  }
+  return { ok: true, id: id };
 }
 
 // ───────────────────────────── E-mail confirmado por código ─────────────────────────────
@@ -548,6 +571,72 @@ function sendToLab_(p, id, pdf) {
     delete opts.replyTo;
     MailApp.sendEmail(opts);
   }
+}
+
+// ───────────────────────────── Confirmação ao proponente ─────────────────────────────
+
+/**
+ * Depois que a proposta chega ao laboratório, manda ao proponente um "recebemos", no idioma
+ * da página, com o número da proposta, a situação do PDF e os próximos passos. Só para
+ * endereços confirmados (login no site do CBG ou código), para que o formulário não sirva
+ * para mandar e-mails a terceiros. Se a cota do dia estiver no fim, a confirmação fica de
+ * fora e os e-mails que sobram ficam para as propostas.
+ */
+function sendReceipt_(p, id, pdf) {
+  if (MailApp.getRemainingDailyQuota() <= MAIL_RESERVE) {
+    console.warn('Confirmação ao proponente não enviada (cota do dia no fim): ' + id);
+    return;
+  }
+  const en = p.site_lang === 'en';
+  const first = oneLine_(p.name, 200).split(' ')[0];
+  const title = oneLine_(p.problem_title, 200);
+  const problem = p.interest === 'Propor um problema' || p.interest === 'Os dois';
+  const why = (pdf && pdf.problema) || '';
+  const T = en ? {
+    subject: 'We have received your proposal ' + id,
+    hello: 'Hello' + (first ? ' ' + first : '') + ',',
+    intro: (title ? 'We have received your proposal "' + title + '", sent' : 'We have received your proposal, sent') +
+      ' through the GeometrIA website. Thank you very much for your interest.',
+    number: 'Your proposal number is ' + id + '. Please mention it if you need to write to us about it.',
+    pdfOk: () => 'The PDF you attached, ' + pdf.nome + ', arrived with it.',
+    pdfBad: () => 'We could not receive the PDF ' + pdf.nome + ' because ' +
+      (/^maior/.test(why) ? 'it is larger than ' + MAX_PDF_MB + ' MB' : why === 'não é um PDF' ? 'it is not a PDF file' : 'the file is damaged') +
+      '. If you wish, reply to this email with the file attached.',
+    next: problem
+      ? 'With the help of a language model (Claude), we will organise the problem into a proposal in a standard format, which we will send you by email. CBG members have priority at this stage. Our team then reads the proposals carefully, which usually takes a few weeks, and we will get back to you with our answer.'
+      : 'Our team reads every request carefully, which usually takes a few weeks, and we will get back to you by email.',
+    auto: 'This is an automatic confirmation. If you would like to add anything, simply reply to this email.',
+    sign: ['Best regards,', 'GeometrIA · CBG – AI & Geometry Lab', 'Brazilian Center for Geometry · IMECC/UNICAMP', SITE_URL + 'en/'],
+  } : {
+    subject: 'Recebemos sua proposta ' + id,
+    hello: 'Olá' + (first ? ', ' + first : '') + ',',
+    intro: (title ? 'Recebemos a sua proposta "' + title + '", enviada' : 'Recebemos a sua proposta, enviada') +
+      ' pelo site do GeometrIA. Muito obrigado pelo interesse.',
+    number: 'O número da sua proposta é ' + id + '. Basta citá-lo se precisar falar conosco sobre ela.',
+    pdfOk: () => 'O PDF que você anexou, ' + pdf.nome + ', chegou junto.',
+    pdfBad: () => 'Não conseguimos receber o PDF ' + pdf.nome + ' (' + why + '). Se quiser, responda a este e-mail com o arquivo anexado.',
+    next: problem
+      ? 'Com a ajuda de um modelo de linguagem (Claude), vamos organizar o problema em uma proposta de formato padronizado, que enviaremos a você por e-mail. Membros do CBG têm prioridade nessa etapa. Depois, a nossa equipe lê as propostas com atenção, o que costuma levar algumas semanas, e entramos em contato com a nossa resposta.'
+      : 'A nossa equipe lê cada pedido com atenção, o que costuma levar algumas semanas, e responde por e-mail.',
+    auto: 'Esta é uma confirmação automática. Se quiser acrescentar algo, basta responder a este e-mail.',
+    sign: ['Atenciosamente,', 'GeometrIA · CBG – Laboratório de IA e Geometria', 'Centro Brasileiro de Geometria · IMECC/UNICAMP', SITE_URL],
+  };
+  const lines = [T.hello, '', T.intro, '', T.number];
+  if (pdf) lines.push('', pdf.blob ? T.pdfOk() : T.pdfBad());
+  lines.push('', T.next, '', T.auto, '');
+  MailApp.sendEmail({ to: p.email, subject: T.subject, body: lines.concat(T.sign).join('\n'), name: 'GeometrIA · CBG' });
+}
+
+/** Opcional: manda a você um exemplo da confirmação que o proponente recebe (em português e em inglês). */
+function testReceipt() {
+  ['pt', 'en'].forEach((lang) => {
+    const p = normalize_({
+      name: 'Teste GeometrIA', email: LAB_EMAIL, interest: 'Propor um problema',
+      problem_title: 'Proposta de teste', site_lang: lang,
+    });
+    sendReceipt_(p, 'GIA-TESTE', null);
+  });
+  console.log('Dois exemplos da confirmação (PT e EN) enviados para ' + LAB_EMAIL + '.');
 }
 
 // ───────────────────────────── Instalação e teste ─────────────────────────────

@@ -101,7 +101,7 @@
       var box = needProblem[i];
       var ctl = box.querySelector("textarea, input");
       var mark = box.querySelector("[data-req-mark]");
-      if (ctl) { ctl.required = need; if (!need) ctl.removeAttribute("aria-invalid"); }
+      if (ctl) { ctl.required = need; if (!need) clearError(ctl); }
       if (mark) mark.hidden = !need;
     }
   }
@@ -111,6 +111,103 @@
     var group = el.closest(".choice-group");
     if (group) group.removeAttribute("aria-invalid");
     if (el.getAttribute("aria-invalid")) el.removeAttribute("aria-invalid");
+    if (el.name) clearFieldError(el.name);
+  }
+
+  /* ---------- avisos de erro: um embaixo de cada item que falta e um resumo acima do botão ---------- */
+  var errSummary = form.querySelector("[data-error-summary]");
+  var errTitle = form.querySelector("[data-error-title]");
+  var errList = form.querySelector("[data-error-list]");
+
+  function controlsOf(name) {
+    return Array.prototype.slice.call(form.querySelectorAll('[name="' + name + '"]'));
+  }
+
+  // O texto do aviso de cada campo (em _data/text/collaborate.yml, form.errors).
+  function errorText(el) {
+    if (el.type === "file") return (pdfError && pdfError.textContent) || "";
+    if (el.type === "email" && el.value.trim() !== "") return form.getAttribute("data-msg-err-email-format") || "";
+    return form.getAttribute("data-msg-err-" + el.name.replace(/_/g, "-")) || form.getAttribute("data-msg-invalid") || "";
+  }
+
+  function describedBy(el, id, on) {
+    var ids = (el.getAttribute("aria-describedby") || "").split(/\s+/).filter(function (x) { return x && x !== id; });
+    if (on) ids.push(id);
+    if (ids.length) el.setAttribute("aria-describedby", ids.join(" ")); else el.removeAttribute("aria-describedby");
+  }
+
+  // Onde o aviso aparece: logo abaixo da pergunta (grupos de opções), da caixa de concordância ou do campo.
+  function placeError(el, p) {
+    var group = el.type === "radio" && el.closest(".choice-group");
+    if (group) { var lg = group.querySelector("legend"); group.insertBefore(p, lg ? lg.nextSibling : group.firstChild); return; }
+    var box = el.type === "checkbox" && el.closest("label.choice");
+    if (box) { box.parentNode.insertBefore(p, box.nextSibling); return; }
+    var field = el.closest(".field");
+    (field || el.parentNode).appendChild(p);
+  }
+
+  function setFieldError(el, msg) {
+    if (el.type === "file") return;              // o PDF já tem o seu aviso (data-pdf-error)
+    var id = "f-err-" + el.name.replace(/_/g, "-");
+    var p = document.getElementById(id);
+    if (!p) {
+      p = document.createElement("p");
+      p.className = "field-error";
+      p.id = id;
+      p.setAttribute("data-field-error", el.name);
+      placeError(el, p);
+    }
+    p.textContent = msg;
+    controlsOf(el.name).forEach(function (c) { describedBy(c, id, true); });
+  }
+
+  function clearFieldError(name) {
+    var id = "f-err-" + name.replace(/_/g, "-");
+    var p = document.getElementById(id);
+    if (p) { p.parentNode.removeChild(p); controlsOf(name).forEach(function (c) { describedBy(c, id, false); }); }
+    if (!errList) return;
+    var li = errList.querySelector('[data-error-for="' + name + '"]');
+    if (li) { li.parentNode.removeChild(li); updateSummary(); }
+  }
+
+  function updateSummary() {
+    var n = errList.children.length;
+    errSummary.hidden = n === 0;
+    errTitle.textContent = n === 1 ? form.getAttribute("data-msg-errors-one") : (form.getAttribute("data-msg-errors-many") || "").replace("%N%", n);
+  }
+
+  function clearAllErrors() {
+    var ps = form.querySelectorAll("[data-field-error]");
+    for (var i = 0; i < ps.length; i++) clearFieldError(ps[i].getAttribute("data-field-error"));
+    if (errList) { errList.innerHTML = ""; errSummary.hidden = true; }
+  }
+
+  function focusControl(el) {
+    var target = el.type === "radio" ? (form.querySelector('[name="' + el.name + '"]:checked') || controlsOf(el.name)[0]) : el;
+    target.focus({ preventScroll: true });
+    (target.closest(".choice-group, .field, .consent, .file-field") || target).scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
+  }
+
+  // Mostra o aviso de cada campo em `bad` (um elemento por campo) e o resumo, com um link para cada um.
+  function showErrors(bad) {
+    clearAllErrors();
+    if (!errList) { setStatus(form.getAttribute("data-msg-invalid"), true); return; }
+    bad.forEach(function (el) {
+      var msg = errorText(el);
+      el.setAttribute("aria-invalid", "true");
+      var group = el.type === "radio" && el.closest(".choice-group");
+      if (group) group.setAttribute("aria-invalid", "true");
+      setFieldError(el, msg);
+      var li = document.createElement("li");
+      li.setAttribute("data-error-for", el.name);
+      var a = document.createElement("a");
+      a.href = "#" + (el.id || "proposta");
+      a.textContent = msg;
+      a.addEventListener("click", function (ev) { ev.preventDefault(); focusControl(el); });
+      li.appendChild(a);
+      errList.appendChild(li);
+    });
+    updateSummary();
   }
 
   form.addEventListener("change", function (e) {
@@ -377,15 +474,11 @@
       if (el.type === "radio") {
         if (seen[el.name]) continue;
         seen[el.name] = true;
-        if (el.required && values(el.name) === "") {
-          var g = el.closest(".choice-group");
-          if (g) g.setAttribute("aria-invalid", "true");
-          bad.push(el);
-        }
+        if (el.required && values(el.name) === "") bad.push(el);
         continue;
       }
       if (el.type !== "checkbox" && el.value && el.value.trim() === "" && el.required) el.value = "";
-      if (!el.checkValidity()) { el.setAttribute("aria-invalid", "true"); bad.push(el); }
+      if (!el.checkValidity()) bad.push(el);
     }
     return bad;
   }
@@ -408,7 +501,7 @@
   var againBtns = card.querySelectorAll("[data-again]");
   for (var a = 0; a < againBtns.length; a++) {
     againBtns[a].addEventListener("click", function () {
-      form.reset(); syncRequired(); pdfUI(null, ""); setStatus(""); altchaReset();
+      form.reset(); clearAllErrors(); syncRequired(); pdfUI(null, ""); setStatus(""); altchaReset();
       // O e-mail confirmado continua valendo para a próxima proposta (a confirmação dura horas).
       if (verifyBox) { if (tokenEmail) { emailInput.value = tokenEmail; codeInput.value = ""; showVerified(true); } else resetVerify(); }
       var panels = card.querySelectorAll("[data-done]");
@@ -471,10 +564,11 @@
     var bad = validate();
     if (pdfInput && pdfDrop && pdfDrop.classList.contains("is-invalid")) bad.push(pdfInput);
     if (bad.length) {
-      setStatus(form.getAttribute("data-msg-invalid"), true);
-      bad[0].focus();
+      showErrors(bad);
+      focusControl(bad[0]);
       return;
     }
+    clearAllErrors();
 
     var data = collect();
     if (!endpoint) {
@@ -505,6 +599,11 @@
         return post(data);
       })
       .then(function (res) {
+        if (res && res.ok === false && res.error === "invalid" && res.fields && res.fields.length) {
+          var els = [];                  // o script recusou campos: mesmos avisos, campo por campo
+          res.fields.forEach(function (f) { var c = controlsOf(f)[0]; if (c) els.push(c); });
+          if (els.length) { setStatus(""); showErrors(els); focusControl(els[0]); return; }
+        }
         if (!res || res.ok === false) throw new Error((res && res.error) || "error");
         setStatus("");
         show("sent", res.id || "");

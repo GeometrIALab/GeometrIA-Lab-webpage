@@ -1,0 +1,22 @@
+{%- comment -%}
+  Define url_pt e url_en, os endereços desta página em cada idioma (sem o baseurl).
+  Páginas comuns usam _data/routes.yml (pelo `ref`). Posts do blog usam `key`: o post com a mesma
+  `key` no outro idioma é a tradução; sem tradução, o outro idioma leva à página do blog.
+{%- endcomment -%}
+{%- assign RU = site.data.routes -%}
+{%- if page.layout == "post" -%}
+  {%- assign twin = nil -%}
+  {%- if page.key -%}{%- assign twin = site.posts | where: "key", page.key | where_exp: "p", "p.lang != page.lang" | first -%}{%- endif -%}
+  {%- if page.lang == "en" -%}
+    {%- assign url_en = page.url -%}
+    {%- if twin -%}{%- assign url_pt = twin.url -%}{%- else -%}{%- assign url_pt = RU.blog.pt -%}{%- endif -%}
+  {%- else -%}
+    {%- assign url_pt = page.url -%}
+    {%- if twin -%}{%- assign url_en = twin.url -%}{%- else -%}{%- assign url_en = RU.blog.en -%}{%- endif -%}
+  {%- endif -%}
+{%- else -%}
+  {%- assign here = page.ref -%}
+  {%- if here == "notfound" -%}{%- assign here = "home" -%}{%- endif -%}
+  {%- assign url_pt = RU[here].pt -%}
+  {%- assign url_en = RU[here].en -%}
+{%- endif -%}

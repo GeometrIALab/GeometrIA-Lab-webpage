@@ -152,8 +152,8 @@ form:
     en: "On sending, your email app opens a ready-made message to the lab."
   success_title: { pt: "Recebemos sua proposta.", en: "We've received your proposal." }
   success_text:
-    pt: "Muito obrigado pelo interesse. Sua proposta segue agora para a triagem descrita acima, em que membros do CBG têm prioridade na padronização automática. A versão padronizada chegará ao seu e-mail, e a leitura pela equipe costuma levar algumas semanas."
-    en: "Thank you very much for your interest. Your proposal now moves on to the triage described above, in which CBG members have priority for the automatic standardization. The standardized version will reach your inbox, and the team's reading usually takes a few weeks."
+    pt: "Muito obrigado pelo interesse. Enviamos também uma confirmação para o seu e-mail. Sua proposta segue agora para a triagem descrita acima, em que membros do CBG têm prioridade na padronização automática. A versão padronizada chegará ao seu e-mail, e a leitura pela equipe costuma levar algumas semanas."
+    en: "Thank you very much for your interest. We have also sent a confirmation to your email. Your proposal now moves on to the triage described above, in which CBG members have priority for the automatic standardization. The standardized version will reach your inbox, and the team's reading usually takes a few weeks."
   success_id: { pt: "O número da sua proposta é", en: "Your proposal number is" }
   success_again: { pt: "Enviar outra proposta", en: "Send another proposal" }
   mail_title: { pt: "Quase lá.", en: "Almost there." }
@@ -167,6 +167,21 @@ form:
     pt: "Não foi possível enviar sua proposta agora. Por favor, tente de novo ou escreva para"
     en: "We couldn't send your proposal right now. Please try again or write to"
   invalid: { pt: "Por favor, confira os campos destacados.", en: "Please check the highlighted fields." }
+  # Erros de preenchimento: um aviso embaixo de cada item que falta e um resumo acima do botão de envio.
+  errors_one: { pt: "Falta um item obrigatório para enviar a proposta.", en: "One required item is missing before you can send the proposal." }
+  errors_many: { pt: "Faltam %N% itens obrigatórios para enviar a proposta.", en: "%N% required items are missing before you can send the proposal." }
+  errors:
+    name: { pt: "Escreva seu nome completo.", en: "Enter your full name." }
+    email: { pt: "Escreva seu e-mail.", en: "Enter your email address." }
+    email_format: { pt: "Escreva um e-mail válido, como nome@instituicao.br.", en: "Enter a valid email address, such as name@university.edu." }
+    institution: { pt: "Escreva sua instituição.", en: "Enter your institution." }
+    cbg_member: { pt: "Responda se você é membro do CBG.", en: "Tell us whether you are a member of CBG." }
+    interest: { pt: "Escolha o que você procura.", en: "Choose what you are looking for." }
+    problem_title: { pt: "Escreva um título provisório para o problema.", en: "Enter a working title for the problem." }
+    state_of_art: { pt: "Escreva o resumo do estado da arte, no item a.", en: "Write the summary of the state of the art, in part a." }
+    approach: { pt: "Descreva a sua abordagem, no item b.", en: "Describe your approach, in part b." }
+    consent_lgpd: { pt: "Marque a caixa sobre o uso dos seus dados (LGPD).", en: "Tick the box about the use of your data (LGPD)." }
+    consent_llm: { pt: "Marque a caixa sobre o uso de modelos de linguagem na triagem.", en: "Tick the box about the use of language models in the triage." }
   verify_title: { pt: "Confirme seu e-mail", en: "Confirm your email" }
   verify_help:
     pt: "Para aceitar a proposta, pedimos que você confirme o seu e-mail. Marque “Eu não sou um robô” e peça um código de 6 dígitos para o endereço informado acima."

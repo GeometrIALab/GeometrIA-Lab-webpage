@@ -27,6 +27,7 @@ links:
   cbg_en: "https://www.cbg.ime.unicamp.br/en/cbg-homepage-english/"
   imecc: "https://www.ime.unicamp.br/"
   unicamp: "https://www.unicamp.br/"
+  working_papers: "https://github.com/GeometrIALab/WorkingPapers"   # menu "Working papers"
 
 # Sem tema: todo o layout é do próprio site (o GitHub Pages aplicaria o tema "primer" por padrão).
 theme: null
@@ -51,3 +52,16 @@ defaults:
     values:
       layout: default
       lang: pt
+  # Blog: posts em _posts/pt/ e _posts/en/ (modelo no README, seção "Blog").
+  - scope: { path: "_posts/pt", type: posts }
+    values:
+      layout: post
+      ref: blog
+      lang: pt
+      permalink: /blog/:title/
+  - scope: { path: "_posts/en", type: posts }
+    values:
+      layout: post
+      ref: blog
+      lang: en
+      permalink: /en/blog/:title/

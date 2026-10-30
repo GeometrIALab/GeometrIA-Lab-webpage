@@ -1,0 +1,10 @@
+{%- comment -%} Data de um post no idioma da página. Parâmetros: date; long=true para "30 de outubro de 2026". {%- endcomment -%}
+{%- assign PL = page.lang | default: "pt" -%}
+{%- assign PM = include.date | date: "%-m" | minus: 1 -%}
+{%- assign PD = include.date | date: "%-d" -%}
+{%- assign PY = include.date | date: "%Y" -%}
+{%- if include.long -%}
+  {%- if PL == "en" -%}{{ PD }} {{ site.data.text.common.months_long.en[PM] }} {{ PY }}{%- else -%}{{ PD }} de {{ site.data.text.common.months_long.pt[PM] }} de {{ PY }}{%- endif -%}
+{%- else -%}
+  {{ PD }} {{ site.data.text.common.months[PL][PM] }} {{ PY }}
+{%- endif -%}

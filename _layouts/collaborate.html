@@ -46,7 +46,9 @@ layout: default
             data-msg-invalid="{{ F.invalid[L] }}" data-msg-error="{{ F.error[L] }}" data-msg-sending="{{ F.sending[L] }}"
             data-msg-captcha="{{ F.captcha_error[L] }}" data-msg-verify-first="{{ F.verify_first[L] }}"
             {%- if wp %} data-wp-pass="%%GIA_PASS%%" data-msg-login="{{ F.wp_login_error[L] }}"{% endif %}
-            data-msg-pdf-type="{{ F.pdf_type_error[L] }}" data-msg-pdf-size="{{ F.pdf_size_error[L] | replace: '%MB%', mb }}">
+            data-msg-pdf-type="{{ F.pdf_type_error[L] }}" data-msg-pdf-size="{{ F.pdf_size_error[L] | replace: '%MB%', mb }}"
+            data-msg-errors-one="{{ F.errors_one[L] }}" data-msg-errors-many="{{ F.errors_many[L] }}"
+            {%- for e in F.errors %} data-msg-err-{{ e[0] | replace: '_', '-' }}="{{ e[1][L] | escape }}"{% endfor %}>
 
         <fieldset>
           <legend><span class="mono">01</span>{{ F.legend_you[L] }}</legend>
@@ -231,6 +233,10 @@ layout: default
           {%- endif %}
         </fieldset>
 
+        <div class="error-summary" role="alert" data-error-summary hidden>
+          <p class="error-summary-title" data-error-title></p>
+          <ul data-error-list></ul>
+        </div>
         <div class="form-actions">
           <button class="btn btn-primary" type="submit" data-submit>{{ F.submit[L] }}{% include icon.html name="arrow" %}</button>
           <p class="form-privacy">{% if wp %}{{ F.privacy_wp[L] }}{% elsif G.endpoint != "" %}{{ F.privacy[L] }}{% else %}{{ F.privacy_mail[L] }}{% endif %}</p>

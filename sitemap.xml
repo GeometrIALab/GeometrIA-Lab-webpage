@@ -19,4 +19,16 @@ permalink: /sitemap.xml
   {%- endfor %}
 {%- endif %}
 {%- endfor %}
+{%- for p in site.posts %}
+  {%- assign twin = nil -%}
+  {%- if p.key -%}{%- assign twin = site.posts | where: "key", p.key | where_exp: "q", "q.lang != p.lang" | first -%}{%- endif %}
+  <url>
+    <loc>{{ p.url | absolute_url }}</loc>
+    <lastmod>{{ p.date | date_to_xmlschema }}</lastmod>
+    {%- if twin %}
+    <xhtml:link rel="alternate" hreflang="{% if p.lang == 'en' %}en{% else %}pt-BR{% endif %}" href="{{ p.url | absolute_url }}"/>
+    <xhtml:link rel="alternate" hreflang="{% if twin.lang == 'en' %}en{% else %}pt-BR{% endif %}" href="{{ twin.url | absolute_url }}"/>
+    {%- endif %}
+  </url>
+{%- endfor %}
 </urlset>

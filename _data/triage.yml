@@ -9,8 +9,8 @@ lede:
 steps:
   - name: { pt: "Recebemos sua proposta", en: "We receive your proposal" }
     text:
-      pt: "Assim que você envia o formulário, uma confirmação aparece na tela. A proposta e o PDF, se houver, ficam disponíveis apenas para a equipe do laboratório."
-      en: "As soon as you send the form, a confirmation appears on screen. The proposal and the PDF, if any, are available only to the lab team."
+      pt: "Assim que você envia o formulário, uma confirmação aparece na tela e chega ao seu e-mail, com o número da proposta. A proposta e o PDF, se houver, ficam disponíveis apenas para a equipe do laboratório."
+      en: "As soon as you send the form, a confirmation appears on screen and reaches your inbox, with the proposal number. The proposal and the PDF, if any, are available only to the lab team."
     tag: { pt: "imediato", en: "immediate" }
 
   - name: { pt: "Padronização e nota preliminar", en: "Standard format and preliminary score" }

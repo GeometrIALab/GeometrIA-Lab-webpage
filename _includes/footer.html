@@ -23,6 +23,8 @@
         <li><a href="{{ R.approach[L] | relative_url }}">{{ C.nav.approach[L] }}</a></li>
         <li><a href="{{ R.research[L] | relative_url }}">{{ C.nav.research[L] }}</a></li>
         <li><a href="{{ R.people[L] | relative_url }}">{{ C.nav.people[L] }}</a></li>
+        <li><a href="{{ R.blog[L] | relative_url }}">{{ C.nav.blog[L] }}</a></li>
+        <li><a href="{{ site.links.working_papers }}"{% if L != "en" %} lang="en"{% endif %}>{{ C.nav.working_papers[L] }}<span class="visually-hidden"{% if L != "en" %} lang="pt-BR"{% endif %}> {{ C.nav.on_github[L] }}</span></a></li>
         <li><a href="{{ R.collaborate[L] | relative_url }}">{{ C.nav.cta[L] }}</a></li>
       </ul>
     </nav>
