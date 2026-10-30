@@ -8,8 +8,6 @@ date: 2026-10-30 09:00:00 -0300
 ---
 {%- capture convite -%}{% include invite-href.html %}{%- endcapture -%}
 
-> **Resumo da comunidade MathIA AmLat, atualizado em 30 de outubro de 2026.** Este texto distingue cuidadosamente anúncios, preprints, formalizações verificadas por computador e resultados já assimilados pela comunidade. Uma prova em Lean certifica um enunciado formal. Ela não garante, por si só, que esse enunciado corresponda exatamente à afirmação apresentada em linguagem natural, nem substitui a compreensão e a avaliação humanas.
-
 Em apenas dois meses, a discussão sobre inteligência artificial em matemática mudou de escala. No início de setembro, ainda era possível tratar cada resultado como um episódio isolado, fosse uma formalização impressionante, uma possível solução para um problema famoso ou uma controvérsia sobre autoria. Ao final de outubro, já havia centenas de manuscritos produzidos por modelos, provas formais com dezenas de milhões de linhas, sistemas multiagentes resolvendo a maioria dos problemas de avaliações controladas e novas estruturas sendo criadas para revisão, atribuição e governança.
 
 A pergunta central deixou de ser simplesmente **“a IA consegue resolver problemas matemáticos difíceis?”**. As questões agora são mais amplas. **Como verificar resultados produzidos nessa escala? Como transformá-los em compreensão matemática? Quem recebe crédito? Quem escolhe os problemas? Quem tem acesso aos modelos e à computação? E como garantir que comunidades fora dos grandes centros tecnológicos participem como protagonistas?**

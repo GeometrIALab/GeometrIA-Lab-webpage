@@ -8,8 +8,6 @@ date: 2026-10-30 09:00:00 -0300
 ---
 {%- capture invite -%}{% include invite-href.html %}{%- endcapture -%}
 
-> **MathIA AmLat community digest, updated on 30 October 2026.** This text carefully distinguishes announcements, preprints, computer-verified formalisations and results already absorbed by the community. A proof in Lean certifies a formal statement. It does not by itself guarantee that this statement corresponds exactly to the claim made in natural language, nor does it replace human understanding and assessment.
-
 In just two months, the discussion about artificial intelligence in mathematics changed scale. In early September it was still possible to treat each result as an isolated episode, whether an impressive formalisation, a possible solution to a famous problem or a controversy over authorship. By the end of October there were hundreds of model-generated manuscripts, formal proofs tens of millions of lines long, multi-agent systems solving most of the problems in controlled evaluations, and new structures being built for review, attribution and governance.
 
 The central question is no longer simply **“can AI solve hard mathematical problems?”**. The questions are now broader. **How do we verify results produced at this scale? How do we turn them into mathematical understanding? Who gets credit? Who chooses the problems? Who has access to the models and to computing? And how do we make sure that communities outside the major technology hubs take part as protagonists?**
