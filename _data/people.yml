@@ -51,3 +51,18 @@ members:
     links:
       - { label: { pt: Página, en: Website }, url: "https://tomassilva.github.io/" }
 
+  - id: jakob
+    name: "Jakob Stein"
+    short: "J. Stein"
+    initials: "JS"
+    photo: "/assets/img/people/jakob.jpg"
+    role: { pt: "Colaborador", en: "Collaborator" }
+    position:
+      pt: "Pós-doutorando FAPESP no IMECC/UNICAMP"
+      en: "FAPESP postdoctoral fellow at IMECC/UNICAMP"
+    bio:
+      pt: "Pesquisa análise geométrica e teoria de calibre sobre variedades riemannianas com estruturas geométricas especiais e, mais recentemente, a modelagem numérica dessas estruturas. Seus trabalhos tratam de instantons G<sub>2</sub>, de fluxos e singularidades de estruturas G<sub>2</sub> e de teoria de calibre em variedades de Calabi–Yau. Doutor pela University College London."
+      en: "Works on geometric analysis and gauge theory over Riemannian manifolds with special geometric structures and, more recently, on modelling these structures numerically. His work covers G<sub>2</sub>-instantons, flows and singularities of G<sub>2</sub>-structures, and gauge theory on Calabi–Yau manifolds. PhD from University College London."
+    email: "jstein@unicamp.br"
+    links:
+      - { label: { pt: Página, en: Website }, url: "https://jakobstein.github.io/" }
